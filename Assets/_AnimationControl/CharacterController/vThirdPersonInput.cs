@@ -12,6 +12,7 @@ namespace Invector.CharacterController
         [Header("Default Inputs")]
         public string horizontalInput = "Horizontal";
         public string verticallInput = "Vertical";
+        public bool enableMovement = true;
         public KeyCode jumpInput = KeyCode.Space;
         public KeyCode strafeInput = KeyCode.Tab;
         public KeyCode sprintInput = KeyCode.LeftShift;
@@ -20,6 +21,7 @@ namespace Invector.CharacterController
         [Header("Camera Settings")]
         public string rotateCameraXInput ="Mouse X";
         public string rotateCameraYInput = "Mouse Y";
+        public bool enableCamRotate = true;
 
         protected vThirdPersonCamera tpCamera;                // acess camera info        
         [HideInInspector]
@@ -92,9 +94,17 @@ namespace Invector.CharacterController
         #region Basic Locomotion Inputs      
 
         protected virtual void MoveCharacter()
-        {            
-            cc.input.x = Input.GetAxis(horizontalInput);
-            cc.input.y = Input.GetAxis(verticallInput);
+        {   
+            if (enableMovement)
+            {
+                cc.input.x = Input.GetAxis(horizontalInput);
+                cc.input.y = Input.GetAxis(verticallInput);
+            }
+            else
+            {
+                cc.input.x = 0;
+                cc.input.y = 0;
+            }
         }
 
         protected virtual void StrafeInput()
@@ -137,10 +147,15 @@ namespace Invector.CharacterController
         {
             if (tpCamera == null)
                 return;
+            
             var Y = Input.GetAxis(rotateCameraYInput);
             var X = Input.GetAxis(rotateCameraXInput);
 
-            tpCamera.RotateCamera(X, Y);
+            // DISABLE CAMERA MOVEMENT
+            if (enableCamRotate)
+                tpCamera.RotateCamera(X, Y);
+            else
+                tpCamera.RotateCamera(0, 0);
 
             // tranform Character direction from camera if not KeepDirection
             if (!keepDirection)

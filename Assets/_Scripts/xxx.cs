@@ -40,25 +40,16 @@ public class xxx : MonoBehaviour
     void Start()
     {
         cameraScript = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
-        inputScript = GameObject.Find("odo neu").GetComponent<vThirdPersonInput>();
-
+        inputScript = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         
-        
-        
-
         distance = 6;
-        //style = 0;
-        //speed = 0;
-        
-
-        //anim = GetComponent<Animator>();
+    
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-
-        float wheel = Input.GetAxis("Mouse ScrollWheel")*4;
+        
+        float wheel = Input.GetAxis("Mouse ScrollWheel") * 4;
 
         if (distance >= 1.0)
         {
@@ -88,10 +79,21 @@ public class xxx : MonoBehaviour
 
         }
         */
+        float triggerL = Input.GetAxis("TriggerL");
+        float triggerR = Input.GetAxis("TriggerR");
 
-        anim.SetFloat("IsDancing", Input.GetAxis("Dance"));
-        anim.SetFloat("DanceStyle", Input.GetAxis("X"));
-        anim.SetFloat("DanceHard", Input.GetAxis("Y"));
+
+        // Im Animation Controller auf BOOL umbauen
+        float isDancing = 0;
+         if ((triggerL + triggerR) * 0.5f > 0.8f)
+            isDancing = 1;
+
+        
+
+
+        anim.SetFloat("IsDancing", isDancing);
+        anim.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
+        anim.SetFloat("DanceHard", Input.GetAxis("Vertical"));
 
         //Debug.Log("X - " + Input.GetAxis("X"));
         //Debug.Log("Y - " + Input.GetAxis("Y"));
@@ -99,19 +101,31 @@ public class xxx : MonoBehaviour
 
 
         //Disable Cam Movement when Dancing
-        if (Input.GetAxis("Dance") > 0.5f)
+        if (isDancing > 0.8f)
         {
-            inputScript.rotateCameraXInput = "blank";
-            inputScript.rotateCameraYInput = "blank";
+            Debug.Log("DANCE MODE");
+            //inputScript.rotateCameraXInput = "blank";
+            //inputScript.rotateCameraYInput = "blank";
+
+            //inputScript.rotateCameraXInput += Time.deltaTime * 1;
+            //inputScript.rotateCameraYInput += Time.deltaTime * 1;            
+          
+            inputScript.enableCamRotate = false;
+            inputScript.enableMovement = false;
         }
         else
         {
-            inputScript.rotateCameraXInput = "X";
-            inputScript.rotateCameraYInput = "Y";
+            
+
+            inputScript.enableMovement = true;
+            inputScript.enableCamRotate = true;
+
         }
 
-
         
+
+
+
     }
 
 
