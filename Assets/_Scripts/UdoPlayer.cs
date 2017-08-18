@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class UdoPlayer : MonoBehaviour {
 
-    private float love = 50;
-    private float speed = 50;
-    private float creativity = 20;
-    private float health;
+    public float love = 70;
+    public float health = 60;
+    public float sanity = 80;
+    public float loveRegen = 0;
+    public float healthRegen = 0;
+    public float sanityRegen = 0;
+
 
     public float getLove()
     {
@@ -15,11 +18,11 @@ public class UdoPlayer : MonoBehaviour {
     }
     public float getSpeed()
     {
-        return speed;
+        return health;
     }
     public float getCreativity()
     {
-        return creativity;
+        return sanity;
     }
     public float getHealth()
     {
@@ -32,8 +35,8 @@ public class UdoPlayer : MonoBehaviour {
     public void consumeDrug(Drug stoff)
     {
         love += stoff.love;
-        speed += stoff.speed;
-        creativity += stoff.creativity;
+        health += stoff.speed;
+        sanity += stoff.creativity;
         drugList.Add(stoff);
     }
 
@@ -45,6 +48,10 @@ public class UdoPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+
+        love += Time.deltaTime * loveRegen;
+        health += Time.deltaTime * healthRegen;
+        sanity += Time.deltaTime * sanityRegen;
+
+    }
 }
