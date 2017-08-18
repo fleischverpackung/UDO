@@ -22,6 +22,7 @@ namespace Invector.CharacterController
         public string rotateCameraXInput ="Mouse X";
         public string rotateCameraYInput = "Mouse Y";
         public bool enableCamRotate = true;
+        public float orbitSpeed = 1;
 
         protected vThirdPersonCamera tpCamera;                // acess camera info        
         [HideInInspector]
@@ -151,11 +152,13 @@ namespace Invector.CharacterController
             var Y = Input.GetAxis(rotateCameraYInput);
             var X = Input.GetAxis(rotateCameraXInput);
 
+
             // DISABLE CAMERA MOVEMENT
             if (enableCamRotate)
                 tpCamera.RotateCamera(X, Y);
             else
-                tpCamera.RotateCamera(0, 0);
+                tpCamera.RotateCamera(X +=Time.deltaTime * 1, Y);
+
 
             // tranform Character direction from camera if not KeepDirection
             if (!keepDirection)
