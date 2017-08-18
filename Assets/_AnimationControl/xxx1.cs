@@ -6,7 +6,7 @@ public class xxx1 : MonoBehaviour
 
     public Animator myAnimator;
   
-   
+   //test
     public float style;
     //public float speed;
 
