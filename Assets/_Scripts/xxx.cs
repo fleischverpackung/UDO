@@ -52,20 +52,14 @@ public class xxx : MonoBehaviour
         float wheel = Input.GetAxis("DigiY") * 0.2f;
 
         if (distance >= 1.0)
-        {
             distance -= wheel;
-        }else
-        {
-            distance = 1.1f;
-        }
-        if (distance <= 7.1f)
-        {
-            distance -= wheel;
-        }
         else
-        {
+            distance = 1.1f;
+        if (distance <= 7.1f)
+            distance -= wheel;
+        else
             distance = 7f;
-        }
+        
 
 
         cameraScript.defaultDistance = distance;
