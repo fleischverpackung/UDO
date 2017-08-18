@@ -49,7 +49,7 @@ public class xxx : MonoBehaviour
     void Update()
     {
         
-        float wheel = Input.GetAxis("Mouse ScrollWheel") * 4;
+        float wheel = Input.GetAxis("DigiY") * 0.2f;
 
         if (distance >= 1.0)
         {
@@ -81,6 +81,7 @@ public class xxx : MonoBehaviour
         */
         float triggerL = Input.GetAxis("TriggerL");
         float triggerR = Input.GetAxis("TriggerR");
+        float digiY = Input.GetAxis("DigiY");
 
 
         // Im Animation Controller auf BOOL umbauen
@@ -98,10 +99,13 @@ public class xxx : MonoBehaviour
         //Debug.Log("X - " + Input.GetAxis("X"));
         //Debug.Log("Y - " + Input.GetAxis("Y"));
         //Debug.Log(Input.GetAxis("Run"));
+        if (digiY > 0.8f)
+        {
+            Debug.Log("DIGI UP " + digiY);
+        }
 
-
-        //Disable Cam Movement when Dancing
-        if (isDancing > 0.8f)
+            //Disable Cam Movement when Dancing
+            if (isDancing > 0.8f)
         {
             Debug.Log("DANCE MODE");
             //inputScript.rotateCameraXInput = "blank";

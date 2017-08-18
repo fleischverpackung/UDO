@@ -10,6 +10,7 @@ public class dispenser : MonoBehaviour
     public int numberOfObjects = 20;
     public float radius = 5f;
     public float size = 1;
+    public int dispenseInterval = 10;
 
     void Start()
     {
@@ -47,7 +48,7 @@ public class dispenser : MonoBehaviour
             Instantiate(prefabs[drugCase], pos, Quaternion.identity);
 
             Debug.Log("dispensed Drug");
-            yield return new WaitForSecondsRealtime(5);
+            yield return new WaitForSecondsRealtime(dispenseInterval);
         }
         
 

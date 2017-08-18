@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum drugType { SPEED, MDMA, WEED, DEFAULT };
+public enum drugType { COCAIN, MDMA, WEED, DEFAULT };
 
 public class Drug : MonoBehaviour, IDrug
 {
@@ -17,13 +17,17 @@ public class Drug : MonoBehaviour, IDrug
     AudioSource _audioSource;
     public AudioClip _audioClip;
     public GameObject _particle;
+    private Light _light;
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _light = GetComponent<Light>();
 
         DrugObject = transform.GetChild(0).gameObject;
         this.setLevels();
+
+        StartCoroutine(SelfDestruct());
 
 
 
@@ -32,29 +36,7 @@ public class Drug : MonoBehaviour, IDrug
     
 
 
-    //public Drug(int type)
-    //{
-
-
-    //    switch (type)
-    //    {
-    //        // Weed
-    //        case 0:
-    //            GenerateDrug(-10, +2, +2, +10, +3, +7, PrimitiveType.Capsule);
-    //            break;
-
-    //        // Cocain
-    //        case 1:
-    //            GenerateDrug(+10, +20, +2, +5, -5, -10, PrimitiveType.Cube);
-    //            break;
-
-    //        // Mdma
-    //            GenerateDrug(-15, -10, -2, +5, +15, +25, PrimitiveType.Sphere);
-    //        case 2:
-    //            break;
-    //    }
-    //}
-
+   
     public virtual void drugAnimation()
     {
         //default animation
@@ -80,15 +62,23 @@ public class Drug : MonoBehaviour, IDrug
         if (other.CompareTag("Player"))
         {
             other.GetComponent<UdoPlayer>().consumeDrug(this);
+            _audioSource.PlayOneShot(_audioClip);
+            _light.enabled = false;
+
+
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
             foreach (Renderer r in renderers)
-                r.enabled = false;
-
-            _audioSource.PlayOneShot(_audioClip);
+                r.enabled = false;            
             Destroy(gameObject, _audioClip.length);
 
 
         }
+    }
+
+    IEnumerator SelfDestruct()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        Destroy(gameObject, _audioClip.length);
     }
 
 

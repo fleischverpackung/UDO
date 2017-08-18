@@ -15,7 +15,7 @@ public class getDrugValues : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        string tempText = string.Format(" love: {0} \n creativity: {1} \n speed {2}",  player.getLove(), player.getCreativity(), player.getSpeed());
+        string tempText = string.Format(" LOVE: {0} \n SANITY: {1} \n HEALTH {2}",  player.getLove(), player.getCreativity(), player.getSpeed());
         text.text = tempText;
 
         

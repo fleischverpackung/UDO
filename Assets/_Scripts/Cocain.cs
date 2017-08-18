@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Speed : Drug {
+public class Cocain : Drug {
 
 
     public override void drugAnimation()
@@ -16,7 +16,7 @@ public class Speed : Drug {
         speed = Random.Range(20, 100);
         creativity = Random.Range(-50, -10);
         love = Random.Range(-10, 20);
-        type = drugType.SPEED;
+        type = drugType.COCAIN;
         Debug.Log("speed values set");
     }
     

@@ -11,6 +11,8 @@ public class UdoPlayer : MonoBehaviour {
     public float healthRegen = 0;
     public float sanityRegen = 0;
 
+    private Material haut;
+
 
     public float getLove()
     {
@@ -44,6 +46,7 @@ public class UdoPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         drugList = new List<Drug>();
+        haut = GetComponentInChildren<Renderer>().material;
 	}
 	
 	// Update is called once per frame
@@ -52,6 +55,8 @@ public class UdoPlayer : MonoBehaviour {
         love += Time.deltaTime * loveRegen;
         health += Time.deltaTime * healthRegen;
         sanity += Time.deltaTime * sanityRegen;
+
+        //haut.color = new Color(1.0f, .8f, .8f);
 
     }
 }
