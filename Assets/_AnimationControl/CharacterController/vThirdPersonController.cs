@@ -23,6 +23,16 @@ namespace Invector.CharacterController
             isStrafing = !isStrafing;
         }
 
+        public virtual void Death()
+        {
+            string[] deathAnis = new string[] { "DeathFront", "DeathBack" };
+            int random = Random.Range(0, 2);
+            animator.Play(deathAnis[random]);
+            
+            
+            //animator.CrossFadeInFixedTime("DeathFront", 207f);        
+        }
+
         public virtual void Jump()
         {
             // conditions to do this action

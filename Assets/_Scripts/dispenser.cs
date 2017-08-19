@@ -11,24 +11,11 @@ public class dispenser : MonoBehaviour
     public float radius = 5f;
     public float size = 1;
     public int dispenseInterval = 10;
+    private bool active;
 
     void Start()
-    {
-        /*
-        for (int i = 0; i < numberOfObjects; i++)
-        {
-            int drugCase = (Random.Range(0, 100)%prefabs.Length);
-
-            
-            float angle = i * Mathf.PI * 2 / numberOfObjects;
-            Vector3 pos = new Vector3(Mathf.Cos(angle), 5, Mathf.Sin(angle)) * radius;
-            Instantiate(prefabs[drugCase], pos, Quaternion.identity);
-            
-        }
-        */
-
+    {        
         StartCoroutine(DispenserOn());
-
     }
 
    
@@ -41,9 +28,9 @@ public class dispenser : MonoBehaviour
 
     IEnumerator DispenserOn()
     {
-        while (true)
+        while (active)
         {
-            int drugCase = (Random.Range(0, 100) % prefabs.Length);
+            int drugCase = (Random.Range(0, 3));
             Vector3 pos = new Vector3(Random.Range(-size, size), 5, Random.Range(-size, size));
             Instantiate(prefabs[drugCase], pos, Quaternion.identity);
 

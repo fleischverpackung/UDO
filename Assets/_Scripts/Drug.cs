@@ -7,11 +7,19 @@ public enum drugType { COCAIN, MDMA, WEED, DEFAULT };
 public class Drug : MonoBehaviour, IDrug
 {
 
-    public float speed;
-    public float creativity;
+    public float health;
+    public float sanity;
     public float love;
     public GameObject DrugObject;
     public drugType type;
+
+    // FINETUNE SETTINGS FOR DRUG GENERATOR
+    public float healthMin;
+    public float healthMax;
+    public float sanityMin;
+    public float sanityMax;
+    public float loveMin;
+    public float loveMax;
 
 
     AudioSource _audioSource;
@@ -46,8 +54,8 @@ public class Drug : MonoBehaviour, IDrug
     public virtual void setLevels()
     {
         love = 0;
-        creativity = 0;
-        speed = 0;
+        sanity = 0;
+        health = 0;
     }
 
     void OnDestroy()
@@ -86,8 +94,8 @@ public class Drug : MonoBehaviour, IDrug
 
     private void GenerateDrug(int speedMin, int speedMax, int creativeMin, int creativeMax, int loveMin, int loveMax, PrimitiveType obj)
     {
-        speed = Random.Range(speedMin, speedMax);
-        creativity = Random.Range(creativeMin, creativeMax);
+        health = Random.Range(speedMin, speedMax);
+        sanity = Random.Range(creativeMin, creativeMax);
         love = Random.Range(loveMin, loveMax);
         //DrugMesh = GameObject.CreatePrimitive(obj);
     }

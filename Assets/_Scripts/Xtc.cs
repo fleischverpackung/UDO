@@ -16,9 +16,9 @@ public class MDMA : Drug
 
     public override void setLevels()
     {
-        speed = Random.Range(-70, -10);
-        creativity = Random.Range(-20, 10);
-        love = Random.Range(30, 100);
+        health = Random.Range(healthMin, healthMax);
+        sanity = Random.Range(sanityMin, sanityMax);
+        love = Random.Range(loveMin, loveMax);
         type = drugType.MDMA;
         Debug.Log("mdma values set");
     }

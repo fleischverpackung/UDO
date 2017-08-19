@@ -16,9 +16,9 @@ public class Weed : Drug
 
     public override void setLevels()
     {
-        speed = Random.Range(-70, -10);
-        creativity = Random.Range(-30, 10);
-        love = Random.Range(10, 30);
+        health = Random.Range(healthMin, healthMax);
+        sanity = Random.Range(sanityMin, sanityMax);
+        love = Random.Range(loveMin, loveMax);
         type = drugType.WEED;
         Debug.Log("weed values set");
     }
