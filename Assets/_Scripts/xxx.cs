@@ -27,17 +27,29 @@ public class xxx : MonoBehaviour
 {
 
      private Animator anim;
-     vThirdPersonInput inputScript;
-     vThirdPersonCamera cameraScript;
-     float distance;
+     private vThirdPersonInput ic;
+     private vThirdPersonCamera cs;
+     private vThirdPersonController cc;
+     private float distance;
      public float style;
+     private UdoPlayer udo;
+     public GameObject udoPrefab;
+     private float health;
 
+    private void Awake()
+    {
+        var newObject = Instantiate(udoPrefab, new Vector3(0, 3, 0), Quaternion.identity);
+        newObject.name = "UDO";
+    }
 
     void Start()
     {
-        cameraScript = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
-        inputScript = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+        cs = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
+        ic = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+        cc = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
         anim = GameObject.Find("UDO").GetComponent<Animator>();
+        udo = GameObject.Find("UDO").GetComponent<UdoPlayer>();
+        
 
         distance = 6;
     
@@ -45,9 +57,15 @@ public class xxx : MonoBehaviour
     
     void Update()
     {
-        
-        float wheel = Input.GetAxis("DigiY") * 0.2f;
+        // CHECK DEATH
+        health = udo.getHealth();
+        if (health <= 0)
+            cc.Death();
+            ic.enableMovement = false;
 
+
+        // ZOOMING
+        float wheel = Input.GetAxis("DigiY") * 0.2f;
         if (distance >= 1.0)
             distance -= wheel;
         else
@@ -59,7 +77,7 @@ public class xxx : MonoBehaviour
         
 
 
-        cameraScript.defaultDistance = distance;
+        cs.defaultDistance = distance;
         
         float triggerL = Input.GetAxis("TriggerL");
         float triggerR = Input.GetAxis("TriggerR");
@@ -86,13 +104,13 @@ public class xxx : MonoBehaviour
         {
             Debug.Log("DANCE MODE");
             
-            inputScript.enableCamRotate = false;
-            inputScript.enableMovement = false;
+            ic.enableCamRotate = false;
+            ic.enableMovement = false;
         }
         else
         {   
-            inputScript.enableMovement = true;
-            inputScript.enableCamRotate = true;
+            ic.enableMovement = true;
+            ic.enableCamRotate = true;
         }
 
         

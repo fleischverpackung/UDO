@@ -67,12 +67,6 @@ public class UdoPlayer : MonoBehaviour {
         health += Time.deltaTime * healthRegen;
         sanity += Time.deltaTime * sanityRegen;
 
-        if (health <= 0)
-            cc.Death();
-            ee.enableMovement = false;
-            
-        
-
         //haut.color = new Color(1.0f, .8f, .8f);
 
     }
