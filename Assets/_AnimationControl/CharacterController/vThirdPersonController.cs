@@ -26,7 +26,7 @@ namespace Invector.CharacterController
         public virtual void Death()
         {
             string[] deathAnis = new string[] { "DeathFront", "DeathBack" };
-            int random = Random.Range(0, 2);
+            int random = Random.Range(0, 1);
             animator.Play(deathAnis[random]);
             
             

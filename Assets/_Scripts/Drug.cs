@@ -41,10 +41,12 @@ public class Drug : MonoBehaviour, IDrug
 
     }
 
+    private void Update()
+    {
+        transform.Rotate (Vector3.up * 50 * Time.deltaTime, Space.Self);
+    }
+
     
-
-
-   
     public virtual void drugAnimation()
     {
         //default animation
@@ -72,6 +74,8 @@ public class Drug : MonoBehaviour, IDrug
             other.GetComponent<UdoPlayer>().consumeDrug(this);
             _audioSource.PlayOneShot(_audioClip);
             _light.enabled = false;
+
+            
 
 
             Renderer[] renderers = GetComponentsInChildren<Renderer>();

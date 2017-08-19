@@ -2,8 +2,7 @@
 using System.Collections;
 using System.IO;
 using Invector.CharacterController;
-
-
+using UnityEngine.UI;
 
 /*
  * StateManager class (singleton) 
@@ -19,36 +18,42 @@ using Invector.CharacterController;
  *      - oder interface, das gewisse methoden für alle drogen definiert
  *      Speed: IDrugs
  *      
- * 
- * 
  */
 
 public class xxx : MonoBehaviour
 {
 
-     private Animator anim;
-     private vThirdPersonInput ic;
-     private vThirdPersonCamera cs;
-     private vThirdPersonController cc;
-     private float distance;
-     public float style;
-     private UdoPlayer udo;
-     public GameObject udoPrefab;
-     private float health;
+    private Animator anim;
+    private vThirdPersonInput ic;
+    private vThirdPersonCamera cs;
+    private vThirdPersonController cc;
+
+    private float distance;
+    private float startbtn = 0;
+    public float style;
+
+    private UdoPlayer udo;
+    public GameObject udoPrefab;
+    private GameObject udoClone;
+    private float health;
+    private bool alive;
+    private GameObject guiD;
 
     private void Awake()
     {
-        var newObject = Instantiate(udoPrefab, new Vector3(0, 3, 0), Quaternion.identity);
-        newObject.name = "UDO";
+        udoClone = Instantiate(udoPrefab, new Vector3(0, 3, 0), Quaternion.identity);
+        udoClone.name = "UDO";
     }
 
     void Start()
     {
+        
         cs = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
-        ic = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+           
         cc = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
         anim = GameObject.Find("UDO").GetComponent<Animator>();
         udo = GameObject.Find("UDO").GetComponent<UdoPlayer>();
+        guiD = GameObject.Find("Death");
         
 
         distance = 6;
@@ -57,11 +62,25 @@ public class xxx : MonoBehaviour
     
     void Update()
     {
-        // CHECK DEATH
-        health = udo.getHealth();
-        if (health <= 0)
-            cc.Death();
-            ic.enableMovement = false;
+        alive = udo.getAlive();
+        startbtn = Input.GetAxis("Start");
+
+       
+
+        // RESPAWN
+        if (!alive && startbtn == 1)
+        {
+            udo.Resurrect();
+            cc.Jump();
+            //ic.enableMovement = true;
+            /*
+            udo.restStats();
+            udo.setAlive(true);
+            cc.Jump();
+            ic.enableMovement = true;
+            guiD.SetActive(false);
+            */
+        }
 
 
         // ZOOMING
@@ -74,14 +93,13 @@ public class xxx : MonoBehaviour
             distance -= wheel;
         else
             distance = 7f;
-        
-
 
         cs.defaultDistance = distance;
+
+
         
         float triggerL = Input.GetAxis("TriggerL");
         float triggerR = Input.GetAxis("TriggerR");
-        float digiY = Input.GetAxis("DigiY");
 
 
         // Im Animation Controller auf BOOL umbauen
@@ -93,31 +111,25 @@ public class xxx : MonoBehaviour
         anim.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
         anim.SetFloat("DanceHard", Input.GetAxis("Vertical"));
 
-        
-        if (digiY > 0.8f)
-        {
-            Debug.Log("DIGI UP " + digiY);
-        }
 
-        //Disable Cam Movement when Dancing
-        if (isDancing > 0.8f)
-        {
-            Debug.Log("DANCE MODE");
-            
+        // DANCEMODE
+        if (isDancing > 0.8f && alive)
+        {            
             ic.enableCamRotate = false;
             ic.enableMovement = false;
         }
-        else
+        if (isDancing <= 0.8f && alive)
         {   
             ic.enableMovement = true;
             ic.enableCamRotate = true;
-        }
-
-        
+        }     
 
 
 
     }
+
+    
+
 
 
 }

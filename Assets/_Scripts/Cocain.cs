@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cocain : Drug {
-
-
-
+public class Cocain : Drug
+{
 
     public override void drugAnimation()
     {
