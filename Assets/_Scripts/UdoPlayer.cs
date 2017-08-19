@@ -13,6 +13,7 @@ public class UdoPlayer : MonoBehaviour {
     public float healthRegen = 0;
     public float sanityRegen = 0;
     public string lastDrug;
+    public float killLevel = 0;
 
     private Material haut;
     protected vThirdPersonController tpcs;
@@ -51,6 +52,10 @@ public class UdoPlayer : MonoBehaviour {
     public bool getAlive()
     {
         return isAlive;
+    }
+    public float getKillLevel()
+    {
+        return killLevel;
     }
     public void Resurrect()
     {
@@ -97,6 +102,9 @@ public class UdoPlayer : MonoBehaviour {
 
 	void Update () {
 
+        // CALCULATE KILL LEVEL
+        killLevel = 10 - health;
+
         haut.color = Color.Lerp(skinUnhealthy, skinHealthy, health * .1f);
 
 
@@ -107,7 +115,7 @@ public class UdoPlayer : MonoBehaviour {
         if (health <= 0 && isAlive)
         {
             _audioSource.PlayOneShot(_audioClip0);
-            _audioSource.PlayOneShot(_audioClip1);
+            //_audioSource.PlayOneShot(_audioClip1);
             StartCoroutine(JustDied());
             isAlive = false;
             tpcs.Death();
