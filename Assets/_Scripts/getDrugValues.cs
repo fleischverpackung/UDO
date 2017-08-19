@@ -17,7 +17,9 @@ public class getDrugValues : MonoBehaviour {
 
 	void Update () {
 
-        string tempText = string.Format(" LOVE: {0} \n SANITY: {1} \n HEALTH {2}",  player.getLove(), player.getCreativity(), player.getSpeed());
+        //string tempText = string.Format(" LOVE: {0} \n SANITY: {1} \n HEALTH {2}", Mathf.Round(player.getLove()), Mathf.Round(player.getCreativity()), Mathf.Round(player.getSpeed()));
+
+        string tempText = string.Format(" LOVE: {0} \n SANITY: {1} \n HEALTH {2}", player.getLove(), player.getCreativity(), player.getSpeed());
         text.text = tempText;
 
         

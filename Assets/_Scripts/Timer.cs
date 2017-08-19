@@ -1,32 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour {
 
-    public int timerMax = 120;
-    public int danceTime = 0;
+    private int timerMax = 30;
+    public float danceTime = 0;
+    public float killLevel;
+    public float killCounter;
     private bool isDancing = false;
-    public float timerInterval = 1;
+    private float timerInterval = 1;
     private xxx control;
+    public float score = 0;
+    public bool alive = true;
+    UdoPlayer udo;
+    private Boot boot;
+    private GameObject gui;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         StartCoroutine(Countdown());
         control = GameObject.Find("DISPENSER").GetComponent<xxx>();
+        udo = GameObject.Find("UDO").GetComponent<UdoPlayer>();
+        boot = GameObject.Find("BOOT").GetComponent<Boot>();
+        gui = GameObject.Find("Death");
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        isDancing = control.GetDanceStatus();
+        udo.redundandHighscore = score;
 
-        if (isDancing)
-            Debug.Log("ISDANCING");
-            //StartCoroutine(DanceTime());
-        else
-        Debug.Log("NO DANCING");
-        //StopCoroutine(DanceTime());
+
+        if (udo != null)
+        {
+            isDancing = control.GetDanceStatus();
+            killLevel = udo.getKillLevel();
+            alive = udo.getAlive();
+
+            if (isDancing)
+                danceTime += Time.deltaTime;
+
+            killCounter += killLevel;
+
+            score = (danceTime * killLevel) ;
+
+            //if (!alive)
+               // LoadSplash();
+                
+        }
+        
+            
     }
 
     IEnumerator Countdown()
@@ -35,6 +60,8 @@ public class Timer : MonoBehaviour {
         {
             yield return new WaitForSeconds(timerInterval);
             timerMax -= 1;
+            if (timerMax <= 0)
+                LoadSplash();
         }
         
     }
@@ -51,14 +78,16 @@ public class Timer : MonoBehaviour {
 
 
 
+    public void LoadSplash()
+    {
+        boot.setHighscore(score);        
+        SceneManager.LoadScene("Splash", LoadSceneMode.Single);
+    }
+
+
     public int GetTimer()
     {
         return timerMax;
     }
 
-    public void ResetTimer()
-    {
-        danceTime = 0;
-        timerMax = 120;
-    }
 }

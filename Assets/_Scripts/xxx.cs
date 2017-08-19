@@ -100,9 +100,16 @@ public class xxx : MonoBehaviour
 
 
         // Im Animation Controller auf BOOL umbauen
-         if ((triggerL + triggerR) * 0.5f > 0.8f)
+        if ((triggerL + triggerR) * 0.5f > 0.8f)
+        {
             isDancing = 1;
             isDancingBool = true;
+        }            
+        else
+        {
+            isDancing = 0;
+            isDancingBool = false;
+        }
 
         anim.SetFloat("IsDancing", isDancing);
         anim.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));

@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Invector.CharacterController;
+using UnityEngine.SceneManagement;
 
 public class UdoPlayer : MonoBehaviour {
 
      float love = 9;
     float health = 7;
      float sanity = 8;
+
+    public float redundandHighscore = 0;
+
     public bool isAlive = true;
-    public float loveRegen = 0;
-    public float healthRegen = 0;
-    public float sanityRegen = 0;
+    private float loveRegen = -0.1f;
+    private float healthRegen = 0.01f;
+    private float sanityRegen = 0.05f;
     public string lastDrug;
     public float killLevel = 0;
 
@@ -27,7 +31,10 @@ public class UdoPlayer : MonoBehaviour {
     public AudioClip _audioClip1;
 
     private GameObject guiD;
+    private Animator udoAni;
 
+    private Boot boot;
+    //private Timer timer;
 
     public float getLove()
     {
@@ -94,16 +101,24 @@ public class UdoPlayer : MonoBehaviour {
         tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         _audioSource = GetComponent<AudioSource>();
         guiD = GameObject.Find("Death");
+        udoAni = GameObject.Find("UDO").GetComponent<Animator>();
+        boot = GameObject.Find("BOOT").GetComponent<Boot>();
+        //timer = GameObject.Find("UDO").GetComponent<Timer>();
+
 
         guiD.SetActive(false);
     }
-	
 
 
-	void Update () {
+
+    void Update () {
 
         // CALCULATE KILL LEVEL
-        killLevel = 10 - health;
+        killLevel = (health + sanity + love) * 0.3f;
+        Debug.Log("KILLLEVEL: " + killLevel);
+
+        udoAni.speed = ExtensionMethods.Remap(killLevel, 0, 10, .9f, 1.2f);
+           
 
         haut.color = Color.Lerp(skinUnhealthy, skinHealthy, health * .1f);
 
@@ -112,7 +127,7 @@ public class UdoPlayer : MonoBehaviour {
         health = MinMax(health, healthRegen);
         sanity = MinMax(sanity, sanityRegen);
 
-        if (health <= 0 && isAlive)
+        if (killLevel >= 10 && isAlive)
         {
             _audioSource.PlayOneShot(_audioClip0);
             //_audioSource.PlayOneShot(_audioClip1);
@@ -137,18 +152,19 @@ public class UdoPlayer : MonoBehaviour {
         return x; 
     }
 
-    float Map(float s, float a1, float a2, float b1, float b2)
-    {
-        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
-    }
     
     IEnumerator JustDied()
     {
         Debug.Log("JustDied");
 
         // DEATH SCREEN
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(6);
         guiD.SetActive(true);
+        yield return new WaitForSecondsRealtime(3);
+
+        boot.setHighscore(redundandHighscore);
+        SceneManager.LoadScene("Splash", LoadSceneMode.Single);
+
     }
     
 
