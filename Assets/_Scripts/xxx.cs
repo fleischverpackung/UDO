@@ -39,6 +39,9 @@ public class xxx : MonoBehaviour
     private bool alive;
     private GameObject guiD;
 
+    float isDancing = 0;
+    bool isDancingBool = false;
+
     private void Awake()
     {
         udoClone = Instantiate(udoPrefab, new Vector3(0, 3, 0), Quaternion.identity);
@@ -97,9 +100,9 @@ public class xxx : MonoBehaviour
 
 
         // Im Animation Controller auf BOOL umbauen
-        float isDancing = 0;
          if ((triggerL + triggerR) * 0.5f > 0.8f)
             isDancing = 1;
+            isDancingBool = true;
 
         anim.SetFloat("IsDancing", isDancing);
         anim.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
@@ -107,22 +110,27 @@ public class xxx : MonoBehaviour
 
 
         // DANCEMODE
-        if (isDancing > 0.8f && alive)
+        if (isDancing > .8f && alive)
         {            
             tpis.enableCamRotate = false;
             tpis.enableMovement = false;
         }
-        if (isDancing <= 0.8f && alive)
+        if (isDancing <= 0.8 && alive)
         {   
             tpis.enableMovement = true;
             tpis.enableCamRotate = true;
-        }     
-
-
+        }  
+        
+        
 
     }
 
-    
+
+    public bool GetDanceStatus()
+    {
+        return isDancingBool;
+    }
+
 
 
 

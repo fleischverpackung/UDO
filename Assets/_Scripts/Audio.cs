@@ -62,7 +62,7 @@ public class Audio : MonoBehaviour {
 
             // mixer.SetFloat("heartSlow", ExtensionMethods.Remap(killLevel, 0, -80, 1, 2));
             //mixer.SetFloat("heartFast", Remap(killLevel, 0, -80, 1, 2)); 
-            Debug.Log(killLevel);
+            //Debug.Log(killLevel);
     }
 
     

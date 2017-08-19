@@ -7,6 +7,7 @@ public class getTimerValue : MonoBehaviour {
 
     private Timer timer;
     private Text text;
+    private 
 
 
     void Start()
@@ -18,6 +19,7 @@ public class getTimerValue : MonoBehaviour {
 
     void Update()
     {
+
 
         string tempText = string.Format(timer.GetTimer().ToString());
         text.text = tempText;
