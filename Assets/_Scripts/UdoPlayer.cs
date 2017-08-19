@@ -15,14 +15,15 @@ public class UdoPlayer : MonoBehaviour {
     public string lastDrug;
 
     private Material haut;
-    protected vThirdPersonController cc;
-    protected vThirdPersonInput ee;
+    protected vThirdPersonController tpcs;
+    protected vThirdPersonInput tpis;
 
     private Color skinHealthy = new Color(1F, 1F, 1F, 1F);
     private Color skinUnhealthy = new Color(1F, 0.7F, 0.7F, 0.1F);
 
     private AudioSource _audioSource;
-    public AudioClip _audioClip;
+    public AudioClip _audioClip0;
+    public AudioClip _audioClip1;
 
     private GameObject guiD;
 
@@ -53,10 +54,11 @@ public class UdoPlayer : MonoBehaviour {
     }
     public void Resurrect()
     {
+
         restStats();
         isAlive = true; 
         guiD.SetActive(false);
-        ee.enableMovement = true;
+        tpis.enableMovement = true;
         Debug.Log("RESURRECTED");
     }
     public void restStats()
@@ -83,10 +85,12 @@ public class UdoPlayer : MonoBehaviour {
     {
         drugList = new List<Drug>();
         haut = GetComponentInChildren<Renderer>().material;
-        cc = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
-        ee = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+        tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
+        tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         _audioSource = GetComponent<AudioSource>();
         guiD = GameObject.Find("Death");
+
+        guiD.SetActive(false);
     }
 	
 
@@ -102,11 +106,12 @@ public class UdoPlayer : MonoBehaviour {
 
         if (health <= 0 && isAlive)
         {
-            _audioSource.PlayOneShot(_audioClip);
+            _audioSource.PlayOneShot(_audioClip0);
+            _audioSource.PlayOneShot(_audioClip1);
             StartCoroutine(JustDied());
             isAlive = false;
-            cc.Death();
-            ee.enableMovement = false;
+            tpcs.Death();
+           // ee.enableMovement = false;
         }
         
 
@@ -128,7 +133,7 @@ public class UdoPlayer : MonoBehaviour {
     {
         return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
     }
-
+    
     IEnumerator JustDied()
     {
         Debug.Log("JustDied");
@@ -137,6 +142,6 @@ public class UdoPlayer : MonoBehaviour {
         yield return new WaitForSecondsRealtime(3);
         guiD.SetActive(true);
     }
-
+    
 
 }

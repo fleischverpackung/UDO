@@ -24,9 +24,9 @@ public class xxx : MonoBehaviour
 {
 
     private Animator anim;
-    private vThirdPersonInput ic;
+    private vThirdPersonInput tpis;
     private vThirdPersonCamera cs;
-    private vThirdPersonController cc;
+    private vThirdPersonController tpcs;
 
     private float distance;
     private float startbtn = 0;
@@ -49,12 +49,11 @@ public class xxx : MonoBehaviour
     {
         
         cs = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
-           
-        cc = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
+        tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+        tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
         anim = GameObject.Find("UDO").GetComponent<Animator>();
         udo = GameObject.Find("UDO").GetComponent<UdoPlayer>();
-        guiD = GameObject.Find("Death");
-        
+        guiD = GameObject.Find("Death");        
 
         distance = 6;
     
@@ -71,16 +70,11 @@ public class xxx : MonoBehaviour
         if (!alive && startbtn == 1)
         {
             udo.Resurrect();
-            cc.Jump();
-            //ic.enableMovement = true;
-            /*
-            udo.restStats();
-            udo.setAlive(true);
-            cc.Jump();
-            ic.enableMovement = true;
-            guiD.SetActive(false);
-            */
+            tpcs.Jump();
+            tpis.enableMovement = true;
+            
         }
+
 
 
         // ZOOMING
@@ -115,13 +109,13 @@ public class xxx : MonoBehaviour
         // DANCEMODE
         if (isDancing > 0.8f && alive)
         {            
-            ic.enableCamRotate = false;
-            ic.enableMovement = false;
+            tpis.enableCamRotate = false;
+            tpis.enableMovement = false;
         }
         if (isDancing <= 0.8f && alive)
         {   
-            ic.enableMovement = true;
-            ic.enableCamRotate = true;
+            tpis.enableMovement = true;
+            tpis.enableCamRotate = true;
         }     
 
 
