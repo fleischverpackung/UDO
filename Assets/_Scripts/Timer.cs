@@ -41,7 +41,7 @@ public class Timer : MonoBehaviour {
             danceTime += Time.deltaTime;
 
         killCounter += killLevel;
-        score = (danceTime * killLevel);  
+        score = (danceTime * (killCounter * 0.01f));  
     }
 
     IEnumerator Countdown()
