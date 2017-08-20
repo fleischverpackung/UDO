@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Invector.CharacterController;
 using UnityEngine.Events;
-//using UnityEngine.SceneManagement;
 
 public class UdoPlayer :  MonoBehaviour {
     
@@ -34,19 +33,14 @@ public class UdoPlayer :  MonoBehaviour {
     public AudioClip _audioClip0;
     public AudioClip _audioClip1;
 
-    //private GameObject guiD;
     private Animator udoAni;
-
-    private Boot boot;
-    //private Timer timer;
 
     private UnityAction resurrectListener;
 
+
     private void Awake()
     {
-        resurrectListener = new UnityAction(Resurrect);
-
-        
+        resurrectListener = new UnityAction(Resurrect);        
         if (Instance != null)
         {
             DestroyImmediate(gameObject);
@@ -110,7 +104,6 @@ public class UdoPlayer :  MonoBehaviour {
         tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         _audioSource = GetComponent<AudioSource>();
         udoAni = GameObject.Find("UDO").GetComponent<Animator>();
-        boot = GameObject.Find("BOOT").GetComponent<Boot>();
     }
 
 
@@ -169,7 +162,7 @@ public class UdoPlayer :  MonoBehaviour {
     {
         return health;
     }
-    public float getCreativity()
+    public float getSanity()
     {
         return sanity;
     }

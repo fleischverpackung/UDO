@@ -24,13 +24,6 @@ public class AnimationControl : MonoBehaviour {
         animator = x.GetComponent<Animator>();
 
         assetCam = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
-        /*
-
-        assetInput = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
-        assetController = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
-        animator = GameObject.Find("UDO").GetComponent<Animator>();
-        assetCam = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
-    */
     }
 
     void Start () {
