@@ -133,7 +133,7 @@ public class UdoPlayer : MonoBehaviour {
             
 
 
-            _audioSource.PlayOneShot(_audioClip0);
+            //_audioSource.PlayOneShot(_audioClip0);
             //_audioSource.PlayOneShot(_audioClip1);
             StartCoroutine(JustDied());
             isAlive = false;
@@ -171,11 +171,6 @@ public class UdoPlayer : MonoBehaviour {
         //SceneManager.LoadScene("Splash", LoadSceneMode.Single);
 
     }
-<<<<<<< HEAD
 
-
-=======
-    
->>>>>>> parent of 9c7dcb4... udoScriptAuslagern
 
 }

@@ -34,10 +34,10 @@ public class SceneControl : MonoBehaviour {
     private void LoadSplash()
     {
         SceneManager.LoadScene("Splash", LoadSceneMode.Single);
-<<<<<<< HEAD
+
         //UdoPlayer.Instance.Destroy();
-=======
->>>>>>> parent of 9c7dcb4... udoScriptAuslagern
+
+
         //EventManager.TriggerEvent("sceneChange");
     }
 
