@@ -5,9 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class Boot : MonoBehaviour {
 
+    public static Boot Instance { get; private set; }
 
-    float btnStart;
-    float highscore;
+    private float btnStart;
+    private float highscore;
+
+
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
 
     void Start()
@@ -20,18 +33,7 @@ public class Boot : MonoBehaviour {
 
     void Update()
     {
-        /*
-        btnStart = Input.GetAxis("Start");
-
-        if (btnStart >= .8f)
-        {
-            highscore = 0;
-            EventManager.TriggerEvent("sceneDance");
-            //SceneManager.LoadScene("Dance", LoadSceneMode.Single);
-
-        }
-        */
-
+    
     }
 
     public void setHighscore(float x)

@@ -26,7 +26,7 @@ public class Audio : MonoBehaviour {
 
 	void Update () {
 
-        killLevel = udo.getKillLevel();
+        killLevel = UdoPlayer.Instance.getKillLevel();
 
         // FUGLYY
 

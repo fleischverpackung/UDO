@@ -21,26 +21,18 @@ public class Drug : MonoBehaviour, IDrug
     public float loveMin;
     public float loveMax;
 
-
     AudioSource _audioSource;
     public AudioClip _audioClip;
     public GameObject _particle;
     private Light _light;
-    private UdoPlayer udo;
-    
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _light = GetComponent<Light>();
-
         DrugObject = transform.GetChild(0).gameObject;
         this.setLevels();
-
         StartCoroutine(SelfDestruct());
-
-
-
     }
 
     private void Update()
@@ -62,32 +54,19 @@ public class Drug : MonoBehaviour, IDrug
         health = 0;
     }
 
-    void OnDestroy()
-    {
-
-
-    }
 
     void OnTriggerEnter(Collider other)
     {
 
         if (other.CompareTag("Player"))
         {
-
-            
-
             other.GetComponent<UdoPlayer>().consumeDrug(this);
-            
-            _light.enabled = false;
-
-
-
+           _audioSource.PlayOneShot(_audioClip);
+           _light.enabled = false;
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
             foreach (Renderer r in renderers)
                 r.enabled = false;            
             Destroy(gameObject, _audioClip.length);
-
-
         }
     }
 
@@ -98,22 +77,11 @@ public class Drug : MonoBehaviour, IDrug
     }
 
 
-
-
     private void GenerateDrug(int speedMin, int speedMax, int creativeMin, int creativeMax, int loveMin, int loveMax, PrimitiveType obj)
     {
         health = Random.Range(speedMin, speedMax);
         sanity = Random.Range(creativeMin, creativeMax);
         love = Random.Range(loveMin, loveMax);
-        //DrugMesh = GameObject.CreatePrimitive(obj);
     }
-
-
-
-
-    // Spawn at random Position
-    //Vector3 pos = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-
-    //DrugMesh.transform.position = pos;
 }
 
