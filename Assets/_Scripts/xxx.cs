@@ -4,21 +4,6 @@ using System.IO;
 using Invector.CharacterController;
 using UnityEngine.UI;
 
-/*
- * StateManager class (singleton) 
- *      - spielstatus
- *      - 
- * Player class 
- *      - druglevels
- *      (- possible moves)
- *      - health
- * 
- * Drug class/interface
- *      - übergeordnetet klasse von der jede droge erbt, z.b. Speed:Drug
- *      - oder interface, das gewisse methoden für alle drogen definiert
- *      Speed: IDrugs
- *      
- */
 
 public class xxx : MonoBehaviour
 {

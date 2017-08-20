@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Invector.CharacterController;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class UdoPlayer : MonoBehaviour {
 
@@ -30,7 +30,7 @@ public class UdoPlayer : MonoBehaviour {
     public AudioClip _audioClip0;
     public AudioClip _audioClip1;
 
-    private GameObject guiD;
+    //private GameObject guiD;
     private Animator udoAni;
 
     private Boot boot;
@@ -69,7 +69,7 @@ public class UdoPlayer : MonoBehaviour {
 
         restStats();
         isAlive = true; 
-        guiD.SetActive(false);
+        //guiD.SetActive(false);
         tpis.enableMovement = true;
         Debug.Log("RESURRECTED");
     }
@@ -100,13 +100,13 @@ public class UdoPlayer : MonoBehaviour {
         tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
         tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         _audioSource = GetComponent<AudioSource>();
-        guiD = GameObject.Find("Death");
+        //guiD = GameObject.Find("Death");
         udoAni = GameObject.Find("UDO").GetComponent<Animator>();
         boot = GameObject.Find("BOOT").GetComponent<Boot>();
         //timer = GameObject.Find("UDO").GetComponent<Timer>();
 
 
-        guiD.SetActive(false);
+        //guiD.SetActive(false);
     }
 
 
@@ -114,8 +114,9 @@ public class UdoPlayer : MonoBehaviour {
     void Update () {
 
         // CALCULATE KILL LEVEL
-        killLevel = (health + sanity + love) * 0.3f;
-        Debug.Log("KILLLEVEL: " + killLevel);
+        //killLevel = (health + sanity + love) * 0.3f;
+        killLevel = 10 - health;
+        //Debug.Log("KILLLEVEL: " + killLevel);
 
         udoAni.speed = ExtensionMethods.Remap(killLevel, 0, 10, .9f, 1.2f);
            
@@ -129,6 +130,9 @@ public class UdoPlayer : MonoBehaviour {
 
         if (killLevel >= 10 && isAlive)
         {
+            
+
+
             _audioSource.PlayOneShot(_audioClip0);
             //_audioSource.PlayOneShot(_audioClip1);
             StartCoroutine(JustDied());
@@ -159,11 +163,12 @@ public class UdoPlayer : MonoBehaviour {
 
         // DEATH SCREEN
         yield return new WaitForSecondsRealtime(6);
-        guiD.SetActive(true);
+        EventManager.TriggerEvent("guiDeathScreen");
+        //guiD.SetActive(true);
         yield return new WaitForSecondsRealtime(3);
-
+        EventManager.TriggerEvent("sceneSplash");
         boot.setHighscore(redundandHighscore);
-        SceneManager.LoadScene("Splash", LoadSceneMode.Single);
+        //SceneManager.LoadScene("Splash", LoadSceneMode.Single);
 
     }
     

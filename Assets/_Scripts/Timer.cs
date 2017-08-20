@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour {
 
@@ -80,8 +80,9 @@ public class Timer : MonoBehaviour {
 
     public void LoadSplash()
     {
-        boot.setHighscore(score);        
-        SceneManager.LoadScene("Splash", LoadSceneMode.Single);
+        boot.setHighscore(score);
+        EventManager.TriggerEvent("sceneSplash");
+        //SceneManager.LoadScene("Splash", LoadSceneMode.Single);
     }
 
 

@@ -14,8 +14,7 @@ public class SplashScreen : MonoBehaviour {
 
     void Start()
     {
-        bootscript = GameObject.Find("BOOT").GetComponent<Boot>();
-        
+        bootscript = GameObject.Find("BOOT").GetComponent<Boot>();        
         hs.text = "HIGHSCORE: " + Mathf.Round(bootscript.getHighScore()).ToString() +" PUNKTE";
     }
             

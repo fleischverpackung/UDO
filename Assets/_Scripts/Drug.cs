@@ -72,7 +72,7 @@ public class Drug : MonoBehaviour, IDrug
         if (other.CompareTag("Player"))
         {
             other.GetComponent<UdoPlayer>().consumeDrug(this);
-            _audioSource.PlayOneShot(_audioClip);
+           // _audioSource.PlayOneShot(_audioClip);
             _light.enabled = false;
 
             

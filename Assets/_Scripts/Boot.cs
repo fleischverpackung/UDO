@@ -12,23 +12,25 @@ public class Boot : MonoBehaviour {
 
     void Start()
     {
-
         DontDestroyOnLoad(this);
-        SceneManager.LoadScene("Splash", LoadSceneMode.Single);
+        EventManager.TriggerEvent("sceneSplash");
+        //SceneManager.LoadScene("Splash", LoadSceneMode.Single);
     }
 
 
     void Update()
     {
-
+        /*
         btnStart = Input.GetAxis("Start");
 
         if (btnStart >= .8f)
         {
             highscore = 0;
-            SceneManager.LoadScene("Dance", LoadSceneMode.Single);
+            EventManager.TriggerEvent("sceneDance");
+            //SceneManager.LoadScene("Dance", LoadSceneMode.Single);
 
         }
+        */
 
     }
 
