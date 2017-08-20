@@ -131,13 +131,13 @@ public class UdoPlayer :  MonoBehaviour {
 	void Start ()
     {
         drugList = new List<Drug>();
-        haut = GetComponentInChildren<Renderer>().material;
-        tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
-        tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
-        _audioSource = GetComponent<AudioSource>();
+        //haut = GetComponentInChildren<Renderer>().material;
+        //tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
+        //tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+       // _audioSource = GetComponent<AudioSource>();
         //guiD = GameObject.Find("Death");
-        udoAni = GameObject.Find("UDO").GetComponent<Animator>();
-        boot = GameObject.Find("BOOT").GetComponent<Boot>();
+        //udoAni = GameObject.Find("UDO").GetComponent<Animator>();
+       // boot = GameObject.Find("BOOT").GetComponent<Boot>();
         //timer = GameObject.Find("UDO").GetComponent<Timer>();
 
 
@@ -153,10 +153,10 @@ public class UdoPlayer :  MonoBehaviour {
         killLevel = 10 - health;
         //Debug.Log("KILLLEVEL: " + killLevel);
 
-        udoAni.speed = ExtensionMethods.Remap(killLevel, 0, 10, .9f, 1.2f);
+        //udoAni.speed = ExtensionMethods.Remap(killLevel, 0, 10, .9f, 1.2f);
            
 
-        haut.color = Color.Lerp(skinUnhealthy, skinHealthy, health * .1f);
+        //haut.color = Color.Lerp(skinUnhealthy, skinHealthy, health * .1f);
 
 
         love = MinMax(love, loveRegen);
@@ -209,10 +209,6 @@ public class UdoPlayer :  MonoBehaviour {
 
     }
 
-    public void Destroy()
-    {
-        Destroy(this);
-    }
 
 
 }

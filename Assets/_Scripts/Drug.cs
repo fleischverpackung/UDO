@@ -26,6 +26,12 @@ public class Drug : MonoBehaviour, IDrug
     public AudioClip _audioClip;
     public GameObject _particle;
     private Light _light;
+    private UdoPlayer udo;
+
+    private void Awake()
+    {
+        udo = GameObject.Find("UDOLOGIC").GetComponent<UdoPlayer>();
+    }
 
     void Start()
     {
@@ -71,11 +77,18 @@ public class Drug : MonoBehaviour, IDrug
 
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<UdoPlayer>().consumeDrug(this);
-           // _audioSource.PlayOneShot(_audioClip);
-           // _light.enabled = false;
+            //UdoPlayer.Instance.consumeDrug(this);
 
-            
+
+
+             udo.consumeDrug(this);
+
+            //other.GetComponent<UdoPlayer>().consumeDrug(this);
+
+            // _audioSource.PlayOneShot(_audioClip);
+            // _light.enabled = false;
+
+
 
 
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
