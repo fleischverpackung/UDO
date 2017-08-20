@@ -9,7 +9,7 @@ public class Timer : MonoBehaviour {
     private int timerMax = 30;
     public float danceTime = 0;
     public float killLevel;
-    public float killCounter;
+    public float toxicationBonus;
     private bool isDancing = false;
     private float timerInterval = 1;
     public float score = 0;
@@ -40,8 +40,8 @@ public class Timer : MonoBehaviour {
         if (isDancing)
             danceTime += Time.deltaTime;
 
-        killCounter += killLevel;
-        score = (danceTime * (killCounter * 0.01f));  
+        toxicationBonus += killLevel;
+        score = (danceTime * (toxicationBonus * 0.01f));  
     }
 
     IEnumerator Countdown()

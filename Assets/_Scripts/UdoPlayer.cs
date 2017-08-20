@@ -20,7 +20,7 @@ public class UdoPlayer :  MonoBehaviour {
     public string lastDrug;
 
 
-    public float killLevel = 0;
+    public float toxicationBonus = 0;
 
     private Material haut;
     protected vThirdPersonController tpcs;
@@ -78,19 +78,19 @@ public class UdoPlayer :  MonoBehaviour {
 
 
     void Update ()
-    {        
-        //killLevel = (health + sanity + love) * 0.3f;
-        killLevel = 10 - health;
+    {
+        toxicationBonus = 10 - (health + sanity + love) * 0.3f;
+        //toxicationBonus = ((10 - love) + (10 - sanity)) * 0.5f;
         //Debug.Log("KILLLEVEL: " + killLevel);
 
-        udoAni.speed = ExtensionMethods.Remap(killLevel, 0, 10, .9f, 1.2f);
+        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 10, .9f, 1.2f);
         haut.color = Color.Lerp(skinUnhealthy, skinHealthy, health * .1f);
 
         love = MinMax(love, loveRegen);
         health = MinMax(health, healthRegen);
         sanity = MinMax(sanity, sanityRegen);
 
-        if (killLevel >= 10 && isAlive)
+        if (love <= 0 && isAlive || health <= 0 && isAlive || sanity <= 0 && isAlive)
         {
             isAlive = false;
             StartCoroutine(JustDied());
@@ -151,7 +151,7 @@ public class UdoPlayer :  MonoBehaviour {
 
     public float getKillLevel()
     {
-        return killLevel;
+        return toxicationBonus;
     }
 
     public void Destroy()
