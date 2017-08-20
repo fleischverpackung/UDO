@@ -77,28 +77,26 @@ public class AnimationControl : MonoBehaviour {
         // DANCEMODE
         if (danceMode && udoAlive)
         {
-            assetInput.enableCamRotate = true;
+            
             assetInput.enableMovement = false;
         }
         if (!danceMode && udoAlive)
         {
             assetInput.enableMovement = true;
-            assetInput.enableCamRotate = false;
+            
            
         }
-        /*
+        
         if (setCam)
         {
-            camDistance = ExtensionMethods.Remap(Input.GetAxis("Y"), -1, 1, 1, 7);
-            assetInput.freezeCam = true;
-            //Debug.Log(ExtensionMethods.Remap(Input.GetAxis("Y"), -1, 1, 1, 7));
+            assetInput.enableCamRotate = true;
         }
         
         else
         {
-            assetInput.enableCamRotate = true;
+            assetInput.enableCamRotate = false;
         }
-        */
+        
 
         // ZOOM
         float wheel = Input.GetAxis("DigiY") * 0.2f;

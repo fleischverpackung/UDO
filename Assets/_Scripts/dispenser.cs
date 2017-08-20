@@ -11,8 +11,8 @@ public class dispenser : MonoBehaviour
     private bool active = true;
 
     public GameObject[] prefabs;
-    public float dropArea = 10;
-    public float dispenseInterval = 15;
+    public float dropArea = 15;
+    public float dispenseInterval = 13;
     
 
     void Start()
