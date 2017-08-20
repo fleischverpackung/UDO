@@ -6,84 +6,54 @@ using UnityEngine.Events;
 
 public class GamePadControl : MonoBehaviour {
 
-    public static GamePadControl Instance { get; private set; } 
-    
-    public bool startGame = false;
-    public bool resurrectUdo = false;
-    public bool danceMode = false;
+    //private UnityAction sceneChangeListener;
+    private bool start = false;
     private string scene;
-    private bool udoAlive;
-    //private float wheel;
 
+    /*
     private void Awake()
     {
-        if (Instance != null)
-        {
-            DestroyImmediate(gameObject);
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        sceneChangeListener = new UnityAction(SceneChange);
     }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("sceneChange", sceneChangeListener);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("sceneChange", sceneChangeListener);
+    }*/
+
 
     void Start() {
 
     }
 
-    void Update() {
 
+
+    void Update() {
 
         scene = SceneManager.GetActiveScene().name;
 
-        if (UdoPlayer.Instance != null)
-            udoAlive = UdoPlayer.Instance.getAlive();
-
-        
         if (Input.GetAxisRaw("Start") != 0 && scene == "Splash")
-            startGame = true;          
+            start = true;            
         else
-            startGame = false;
+            start = false;
 
 
-        if (Input.GetAxisRaw("Start") != 0 && scene == "Dance" && !udoAlive) 
-            resurrectUdo = true;
-        else
-            resurrectUdo = false;
-
-
-        if (Input.GetAxisRaw("TriggerL") != 0 && scene == "Dance")
-            danceMode = true;
-        else
-            danceMode = false;
-
-
-        //float wheel = Input.GetAxis("DigiY") * 0.2f;
-
-
-
-
-
-        if (startGame)
+        if (start)
             EventManager.TriggerEvent("sceneDance");
 
-        if (resurrectUdo)
-            EventManager.TriggerEvent("udoResurrect");
-
-        //if (danceMode)
-            //EventManager.TriggerEvent("udoDance");
-            
-        
-    }
-
-    public bool GetDanceMode()
-    {
-        return danceMode;
     }
 
     /*
-    public float GetWheel()
+    // GET SCENE NAME JUST ON EVENT
+    private void SceneChange()
     {
-        return wheel;
+        scene = SceneManager.GetActiveScene().name;
+        Debug.Log("SCENE NAME= " + scene);
     }
     */
 }

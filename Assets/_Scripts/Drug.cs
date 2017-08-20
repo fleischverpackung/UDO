@@ -77,6 +77,7 @@ public class Drug : MonoBehaviour, IDrug
 
         if (other.CompareTag("Player"))
         {
+<<<<<<< HEAD
             //UdoPlayer.Instance.consumeDrug(this);
 
 
@@ -88,6 +89,11 @@ public class Drug : MonoBehaviour, IDrug
             // _audioSource.PlayOneShot(_audioClip);
             // _light.enabled = false;
 
+=======
+            other.GetComponent<UdoPlayer>().consumeDrug(this);
+           // _audioSource.PlayOneShot(_audioClip);
+            _light.enabled = false;
+>>>>>>> parent of 9c7dcb4... udoScriptAuslagern
 
 
 
