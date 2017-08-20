@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour {
 
     public static Timer Instance { get; private set; }
 
-    private int timerMax = 30;
+    private int timerMax = 60;
     public float danceTime = 0;
     public float killLevel;
     public float toxicationBonus;

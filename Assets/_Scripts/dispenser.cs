@@ -11,19 +11,26 @@ public class dispenser : MonoBehaviour
     private bool active = true;
 
     public GameObject[] prefabs;
-    public float dropArea = 1;
-    public int dispenseInterval = 3;
+    public float dropArea = 10;
+    public float dispenseInterval = 15;
     
 
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         StartCoroutine(DispenserOn());
+
     }
 
    
     void Update()
-    {      
+    {
+
+        // INTENSIFY DROPPINGS
+        while (dispenseInterval >=5 )
+            dispenseInterval -= Time.deltaTime;
+        
+
 
     }
 
@@ -41,11 +48,13 @@ public class dispenser : MonoBehaviour
 
                 yield return new WaitForSecondsRealtime(dispenseInterval);
             }
-        }
-
-        
+        }      
 
     }
+
+    
+    
+
 
     private void OnDestroy()
     {

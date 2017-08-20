@@ -16,6 +16,9 @@ public class AnimationControl : MonoBehaviour {
     private float dance = 0;
     private float camDistance = 6;
     private bool setCam = false;
+    private float danceStyle = 0;
+    private bool danceStyleBool = false;
+
 
     private void Awake()
     {
@@ -44,6 +47,10 @@ public class AnimationControl : MonoBehaviour {
         if (GamePadControl.Instance != null)
             setCam = GamePadControl.Instance.GetCamMode();
 
+        if (GamePadControl.Instance != null)
+            danceStyle = UdoPlayer.Instance.getKillLevel() * 0.1f;
+
+
 
         // UGLY SET ANIMATOR FLOAT
         if (danceMode)
@@ -51,11 +58,17 @@ public class AnimationControl : MonoBehaviour {
         else
             dance = 0f;
 
-        
+
+        if (danceStyle > 0.5f)
+            animator.SetBool(1, true);
+        else
+            animator.SetBool(1, false);
+
         // DEACTIVATE MOVEMENT WHEN DEAD
         assetInput.enableMovement = udoAlive;
 
         // ANIMATOR CONTROL
+        animator.SetFloat("DanceMode", danceStyle);
         animator.SetFloat("IsDancing", dance);
         animator.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
         animator.SetFloat("DanceHard", Input.GetAxis("Vertical"));
@@ -64,27 +77,28 @@ public class AnimationControl : MonoBehaviour {
         // DANCEMODE
         if (danceMode && udoAlive)
         {
-            assetInput.enableCamRotate = false;
+            assetInput.enableCamRotate = true;
             assetInput.enableMovement = false;
         }
         if (!danceMode && udoAlive)
         {
             assetInput.enableMovement = true;
-            assetInput.enableCamRotate = true;
+            assetInput.enableCamRotate = false;
            
         }
-
+        /*
         if (setCam)
         {
             camDistance = ExtensionMethods.Remap(Input.GetAxis("Y"), -1, 1, 1, 7);
             assetInput.freezeCam = true;
             //Debug.Log(ExtensionMethods.Remap(Input.GetAxis("Y"), -1, 1, 1, 7));
         }
+        
         else
         {
             assetInput.enableCamRotate = true;
         }
-
+        */
 
         // ZOOM
         float wheel = Input.GetAxis("DigiY") * 0.2f;

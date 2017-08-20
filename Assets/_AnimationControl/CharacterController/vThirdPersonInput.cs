@@ -10,7 +10,7 @@ namespace Invector.CharacterController
         #region variables
 
 
-        private float camRotateSpeed = 4;
+        private float camRotateSpeed = 0.1f;
 
         [Header("Default Inputs")]
         public string horizontalInput = "Horizontal";
@@ -159,15 +159,15 @@ namespace Invector.CharacterController
 
             // DISABLE CAMERA MOVEMENT
             if (enableCamRotate)
-                tpCamera.RotateCamera(X, Y);                
-            else
-                tpCamera.RotateCamera(X +=Time.deltaTime * camRotateSpeed, Y);
-
-            if (freezeCam)
-                tpCamera.RotateCamera(0, 0);
+                tpCamera.RotateCamera(X += camRotateSpeed, Y);                
             else
                 tpCamera.RotateCamera(X, Y);
-
+            
+            if (freezeCam)
+                tpCamera.RotateCamera(X, Y);
+            else
+                tpCamera.RotateCamera(X, Y);
+                
 
 
             // tranform Character direction from camera if not KeepDirection

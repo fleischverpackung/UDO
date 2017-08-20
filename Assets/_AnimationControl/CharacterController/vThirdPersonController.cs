@@ -28,10 +28,19 @@ namespace Invector.CharacterController
             string[] deathAnis = new string[] { "DeathFront", "DeathBack" };
             int random = Random.Range(0, 1);
             animator.Play(deathAnis[random]);
-            
-            
-            //animator.CrossFadeInFixedTime("DeathFront", 207f);        
+                   
         }
+
+        /*
+        public virtual void DanceModes()
+        {
+            
+            animator.Play(deathAnis[random]);
+
+        }
+        */
+
+
 
         public virtual void Jump()
         {
