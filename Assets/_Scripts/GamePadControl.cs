@@ -43,12 +43,7 @@ public class GamePadControl : MonoBehaviour {
             startGame = true;          
         else
             startGame = false;
-
-
-        if (Input.GetAxisRaw("Start") != 0 && scene == "Dance" && !udoAlive) 
-            resurrectUdo = true;
-        else
-            resurrectUdo = false;
+        
 
 
         if (Input.GetAxisRaw("TriggerL") != 0 && scene == "Dance")
@@ -59,18 +54,9 @@ public class GamePadControl : MonoBehaviour {
 
         //float wheel = Input.GetAxis("DigiY") * 0.2f;
 
-
-
-
-
         if (startGame)
             EventManager.TriggerEvent("sceneDance");
 
-        if (resurrectUdo)
-            EventManager.TriggerEvent("udoResurrect");
-
-        //if (danceMode)
-            //EventManager.TriggerEvent("udoDance");
             
         
     }

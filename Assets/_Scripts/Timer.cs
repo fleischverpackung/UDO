@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour {
 
+    public static Timer Instance { get; private set; }
+
     private int timerMax = 30;
     public float danceTime = 0;
     public float killLevel;
@@ -13,6 +15,15 @@ public class Timer : MonoBehaviour {
     public float score = 0;
     public bool alive = true;
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     void Start ()
     {
@@ -42,6 +53,7 @@ public class Timer : MonoBehaviour {
             if (timerMax <= 0)
             {
                 Boot.Instance.setHighscore(score);
+                Debug.Log("highscore set");
                 EventManager.TriggerEvent("sceneSplash");
             }                
         }        
@@ -56,7 +68,12 @@ public class Timer : MonoBehaviour {
         }
     }
 
-    public int GetTimer()
+    public float GetHighscore()
+    {
+        return score;
+    }
+
+    public float GetTimer()
     {
         return timerMax;
     }

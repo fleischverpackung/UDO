@@ -33,14 +33,11 @@ public class SceneControl : MonoBehaviour {
 
     private void LoadSplash()
     {
-        SceneManager.LoadScene("Splash", LoadSceneMode.Single);
-        //UdoPlayer.Instance.Destroy();
-        //EventManager.TriggerEvent("sceneChange");
+        SceneManager.LoadScene("Splash", LoadSceneMode.Single);            
     }
 
     private void LoadDance()
     {
         SceneManager.LoadScene("Dance", LoadSceneMode.Single);
-        //EventManager.TriggerEvent("sceneChange");
     }
 }

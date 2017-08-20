@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum drugType { COCAIN, MDMA, WEED, DEFAULT };
+public enum drugType { COCAIN, MDMA, WEED, MEDICINE, DEFAULT };
 
 public class Drug : MonoBehaviour, IDrug
 {

@@ -14,9 +14,9 @@ public class UdoPlayer :  MonoBehaviour {
     float sanity = 8;
     
     public bool isAlive = true;
-    private float loveRegen = -0.1f;
-    private float healthRegen = 0.01f;
-    private float sanityRegen = 0.05f;
+    private float loveRegen = 0.2f;
+    private float healthRegen = 0.05f;
+    private float sanityRegen = 0.1f;
     public string lastDrug;
 
 
@@ -34,13 +34,13 @@ public class UdoPlayer :  MonoBehaviour {
     public AudioClip _audioClip1;
 
     private Animator udoAni;
-
-    private UnityAction resurrectListener;
+    
 
 
     private void Awake()
     {
-        resurrectListener = new UnityAction(Resurrect);        
+        
+        
         if (Instance != null)
         {
             DestroyImmediate(gameObject);
@@ -50,38 +50,7 @@ public class UdoPlayer :  MonoBehaviour {
         //DontDestroyOnLoad(gameObject);
         
     }
-
-    private void OnEnable()
-    {
-        EventManager.StartListening("udoResurrect", resurrectListener);
-    }
-
-    private void OnDisable()
-    {
-        EventManager.StopListening("udoResurrect", resurrectListener);
-    }
-
-
-
     
-    
-
-
-
-    public void Resurrect()
-    {
-
-        restStats();
-        isAlive = true;
-        tpis.enableMovement = true;
-        Debug.Log("RESURRECTED");
-    }
-    public void restStats()
-    {
-         love = 9;
-         health = 7;
-         sanity = 8;
-    }
 
     private List<Drug> drugList;
 
@@ -128,6 +97,7 @@ public class UdoPlayer :  MonoBehaviour {
             _audioSource.PlayOneShot(_audioClip0);            
             tpcs.Death();
         }
+        
     }
 
 
@@ -146,10 +116,10 @@ public class UdoPlayer :  MonoBehaviour {
     IEnumerator JustDied()
     {
         Debug.Log("JustDied");
-
-        // DEATH SCREEN
-        yield return new WaitForSecondsRealtime(6);
+        
+        yield return new WaitForSecondsRealtime(5);
         EventManager.TriggerEvent("guiDeathScreen");
+        Boot.Instance.setHighscore(Timer.Instance.GetHighscore());
         yield return new WaitForSecondsRealtime(3);
         EventManager.TriggerEvent("sceneSplash");
     }
