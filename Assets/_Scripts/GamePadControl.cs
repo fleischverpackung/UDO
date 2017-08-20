@@ -13,6 +13,7 @@ public class GamePadControl : MonoBehaviour {
     public bool danceMode = false;
     private string scene;
     private bool udoAlive;
+    private bool camMode = false; 
     //private float wheel;
 
     private void Awake()
@@ -32,6 +33,7 @@ public class GamePadControl : MonoBehaviour {
 
     void Update() {
 
+        
 
         scene = SceneManager.GetActiveScene().name;
 
@@ -51,7 +53,13 @@ public class GamePadControl : MonoBehaviour {
         else
             danceMode = false;
 
+        if (Input.GetAxisRaw("TriggerR") != 0)
+            camMode = true;        
+        else
+            camMode = false;
 
+        //Debug.Log(Input.GetAxisRaw("TriggerR"));
+        //Debug.Log(Input.GetAxis("TriggerR"));
         //float wheel = Input.GetAxis("DigiY") * 0.2f;
 
         if (startGame)
@@ -64,6 +72,11 @@ public class GamePadControl : MonoBehaviour {
     public bool GetDanceMode()
     {
         return danceMode;
+    }
+
+    public bool GetCamMode()
+    {
+        return camMode;
     }
 
     /*

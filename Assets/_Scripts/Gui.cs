@@ -40,9 +40,9 @@ public class Gui : MonoBehaviour
         
         if (UdoPlayer.Instance != null)
         {
-            health.value = UdoPlayer.Instance.getHealth() * 0.1f;
-            love.value = UdoPlayer.Instance.getLove() * 0.1f;
-            sanity.value = UdoPlayer.Instance.getSanity() * 0.1f;    
+            health.value = 1 - UdoPlayer.Instance.getHealth() * 0.1f;
+            love.value = 1 - UdoPlayer.Instance.getLove() * 0.1f;
+            sanity.value = 1 - UdoPlayer.Instance.getSanity() * 0.1f;    
             intoxication.value = UdoPlayer.Instance.getKillLevel() * 0.1f;
             multi.text = "x " + Mathf.Round(UdoPlayer.Instance.getKillLevel()).ToString();
             points.text = Mathf.Round(Timer.Instance.GetHighscore()).ToString();

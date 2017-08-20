@@ -79,7 +79,7 @@ public class UdoPlayer :  MonoBehaviour {
 
     void Update ()
     {
-        toxicationBonus = 10 - (health + sanity + love) * 0.3f;
+        toxicationBonus = 10 - (health * 0.3333f + sanity * 0.3333f + love * 0.3333f);
         //toxicationBonus = ((10 - love) + (10 - sanity)) * 0.5f;
         //Debug.Log("KILLLEVEL: " + killLevel);
 

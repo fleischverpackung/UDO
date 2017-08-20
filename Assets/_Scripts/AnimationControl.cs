@@ -15,6 +15,7 @@ public class AnimationControl : MonoBehaviour {
     private bool udoAlive = true;
     private float dance = 0;
     private float camDistance = 6;
+    private bool setCam = false;
 
     private void Awake()
     {
@@ -39,6 +40,9 @@ public class AnimationControl : MonoBehaviour {
 
         if (GamePadControl.Instance != null)
             danceMode = GamePadControl.Instance.GetDanceMode();
+
+        if (GamePadControl.Instance != null)
+            setCam = GamePadControl.Instance.GetCamMode();
 
 
         // UGLY SET ANIMATOR FLOAT
@@ -66,6 +70,18 @@ public class AnimationControl : MonoBehaviour {
         if (!danceMode && udoAlive)
         {
             assetInput.enableMovement = true;
+            assetInput.enableCamRotate = true;
+           
+        }
+
+        if (setCam)
+        {
+            camDistance = ExtensionMethods.Remap(Input.GetAxis("Y"), -1, 1, 1, 7);
+            assetInput.freezeCam = true;
+            //Debug.Log(ExtensionMethods.Remap(Input.GetAxis("Y"), -1, 1, 1, 7));
+        }
+        else
+        {
             assetInput.enableCamRotate = true;
         }
 

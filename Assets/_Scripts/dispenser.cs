@@ -29,16 +29,20 @@ public class dispenser : MonoBehaviour
 
     IEnumerator DispenserOn()
     {
-        while (active)
+        if (UdoPlayer.Instance.getAlive())
+            
         {
-            int drugCase = (Random.Range(0, 3));
-            Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
-            Instantiate(prefabs[drugCase], pos, Quaternion.identity);
+            while (active)
+            { int drugCase = (Random.Range(0, 3));
+                Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
+                Instantiate(prefabs[drugCase], pos, Quaternion.identity);
 
-            _audioSource.PlayOneShot(_audioClip);
+                _audioSource.PlayOneShot(_audioClip);
 
-            yield return new WaitForSecondsRealtime(dispenseInterval);
+                yield return new WaitForSecondsRealtime(dispenseInterval);
+            }
         }
+
         
 
     }

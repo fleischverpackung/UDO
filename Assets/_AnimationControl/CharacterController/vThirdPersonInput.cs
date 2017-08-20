@@ -9,6 +9,9 @@ namespace Invector.CharacterController
     {
         #region variables
 
+
+        private float camRotateSpeed = 4;
+
         [Header("Default Inputs")]
         public string horizontalInput = "Horizontal";
         public string verticallInput = "Vertical";
@@ -22,6 +25,7 @@ namespace Invector.CharacterController
         public string rotateCameraXInput ="Mouse X";
         public string rotateCameraYInput = "Mouse Y";
         public bool enableCamRotate = true;
+        public bool freezeCam = false;
         public float orbitSpeed = 1;
 
         protected vThirdPersonCamera tpCamera;                // acess camera info        
@@ -151,13 +155,19 @@ namespace Invector.CharacterController
             
             var Y = Input.GetAxis(rotateCameraYInput);
             var X = Input.GetAxis(rotateCameraXInput);
-
+            
 
             // DISABLE CAMERA MOVEMENT
             if (enableCamRotate)
-                tpCamera.RotateCamera(X, Y);
+                tpCamera.RotateCamera(X, Y);                
             else
-                tpCamera.RotateCamera(X +=Time.deltaTime * 1, Y);
+                tpCamera.RotateCamera(X +=Time.deltaTime * camRotateSpeed, Y);
+
+            if (freezeCam)
+                tpCamera.RotateCamera(0, 0);
+            else
+                tpCamera.RotateCamera(X, Y);
+
 
 
             // tranform Character direction from camera if not KeepDirection
