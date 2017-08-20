@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Invector.CharacterController;
+using UnityEngine.Events;
 //using UnityEngine.SceneManagement;
 
-public class UdoPlayer : MonoBehaviour {
+public class UdoPlayer :  MonoBehaviour {
+    
 
-     float love = 9;
+    public static UdoPlayer Instance { get; private set; }
+
+   
+
+    float love = 9;
     float health = 7;
      float sanity = 8;
 
@@ -36,6 +42,33 @@ public class UdoPlayer : MonoBehaviour {
     private Boot boot;
     //private Timer timer;
 
+    private UnityAction resurrectListener;
+
+    private void Awake()
+    {
+        resurrectListener = new UnityAction(Resurrect);
+
+        if (Instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        EventManager.StartListening("udoResurrect", resurrectListener);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.StopListening("udoResurrect", resurrectListener);
+    }
+
+
+
     public float getLove()
     {
         return love;
@@ -64,12 +97,14 @@ public class UdoPlayer : MonoBehaviour {
     {
         return killLevel;
     }
+
+
+
     public void Resurrect()
     {
 
         restStats();
-        isAlive = true; 
-        //guiD.SetActive(false);
+        isAlive = true;
         tpis.enableMovement = true;
         Debug.Log("RESURRECTED");
     }
@@ -145,6 +180,8 @@ public class UdoPlayer : MonoBehaviour {
     }
 
 
+
+
     float MinMax(float x, float regen)
     {
         if (x < 10 && x > 0)
@@ -171,6 +208,11 @@ public class UdoPlayer : MonoBehaviour {
         //SceneManager.LoadScene("Splash", LoadSceneMode.Single);
 
     }
-    
+
+    public void Destroy()
+    {
+        Destroy(this);
+    }
+
 
 }

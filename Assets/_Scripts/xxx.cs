@@ -3,15 +3,16 @@ using System.Collections;
 using System.IO;
 using Invector.CharacterController;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 
 public class xxx : MonoBehaviour
 {
 
-    private Animator anim;
-    private vThirdPersonInput tpis;
-    private vThirdPersonCamera cs;
-    private vThirdPersonController tpcs;
+    //private Animator anim;
+    //private vThirdPersonInput tpis;
+    //private vThirdPersonCamera cs;
+    //private vThirdPersonController tpcs;
 
     private float distance;
     private float startbtn = 0;
@@ -21,27 +22,31 @@ public class xxx : MonoBehaviour
     public GameObject udoPrefab;
     private GameObject udoClone;
     private float health;
-    private bool alive;
+    
     private GameObject guiD;
 
     float isDancing = 0;
     bool isDancingBool = false;
 
+    private bool danceMode = false;
+    private bool udoAlive;
+
+
     private void Awake()
     {
-        udoClone = Instantiate(udoPrefab, new Vector3(0, 3, 0), Quaternion.identity);
-        udoClone.name = "UDO";
+        
     }
+    
 
     void Start()
     {
         
-        cs = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
-        tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
-        tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
-        anim = GameObject.Find("UDO").GetComponent<Animator>();
+        //cs = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
+       // tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+        //tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
+       // anim = GameObject.Find("UDO").GetComponent<Animator>();
         udo = GameObject.Find("UDO").GetComponent<UdoPlayer>();
-        guiD = GameObject.Find("Death");        
+       // guiD = GameObject.Find("Death");        
 
         distance = 6;
     
@@ -49,23 +54,34 @@ public class xxx : MonoBehaviour
     
     void Update()
     {
-        alive = udo.getAlive();
+        /*
+
+        if (UdoPlayer.Instance != null)
+            udoAlive = UdoPlayer.Instance.getAlive();
+
+        if (GamePadControl.Instance != null)
+            danceMode = GamePadControl.Instance.GetDanceMode();
+
+        //Debug.Log("DANCEMODE " + danceMode);
+        */
+
         startbtn = Input.GetAxis("Start");
 
        
 
         // RESPAWN
-        if (!alive && startbtn == 1)
+        if (!udoAlive && startbtn == 1)
         {
             udo.Resurrect();
-            tpcs.Jump();
-            tpis.enableMovement = true;
+          //  tpcs.Jump();
+          //  tpis.enableMovement = true;
             
         }
 
 
 
         // ZOOMING
+        /*
         float wheel = Input.GetAxis("DigiY") * 0.2f;
         if (distance >= 1.0)
             distance -= wheel;
@@ -78,14 +94,13 @@ public class xxx : MonoBehaviour
 
         cs.defaultDistance = distance;
 
+        */
 
+        //float triggerL = Input.GetAxis("TriggerL");
+        //float triggerR = Input.GetAxis("TriggerR");
         
-        float triggerL = Input.GetAxis("TriggerL");
-        float triggerR = Input.GetAxis("TriggerR");
-
-
-        // Im Animation Controller auf BOOL umbauen
-        if ((triggerL + triggerR) * 0.5f > 0.8f)
+        /*
+        if (danceMode)
         {
             isDancing = 1;
             isDancingBool = true;
@@ -95,25 +110,25 @@ public class xxx : MonoBehaviour
             isDancing = 0;
             isDancingBool = false;
         }
-
+        
         anim.SetFloat("IsDancing", isDancing);
         anim.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
         anim.SetFloat("DanceHard", Input.GetAxis("Vertical"));
 
 
         // DANCEMODE
-        if (isDancing > .8f && alive)
+        if (danceMode && udoAlive)
         {            
             tpis.enableCamRotate = false;
             tpis.enableMovement = false;
         }
-        if (isDancing <= 0.8 && alive)
+        if (!danceMode && udoAlive)
         {   
             tpis.enableMovement = true;
             tpis.enableCamRotate = true;
         }  
         
-        
+        */
 
     }
 

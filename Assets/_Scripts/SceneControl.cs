@@ -34,6 +34,7 @@ public class SceneControl : MonoBehaviour {
     private void LoadSplash()
     {
         SceneManager.LoadScene("Splash", LoadSceneMode.Single);
+        UdoPlayer.Instance.Destroy();
         //EventManager.TriggerEvent("sceneChange");
     }
 

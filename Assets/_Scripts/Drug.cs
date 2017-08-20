@@ -73,7 +73,7 @@ public class Drug : MonoBehaviour, IDrug
         {
             other.GetComponent<UdoPlayer>().consumeDrug(this);
            // _audioSource.PlayOneShot(_audioClip);
-            _light.enabled = false;
+           // _light.enabled = false;
 
             
 
