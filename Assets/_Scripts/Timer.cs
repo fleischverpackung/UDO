@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour {
 
     public static Timer Instance { get; private set; }
 
-    private int timerMax = 60;
+    private int timerMax = 90;
     public float danceTime = 0;
     public float killLevel;
     public float toxicationBonus;
@@ -38,10 +38,11 @@ public class Timer : MonoBehaviour {
         alive = UdoPlayer.Instance.getAlive();
 
         if (isDancing)
-            danceTime += Time.deltaTime;
+            score += (toxicationBonus * 0.0001f);
+        
 
         toxicationBonus += killLevel;
-        score = (danceTime * (toxicationBonus * 0.01f));  
+
     }
 
     IEnumerator Countdown()

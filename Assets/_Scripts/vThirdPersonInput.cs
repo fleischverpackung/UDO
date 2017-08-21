@@ -92,7 +92,7 @@ namespace Invector.CharacterController
                 SprintInput();
                 StrafeInput();
                 JumpInput();
-                DanceMode1();
+                //DanceMode1();
                 //danceInput();
             }
         }
@@ -126,24 +126,26 @@ namespace Invector.CharacterController
             else if(Input.GetKeyUp(sprintInput))
                 cc.Sprint(false);
         }
-
+        /*
         protected virtual void DanceMode1()
         {
             if (Input.GetKeyDown(danceMode1))
                 cc.Strafe();
         }
-
+        
         protected virtual void DanceMode2()
         {
             if (Input.GetKeyDown(danceMode2))
                 cc.Strafe();
         }
+        
 
         protected virtual void DanceMode3()
         {
             if (Input.GetKeyDown(danceMode3))
                 cc.Strafe();
         }
+        */
 
         protected virtual void JumpInput()
         {

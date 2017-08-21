@@ -73,37 +73,40 @@ public class AnimationControl : MonoBehaviour {
             mode1 = true;
         else
             mode1 = false;
-            
-        
+
+
+
+        assetInput.enableMovement = udoAlive;
+
         if (udoAlive && isDancing)
         {
 
             if (0 < danceStyle && danceStyle <= 0.3f)
             {
-                Debug.Log("DANCE MODE1");
-                animator.SetFloat("danceStyle", 0);
+                //Debug.Log("DANCE MODE1");
+                animator.SetFloat("DanceMode", 0);
             }
             
             if (0.3f < danceStyle && danceStyle <= 0.6f)
             {
-                Debug.Log("DANCE MODE2");
-                animator.SetFloat("danceStyle", 0.5f);
+                //Debug.Log("DANCE MODE2");
+                animator.SetFloat("DanceMode", 0.5f);
             }
 
             if (0.6f < danceStyle && danceStyle <= 1)
             {
-                Debug.Log("DANCE MODE3");
-                animator.SetFloat("danceStyle", 1f);
+                //Debug.Log("DANCE MODE3");
+                animator.SetFloat("DanceMode", 1f);
             }
 
 
 
         }
         
-
+        //Debug.Log(danceStyle);
 
         // DEACTIVATE MOVEMENT WHEN DEAD
-        assetInput.enableMovement = udoAlive;
+        
 
         // ANIMATOR CONTROL
         //animator.SetFloat("DanceMode", trigger);
