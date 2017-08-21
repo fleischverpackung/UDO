@@ -16,13 +16,15 @@ public class AnimationControl : MonoBehaviour {
     private bool udoAlive = true;
 
     private float dance = 0;
+    private float danceStyle = 0;
+
     private bool mode1 = false;
     private bool mode2 = false;
     private bool mode3 = false;
 
     private float camDistance = 6;
     private bool setCam = false;
-    private float danceStyle = 0;
+    
     private bool danceStyleBool = false;
     private bool DanceMode1 = false;
 
@@ -51,8 +53,7 @@ public class AnimationControl : MonoBehaviour {
             isDancing = GamePadControl.Instance.GetTriggerL();
             setCam = GamePadControl.Instance.GetCamMode();
             danceStyle = UdoPlayer.Instance.getKillLevel() * 0.1f;
-
-            danceMode1 = GamePadControl.Instance.GetB();
+            
         }
             
         
@@ -73,29 +74,32 @@ public class AnimationControl : MonoBehaviour {
         else
             mode1 = false;
             
-
+        
         if (udoAlive && isDancing)
         {
+
+            if (0 < danceStyle && danceStyle <= 0.3f)
+            {
+                Debug.Log("DANCE MODE1");
+                animator.SetFloat("danceStyle", 0);
+            }
             
-            if (0.3f < danceStyle && danceStyle >= 0f)
-                animator.SetBool("DanceMode1", true);
-            else
-                animator.SetBool("DanceMode1", false);
+            if (0.3f < danceStyle && danceStyle <= 0.6f)
+            {
+                Debug.Log("DANCE MODE2");
+                animator.SetFloat("danceStyle", 0.5f);
+            }
 
-            if (0.6f < danceStyle && danceStyle >= 0.3f)
-                animator.SetBool("DanceMode2", true);
-            else
-                animator.SetBool("DanceMode2", false);
+            if (0.6f < danceStyle && danceStyle <= 1)
+            {
+                Debug.Log("DANCE MODE3");
+                animator.SetFloat("danceStyle", 1);
+            }
 
-            if (1f < danceStyle && danceStyle >= 0.6f)
-                animator.SetBool("DanceMode3", true);
-            else
-                animator.SetBool("DanceMode3", false);
 
-            Debug.Log("DANCE MODE: " + danceStyle);
 
         }
-
+        
 
 
         // DEACTIVATE MOVEMENT WHEN DEAD
@@ -104,33 +108,13 @@ public class AnimationControl : MonoBehaviour {
         // ANIMATOR CONTROL
         //animator.SetFloat("DanceMode", trigger);
         animator.SetFloat("IsDancing", dance);
+        //animator.SetFloat("DanceMode", danceStyle);
         animator.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
         animator.SetFloat("DanceHard", Input.GetAxis("Vertical"));
 
-        if (udoAlive && isDancing)
-        {
-
-            if (0.3f > danceStyle && danceStyle >= 0f)
-                animator.SetBool("DanceMode1", true);
-            else
-                animator.SetBool("DanceMode1", false);
-
-            if (0.6f > danceStyle && danceStyle >= 0.3f)
-                animator.SetBool("DanceMode2", true);
-            else
-                animator.SetBool("DanceMode2", false);
-
-            if (1f > danceStyle && danceStyle >= 0.6f)
-                animator.SetBool("DanceMode3", true);
-            else
-                animator.SetBool("DanceMode3", false);
-
-            Debug.Log("DANCE MODE: " + danceStyle);
-
-        }
 
         //if (isDancing)
-        //    animator.SetBool("DanceMode1", mode1);
+         //   animator.SetBool("DanceMode1", mode1);
         //animator.SetBool("DanceMode2", mode2);
         //animator.SetBool("DanceMode3", mode3);
 
@@ -140,7 +124,7 @@ public class AnimationControl : MonoBehaviour {
         // DANCEMODE
         if (isDancing && udoAlive)
         {
-            Debug.Log("DANCE MODE");
+            //Debug.Log("DANCE MODE");
 
             assetInput.enableMovement = false;
         }
