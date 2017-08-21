@@ -19,7 +19,7 @@ namespace Invector.CharacterController
         public KeyCode jumpInput = KeyCode.Space;
         public KeyCode strafeInput = KeyCode.Tab;
         public KeyCode sprintInput = KeyCode.LeftShift;
-        public KeyCode danceInput = KeyCode.D;
+        public KeyCode danceMode1 = KeyCode.D;
 
         [Header("Camera Settings")]
         public string rotateCameraXInput ="Mouse X";
@@ -92,6 +92,7 @@ namespace Invector.CharacterController
                 SprintInput();
                 StrafeInput();
                 JumpInput();
+                DanceMode1();
                 //danceInput();
             }
         }
@@ -124,6 +125,12 @@ namespace Invector.CharacterController
                 cc.Sprint(true);
             else if(Input.GetKeyUp(sprintInput))
                 cc.Sprint(false);
+        }
+
+        protected virtual void DanceMode1()
+        {
+            if (Input.GetKeyDown(danceMode1))
+                cc.Strafe();
         }
 
         protected virtual void JumpInput()

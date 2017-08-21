@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using Invector.CharacterController;
 
 public class GamePadControl : MonoBehaviour {
 
@@ -10,10 +11,13 @@ public class GamePadControl : MonoBehaviour {
     
     public bool startGame = false;
     public bool resurrectUdo = false;
-    public bool danceMode = false;
+    public bool pressTriggerL = false;
     private string scene;
     private bool udoAlive;
-    private bool camMode = false; 
+    private bool pressTriggerR = false;
+    private bool pressB = false;
+    private bool pressX = false;
+    private bool pressY = false;
     //private float wheel;
 
     private void Awake()
@@ -49,16 +53,32 @@ public class GamePadControl : MonoBehaviour {
 
 
         if (Input.GetAxisRaw("TriggerL") != 0 && scene == "Dance")
-            danceMode = true;
+            pressTriggerL = true;
         else
-            danceMode = false;
+            pressTriggerL = false;
 
         if (Input.GetAxisRaw("TriggerR") != 0)
-            camMode = true;        
+            pressTriggerR = true;        
         else
-            camMode = false;
+            pressTriggerR = false;
+        
+        if (Input.GetAxisRaw("BB") != 0)
+            pressB = true;
+        else
+            pressB = false;
 
-        //Debug.Log(Input.GetAxisRaw("TriggerR"));
+        if (Input.GetAxisRaw("XB") != 0)
+            pressX = true;
+        else
+            pressX = false;
+
+        if (Input.GetAxisRaw("YB") != 0)
+            pressY = true;
+        else
+            pressY = false;
+
+
+        // Debug.Log(Input.GetAxisRaw("BB"));
         //Debug.Log(Input.GetAxis("TriggerR"));
         //float wheel = Input.GetAxis("DigiY") * 0.2f;
 
@@ -69,14 +89,27 @@ public class GamePadControl : MonoBehaviour {
         
     }
 
-    public bool GetDanceMode()
+    public bool GetTriggerL()
     {
-        return danceMode;
+        return pressTriggerL;
     }
 
     public bool GetCamMode()
     {
-        return camMode;
+        return pressTriggerR;
+    }
+
+    public bool GetB()
+    {
+        return pressB;
+    }
+    public bool GetX()
+    {
+        return pressX;
+    }
+    public bool GetY()
+    {
+        return pressY;
     }
 
     /*

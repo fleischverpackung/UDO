@@ -11,13 +11,20 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    private bool danceMode = false;
+    private bool isDancing = false;
+    private bool danceMode1 = false;
     private bool udoAlive = true;
+
     private float dance = 0;
+    private bool mode1 = false;
+    private bool mode2 = false;
+    private bool mode3 = false;
+
     private float camDistance = 6;
     private bool setCam = false;
     private float danceStyle = 0;
     private bool danceStyleBool = false;
+    private bool DanceMode1 = false;
 
 
     private void Awake()
@@ -38,55 +45,122 @@ public class AnimationControl : MonoBehaviour {
 
 	void Update () {
 
-        if (UdoPlayer.Instance != null)
+        if (UdoPlayer.Instance != null && GamePadControl.Instance != null)
+        {
             udoAlive = UdoPlayer.Instance.getAlive();
-
-        if (GamePadControl.Instance != null)
-            danceMode = GamePadControl.Instance.GetDanceMode();
-
-        if (GamePadControl.Instance != null)
+            isDancing = GamePadControl.Instance.GetTriggerL();
             setCam = GamePadControl.Instance.GetCamMode();
-
-        if (GamePadControl.Instance != null)
             danceStyle = UdoPlayer.Instance.getKillLevel() * 0.1f;
 
+            danceMode1 = GamePadControl.Instance.GetB();
+        }
+            
+        
+            
+
+
+        //Debug.Log("NEW MOVES:: " + newMoves);
 
 
         // UGLY SET ANIMATOR FLOAT
-        if (danceMode)
+        if (isDancing)
             dance = 1f;
         else
             dance = 0f;
-
-
-        if (danceStyle > 0.5f)
-            animator.SetBool(1, true);
+        
+        if (danceMode1)
+            mode1 = true;
         else
-            animator.SetBool(1, false);
+            mode1 = false;
+            
+
+        if (udoAlive && isDancing)
+        {
+            
+            if (0.3f < danceStyle && danceStyle >= 0f)
+                animator.SetBool("DanceMode1", true);
+            else
+                animator.SetBool("DanceMode1", false);
+
+            if (0.6f < danceStyle && danceStyle >= 0.3f)
+                animator.SetBool("DanceMode2", true);
+            else
+                animator.SetBool("DanceMode2", false);
+
+            if (1f < danceStyle && danceStyle >= 0.6f)
+                animator.SetBool("DanceMode3", true);
+            else
+                animator.SetBool("DanceMode3", false);
+
+            Debug.Log("DANCE MODE: " + danceStyle);
+
+        }
+
+
 
         // DEACTIVATE MOVEMENT WHEN DEAD
         assetInput.enableMovement = udoAlive;
 
         // ANIMATOR CONTROL
-        animator.SetFloat("DanceMode", danceStyle);
+        //animator.SetFloat("DanceMode", trigger);
         animator.SetFloat("IsDancing", dance);
         animator.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
         animator.SetFloat("DanceHard", Input.GetAxis("Vertical"));
 
+        if (udoAlive && isDancing)
+        {
+
+            if (0.3f > danceStyle && danceStyle >= 0f)
+                animator.SetBool("DanceMode1", true);
+            else
+                animator.SetBool("DanceMode1", false);
+
+            if (0.6f > danceStyle && danceStyle >= 0.3f)
+                animator.SetBool("DanceMode2", true);
+            else
+                animator.SetBool("DanceMode2", false);
+
+            if (1f > danceStyle && danceStyle >= 0.6f)
+                animator.SetBool("DanceMode3", true);
+            else
+                animator.SetBool("DanceMode3", false);
+
+            Debug.Log("DANCE MODE: " + danceStyle);
+
+        }
+
+        //if (isDancing)
+        //    animator.SetBool("DanceMode1", mode1);
+        //animator.SetBool("DanceMode2", mode2);
+        //animator.SetBool("DanceMode3", mode3);
+
+
+
 
         // DANCEMODE
-        if (danceMode && udoAlive)
+        if (isDancing && udoAlive)
         {
-            
+            Debug.Log("DANCE MODE");
+
             assetInput.enableMovement = false;
         }
-        if (!danceMode && udoAlive)
+        if (!isDancing && udoAlive)
         {
             assetInput.enableMovement = true;
-            
-           
         }
-        
+
+
+        if (danceMode1 && udoAlive)
+        {
+            assetInput.enableMovement = false;
+        }
+        if (!isDancing && udoAlive)
+        {
+            assetInput.enableMovement = true;
+        }
+
+
+
         if (setCam)
         {
             assetInput.enableCamRotate = true;

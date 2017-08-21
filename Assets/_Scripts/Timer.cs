@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour {
 
 	void Update ()
     {
-        isDancing = GamePadControl.Instance.GetDanceMode();               
+        isDancing = GamePadControl.Instance.GetTriggerL();               
         killLevel = UdoPlayer.Instance.getKillLevel();
         alive = UdoPlayer.Instance.getAlive();
 
