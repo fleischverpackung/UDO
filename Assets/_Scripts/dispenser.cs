@@ -11,7 +11,7 @@ public class dispenser : MonoBehaviour
     private bool active = true;
 
     public GameObject[] prefabs;
-    public float dropArea = 15;
+    public int dropArea = 8;
     public float dispenseInterval = 13;
     
 
@@ -36,19 +36,17 @@ public class dispenser : MonoBehaviour
 
     IEnumerator DispenserOn()
     {
-        if (UdoPlayer.Instance.getAlive())
-            
-        {
-            while (active)
+        
+            while (UdoPlayer.Instance.getAlive())
             { int drugCase = (Random.Range(0, 3));
                 Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
                 Instantiate(prefabs[drugCase], pos, Quaternion.identity);
 
                 _audioSource.PlayOneShot(_audioClip);
-
+            Debug.Log(pos);
                 yield return new WaitForSecondsRealtime(dispenseInterval);
             }
-        }      
+            
 
     }
 

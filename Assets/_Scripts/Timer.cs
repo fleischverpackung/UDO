@@ -38,10 +38,10 @@ public class Timer : MonoBehaviour {
         alive = UdoPlayer.Instance.getAlive();
 
         if (isDancing)
-            score += (toxicationBonus * 0.0001f);
+            score += (killLevel * 1f);
         
 
-        toxicationBonus += killLevel;
+        //toxicationBonus += killLevel;
 
     }
 
