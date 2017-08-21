@@ -14,9 +14,9 @@ public class UdoPlayer :  MonoBehaviour {
     float sanity = 8;
     
     public bool isAlive = true;
-    private float loveRegen = 0.4f;
+    private float loveRegen = 0.1f;
     private float healthRegen = 0.0f;
-    private float sanityRegen = 0.2f;
+    private float sanityRegen = 0.1f;
     public string lastDrug;
 
 

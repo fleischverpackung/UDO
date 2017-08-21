@@ -133,6 +133,18 @@ namespace Invector.CharacterController
                 cc.Strafe();
         }
 
+        protected virtual void DanceMode2()
+        {
+            if (Input.GetKeyDown(danceMode2))
+                cc.Strafe();
+        }
+
+        protected virtual void DanceMode3()
+        {
+            if (Input.GetKeyDown(danceMode3))
+                cc.Strafe();
+        }
+
         protected virtual void JumpInput()
         {
             if (Input.GetKeyDown(jumpInput))

@@ -143,7 +143,7 @@ ModelImporter:
     400132: Spine1
     400134: Spine2
     400136: Spine3
-    7400000: hiphopstreet
+    7400000: _hipHopWarmup
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -174,7 +174,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: hiphopstreet
+      name: _hipHopWarmup
       takeName: Take 001
       firstFrame: 254
       lastFrame: 1215

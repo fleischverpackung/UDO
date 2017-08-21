@@ -31,14 +31,8 @@ namespace Invector.CharacterController
                    
         }
 
-        /*
-        public virtual void DanceModes()
-        {
-            
-            animator.Play(deathAnis[random]);
-
-        }
-        */
+        
+        
 
 
 
@@ -58,6 +52,7 @@ namespace Invector.CharacterController
                 animator.CrossFadeInFixedTime("JumpMove", 0.2f);
         }
 
+        /*
         public virtual void Dance()
         {
             // conditions to do this action
@@ -72,6 +67,7 @@ namespace Invector.CharacterController
             else
                 animator.CrossFadeInFixedTime("JumpMove", 0.2f);
         }
+        */
 
         public virtual void RotateWithAnotherTransform(Transform referenceTransform)
         {

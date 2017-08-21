@@ -93,7 +93,7 @@ public class AnimationControl : MonoBehaviour {
             if (0.6f < danceStyle && danceStyle <= 1)
             {
                 Debug.Log("DANCE MODE3");
-                animator.SetFloat("danceStyle", 1);
+                animator.SetFloat("danceStyle", 1f);
             }
 
 

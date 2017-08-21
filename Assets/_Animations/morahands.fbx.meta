@@ -143,7 +143,7 @@ ModelImporter:
     400132: Spine1
     400134: Spine2
     400136: Spine3
-    7400000: moreHands
+    7400000: _fastMoreHands
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -174,7 +174,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: moreHands
+      name: _fastMoreHands
       takeName: Take 001
       firstFrame: 238
       lastFrame: 855
