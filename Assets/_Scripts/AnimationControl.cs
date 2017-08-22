@@ -15,6 +15,11 @@ public class AnimationControl : MonoBehaviour {
     private bool danceMode1 = false;
     private bool udoAlive = true;
 
+    private float udoLove = 0;
+    private float udoHealth = 0;
+    private float udoSanity = 0;
+
+
     private float dance = 0;
     private float danceStyle = 0;
 
@@ -53,7 +58,10 @@ public class AnimationControl : MonoBehaviour {
             isDancing = GamePadControl.Instance.GetTriggerL();
             setCam = GamePadControl.Instance.GetCamMode();
             danceStyle = UdoPlayer.Instance.getKillLevel() * 0.1f;
-            
+            udoSanity = UdoPlayer.Instance.getSanity() * 0.1f ;
+            udoHealth = UdoPlayer.Instance.getHealth() * 0.1f;
+            udoLove = UdoPlayer.Instance.getLove() * 0.1f;
+
         }
             
         
@@ -80,22 +88,23 @@ public class AnimationControl : MonoBehaviour {
 
         if (udoAlive && isDancing)
         {
+            //float max = Mathf.Max(udoLove, Mathf.Max(udoSanity, udoHealth));
 
-            if (0 < danceStyle && danceStyle <= 0.3f)
+            if (udoLove < udoSanity && udoLove < udoHealth)
             {
-                //Debug.Log("DANCE MODE1");
+                Debug.Log("DANCE MODE1");
                 animator.SetFloat("DanceMode", 0);
             }
             
-            if (0.3f < danceStyle && danceStyle <= 0.6f)
+            if (udoSanity < udoLove && udoSanity < udoHealth)
             {
-                //Debug.Log("DANCE MODE2");
+                Debug.Log("DANCE MODE2");
                 animator.SetFloat("DanceMode", 0.5f);
             }
 
-            if (0.6f < danceStyle && danceStyle <= 1)
+            if (udoHealth < udoSanity && udoHealth < udoLove)
             {
-                //Debug.Log("DANCE MODE3");
+                Debug.Log("DANCE MODE3");
                 animator.SetFloat("DanceMode", 1f);
             }
 
