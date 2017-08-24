@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Invector.CharacterController;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class UdoPlayer :  MonoBehaviour {
     
@@ -96,6 +97,8 @@ public class UdoPlayer :  MonoBehaviour {
             StartCoroutine(JustDied());
             _audioSource.PlayOneShot(_audioClip0);            
             tpcs.Death();
+
+            
         }
         
     }
@@ -120,8 +123,13 @@ public class UdoPlayer :  MonoBehaviour {
         yield return new WaitForSecondsRealtime(5);
         EventManager.TriggerEvent("guiDeathScreen");
         Boot.Instance.setHighscore(Timer.Instance.GetHighscore());
+        //EventManager.TriggerEvent("sceneSplash");
+
+        //LEADERBOARD
+        PlayerPrefs.SetInt("finalScore", (int)Timer.Instance.GetHighscore());
+        SceneManager.LoadScene("Splash");
         yield return new WaitForSecondsRealtime(3);
-        EventManager.TriggerEvent("sceneSplash");
+        
     }
 
     public float getLove()

@@ -55,6 +55,8 @@ public class Timer : MonoBehaviour {
             {
                 Boot.Instance.setHighscore(score);
                 Debug.Log("highscore set");
+                PlayerPrefs.SetInt("finalScore", (int)Timer.Instance.GetHighscore());
+                
                 EventManager.TriggerEvent("sceneSplash");
             }                
         }        
