@@ -92,19 +92,19 @@ public class AnimationControl : MonoBehaviour {
 
             if (udoLove < udoSanity && udoLove < udoHealth)
             {
-                Debug.Log("DANCE MODE1");
+                //Debug.Log("DANCE MODE1");
                 animator.SetFloat("DanceMode", 0);
             }
             
             if (udoSanity < udoLove && udoSanity < udoHealth)
             {
-                Debug.Log("DANCE MODE2");
+                //Debug.Log("DANCE MODE2");
                 animator.SetFloat("DanceMode", 0.5f);
             }
 
             if (udoHealth < udoSanity && udoHealth < udoLove)
             {
-                Debug.Log("DANCE MODE3");
+                //Debug.Log("DANCE MODE3");
                 animator.SetFloat("DanceMode", 1f);
             }
 
