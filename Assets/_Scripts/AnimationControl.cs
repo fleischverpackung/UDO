@@ -11,34 +11,23 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    //private bool isDancing = false;
-    private bool danceMode1 = false;
+    private KeyCombo falconPunch = new KeyCombo(new string[] { "AB", "AB", "BB" });
+    private KeyCombo falconKick = new KeyCombo(new string[] { "AB", "XB", "YB" });
+
+
     private bool udoAlive = true;
-
-    private float udoLove = 0;
-    private float udoHealth = 0;
-    private float udoSanity = 0;
-
-
-    private float dance = 0;
     private float danceStyle = 0;
-
-    private bool mode1 = false;
-    private bool mode2 = false;
-    private bool mode3 = false;
-
     private float camDistance = 6;
     private bool setCam = false;
-    
-    private bool danceStyleBool = false;
-    private bool DanceMode1 = false;
-
-    /// <summary>
-    /// ////////////////////////////////////
-    /// </summary>
-
     private bool isDancing = false;
     private bool camRotate = false;
+
+    private bool btnA = false;
+    private bool btnB = false;
+    private bool btnX = false;
+    private bool btnY = false;
+
+    private List<string> btnSequence = new List<string>(); 
 
 
     private void Awake()
@@ -47,30 +36,20 @@ public class AnimationControl : MonoBehaviour {
         assetInput = x.GetComponent<vThirdPersonInput>();
         assetController = x.GetComponent<vThirdPersonController>();
         animator = x.GetComponent<Animator>();
-
         assetCam = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
     }
 
-    void Start () {
-        
-    }
-	
-
+    
 
 	void Update () {
 
-        if (UdoPlayer.Instance != null)
-        {
-            
-            //setCam = GamePadControl.Instance.GetCamMode();
-            //danceStyle = UdoPlayer.Instance.GetToxicationBonus();
-            //udoSanity = UdoPlayer.Instance.GetMdma();
-            //udoHealth = UdoPlayer.Instance.GetCoke();
-            //udoLove = UdoPlayer.Instance.GetWeed();
 
+        //Debug.Log("BUTTON A: " + btnA);
+
+        if (UdoPlayer.Instance != null)
+        {            
             isDancing = UdoPlayer.Instance.GetIsDancing();
             udoAlive = UdoPlayer.Instance.getAlive();
-
         }
 
         if( Input.GetAxisRaw("TriggerR") != 0)
@@ -78,90 +57,35 @@ public class AnimationControl : MonoBehaviour {
         else
             assetInput.enableCamRotate = false;
 
-
-        //assetInput.enableMovement = udoAlive;
+        
         if (isDancing || !udoAlive)
             assetInput.enableMovement = false;
         else
             assetInput.enableMovement = true;
 
+      
 
-        animator.SetFloat("DanceMode", UdoPlayer.Instance.GetDanceStyle());
+    
+        if (falconPunch.Check())
+        {            
+            Debug.Log("PUNCH");
+        }
+        if (falconKick.Check())
+        {            
+           Debug.Log("KICK");
+        }
+    
+
+
+    animator.SetFloat("DanceMode", UdoPlayer.Instance.GetDanceStyle());
         animator.SetFloat("IsDancing", System.Convert.ToSingle(UdoPlayer.Instance.GetIsDancing()));
         animator.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
         animator.SetFloat("DanceHard", Input.GetAxis("Vertical"));
 
         ZoomDiscance();
-
-        /*
-        if (setCam)
-            assetInput.enableCamRotate = true;
-        else
-            assetInput.enableCamRotate = false;
-            */
-
-
-        // ZOOM
-        
+        GetButtons();
 
         
-
-
-        //Debug.Log("NEW MOVES:: " + newMoves);
-
-        /*
-        // UGLY SET ANIMATOR FLOAT
-        if (isDancing)
-            dance = 1f;
-        else
-            dance = 0f;
-        
-        if (danceMode1)
-            mode1 = true;
-        else
-            mode1 = false;
-
-    */
-
-
-
-
-
-        //Debug.Log(danceStyle);
-
-        // DEACTIVATE MOVEMENT WHEN DEAD
-
-
-        // ANIMATOR CONTROL
-        //animator.SetFloat("DanceMode", trigger);
-
-
-
-
-
-        //if (isDancing)
-        //   animator.SetBool("DanceMode1", mode1);
-        //animator.SetBool("DanceMode2", mode2);
-        //animator.SetBool("DanceMode3", mode3);
-
-
-
-
-        // DANCEMODE
-
-
-
-        /*
-        if (danceMode1 && udoAlive)
-            assetInput.enableMovement = false;
-        
-        if (!isDancing && udoAlive)
-            assetInput.enableMovement = true;
-        */
-
-
-
-
 
     }
 
@@ -178,6 +102,14 @@ public class AnimationControl : MonoBehaviour {
             camDistance = 7f;
 
         assetCam.defaultDistance = camDistance;
+    }
+
+    private void GetButtons()
+    {
+        btnA = Input.GetButtonDown("AB");
+        btnB = Input.GetButtonDown("BB");
+        btnX = Input.GetButtonDown("XB");
+        btnY = Input.GetButtonDown("YB");
     }
 
 }

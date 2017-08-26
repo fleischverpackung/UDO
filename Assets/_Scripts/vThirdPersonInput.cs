@@ -10,7 +10,7 @@ namespace Invector.CharacterController
         #region variables
 
 
-        private float camRotateSpeed = 0.1f;
+        
 
         [Header("Default Inputs")]
         public string horizontalInput = "Horizontal";
@@ -26,7 +26,8 @@ namespace Invector.CharacterController
         public string rotateCameraYInput = "Mouse Y";
         public bool enableCamRotate = true;
         public bool freezeCam = false;
-        public float orbitSpeed = 1;
+        private float autoRotateSpeed = 0.5f;
+
 
         protected vThirdPersonCamera tpCamera;                // acess camera info        
         [HideInInspector]
@@ -126,26 +127,7 @@ namespace Invector.CharacterController
             else if(Input.GetKeyUp(sprintInput))
                 cc.Sprint(false);
         }
-        /*
-        protected virtual void DanceMode1()
-        {
-            if (Input.GetKeyDown(danceMode1))
-                cc.Strafe();
-        }
         
-        protected virtual void DanceMode2()
-        {
-            if (Input.GetKeyDown(danceMode2))
-                cc.Strafe();
-        }
-        
-
-        protected virtual void DanceMode3()
-        {
-            if (Input.GetKeyDown(danceMode3))
-                cc.Strafe();
-        }
-        */
 
         protected virtual void JumpInput()
         {
@@ -180,7 +162,7 @@ namespace Invector.CharacterController
 
             // DISABLE CAMERA MOVEMENT
             if (enableCamRotate)
-                tpCamera.RotateCamera(X += camRotateSpeed, Y);                
+                tpCamera.RotateCamera(X += autoRotateSpeed, Y);                
             else
                 tpCamera.RotateCamera(X, Y);
             

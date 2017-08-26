@@ -37,14 +37,14 @@ public class Drug : MonoBehaviour, IDrug
 
     private void Update()
     {
-        transform.Rotate (Vector3.up * 50 * Time.deltaTime, Space.Self);
+        transform.Rotate (Vector3.up * 100 * Time.deltaTime, Space.Self);
     }
 
     
     public virtual void drugAnimation()
     {
         //default animation
-        Debug.Log("default drug animation");
+        //Debug.Log("default drug animation");
     }
 
     public virtual void setLevels()

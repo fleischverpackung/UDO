@@ -33,7 +33,6 @@ public class UdoPlayer :  MonoBehaviour {
 
     private AudioSource _audioSource;
     public AudioClip _audioClip0;
-    public AudioClip _audioClip1;
 
     private Animator udoAni;
 
@@ -82,12 +81,13 @@ public class UdoPlayer :  MonoBehaviour {
                 
         toxicationBonus = coke + mdma + weed;
 
-        if (isDancing)
+        if (isDancing && isAlive)
             score += (Mathf.RoundToInt(toxicationBonus));
 
-        Debug.Log(toxicationBonus + "TOXBONUS");
+        
+        
 
-        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 10, .9f, 1.2f);
+        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 1, .9f, 1.2f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy,  coke);
 
         
@@ -125,11 +125,7 @@ public class UdoPlayer :  MonoBehaviour {
     
     IEnumerator Death()
     {
-        Debug.Log("GameOver DEAD");
         yield return new WaitForSecondsRealtime(5);
-        // EventManager.TriggerEvent("guiDeathScreen");  
-        //SceneManager.LoadScene("Splash");
-        yield return new WaitForSecondsRealtime(3);
         GameOver();
     }
 
@@ -145,29 +141,23 @@ public class UdoPlayer :  MonoBehaviour {
     }
 
     private void GameOver()
-    {
+    {        
+        Debug.Log("GAME OVER");
         Boot.Instance.setHighscore(score);
-        Debug.Log("GameOver ALIVE");
-        PlayerPrefs.SetInt("finalScore", UdoPlayer.Instance.GetScore());
+        PlayerPrefs.SetInt("finalScore", score);
         SceneManager.LoadScene("Splash");
     }
 
     private void CheckDanceStyle()
     {
         if (coke > weed && coke > mdma)
-        {
-            danceStyle = 1;
-        }
+            danceStyle = 1;        
 
         if (weed > coke && weed > mdma)
-        {
-            danceStyle = 0.5f;
-        }
+            danceStyle = 0.5f;        
 
         if (mdma > coke && mdma > weed)
-        {
-            danceStyle = 0;
-        }
+            danceStyle = 0;        
     }
     
 

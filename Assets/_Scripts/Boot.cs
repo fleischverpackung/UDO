@@ -27,8 +27,6 @@ public class Boot : MonoBehaviour {
     void Start()
     {
         DontDestroyOnLoad(this);
-        //EventManager.TriggerEvent("sceneSplash");
-        //SceneManager.LoadScene("Splash", LoadSceneMode.Single);
         SceneManager.LoadScene("Splash");
     }
 
