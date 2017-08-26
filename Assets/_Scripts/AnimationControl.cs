@@ -11,9 +11,11 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    private KeyCombo falconPunch = new KeyCombo(new string[] { "AB", "AB", "BB" });
-    private KeyCombo falconKick = new KeyCombo(new string[] { "XB", "YB" });
-
+    private KeyCombo specialHipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" });
+    private KeyCombo specialGayTurn = new KeyCombo(new string[] { "YB", "YB", "XB" });
+   // private KeyCombo special = new KeyCombo(new string[] { "XB", "YB" });
+    //private KeyCombo falconKick = new KeyCombo(new string[] { "XB", "YB" });
+    //private KeyCombo falconKick = new KeyCombo(new string[] { "XB", "YB" });
 
     private bool udoAlive = true;
     private float danceStyle = 0;
@@ -27,7 +29,9 @@ public class AnimationControl : MonoBehaviour {
     private bool btnX = false;
     private bool btnY = false;
 
-    private List<string> btnSequence = new List<string>(); 
+    private List<string> btnSequence = new List<string>();
+
+    private float time = 0;
 
 
     private void Awake()
@@ -37,14 +41,27 @@ public class AnimationControl : MonoBehaviour {
         assetController = x.GetComponent<vThirdPersonController>();
         animator = x.GetComponent<Animator>();
         assetCam = GameObject.Find("CamFollows").GetComponent<vThirdPersonCamera>();
+
     }
 
     
 
 	void Update () {
 
+        AnimatorStateInfo aniTimer = animator.GetCurrentAnimatorStateInfo(0);
+        //AnimatorStateInfo aniTimer = animator.GetCurrentAnimatorClipInfo;
+        time = aniTimer.normalizedTime;
 
-        //Debug.Log("BUTTON A: " + btnA);
+
+        //Debug.Log("ANIMATORSTATE: " + aniTimer.IsName("Free Movement"));
+
+        
+        
+
+
+
+
+
 
         if (UdoPlayer.Instance != null)
         {            
@@ -52,44 +69,50 @@ public class AnimationControl : MonoBehaviour {
             udoAlive = UdoPlayer.Instance.getAlive();
         }
 
-        if( Input.GetAxisRaw("TriggerR") != 0)
+        if( Input.GetAxisRaw("TriggerR") != 0 || !aniTimer.IsName("Free Movement"))
             assetInput.enableCamRotate = true;
         else
             assetInput.enableCamRotate = false;
 
         
-        if (isDancing || !udoAlive)
+        if (isDancing || !udoAlive || !aniTimer.IsName("Free Movement"))
+        {
             assetInput.enableMovement = false;
+            assetInput.enableJump = false;
+        }            
         else
+        {
             assetInput.enableMovement = true;
+            assetInput.enableJump = true;
+        }
 
-      
+        
 
-    
-        if (falconPunch.Check())
+
+       
+        // COMBOS
+        if (specialHipHopLegs.Check())
         {
             Debug.Log("COMBO 1");
-            //animator.SetBool("SpecialMoves", true);
+            animator.Play("Special HipHopLegs");
+            StartCoroutine(CheckAniTime());
+           
         }
-        if (falconKick.Check())
+        if (specialGayTurn.Check())
         {
-            // animator.SetBool("SpecialMoves", true);
             Debug.Log("COMBO 2");
-            animator.Play("SpecialMoves", 1);
+            animator.Play("Special GayTurn");
         }
-    
 
 
-    animator.SetFloat("DanceMode", UdoPlayer.Instance.GetDanceStyle());
+
+        animator.SetFloat("DanceMode", UdoPlayer.Instance.GetDanceStyle());
         animator.SetFloat("IsDancing", System.Convert.ToSingle(UdoPlayer.Instance.GetIsDancing()));
         animator.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
         animator.SetFloat("DanceHard", Input.GetAxis("Vertical"));
 
         ZoomDiscance();
         GetButtons();
-
-        
-
     }
 
     private void ZoomDiscance()
@@ -114,5 +137,24 @@ public class AnimationControl : MonoBehaviour {
         btnX = Input.GetButtonDown("XB");
         btnY = Input.GetButtonDown("YB");
     }
+
+    
+    IEnumerator CheckAniTime()
+    {
+        
+
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Free Movement"))
+        {
+            Debug.Log("Corouting");
+            assetInput.enableMovement = false;
+            assetInput.enableJump = false;
+        }
+
+        yield return new WaitForSeconds(1);
+
+
+
+    }
+    
 
 }

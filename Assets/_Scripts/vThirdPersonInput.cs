@@ -25,6 +25,7 @@ namespace Invector.CharacterController
         public string rotateCameraXInput ="Mouse X";
         public string rotateCameraYInput = "Mouse Y";
         public bool enableCamRotate = true;
+        public bool enableJump = true;
         public bool freezeCam = false;
         private float autoRotateSpeed = 0.5f;
 
@@ -131,7 +132,7 @@ namespace Invector.CharacterController
 
         protected virtual void JumpInput()
         {
-            if (Input.GetKeyDown(jumpInput))
+            if (Input.GetKeyDown(jumpInput) && enableJump)
                 cc.Jump();
         }
 
