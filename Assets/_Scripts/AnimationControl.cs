@@ -11,7 +11,7 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    private bool isDancing = false;
+    //private bool isDancing = false;
     private bool danceMode1 = false;
     private bool udoAlive = true;
 
@@ -33,6 +33,13 @@ public class AnimationControl : MonoBehaviour {
     private bool danceStyleBool = false;
     private bool DanceMode1 = false;
 
+    /// <summary>
+    /// ////////////////////////////////////
+    /// </summary>
+
+    private bool isDancing = false;
+    private bool camRotate = false;
+
 
     private void Awake()
     {
@@ -52,25 +59,57 @@ public class AnimationControl : MonoBehaviour {
 
 	void Update () {
 
-        if (UdoPlayer.Instance != null && GamePadControl.Instance != null)
+        if (UdoPlayer.Instance != null)
         {
+            
+            //setCam = GamePadControl.Instance.GetCamMode();
+            //danceStyle = UdoPlayer.Instance.GetToxicationBonus();
+            //udoSanity = UdoPlayer.Instance.GetMdma();
+            //udoHealth = UdoPlayer.Instance.GetCoke();
+            //udoLove = UdoPlayer.Instance.GetWeed();
+
+            isDancing = UdoPlayer.Instance.GetIsDancing();
             udoAlive = UdoPlayer.Instance.getAlive();
-            isDancing = GamePadControl.Instance.GetTriggerL();
-            setCam = GamePadControl.Instance.GetCamMode();
-            danceStyle = UdoPlayer.Instance.getKillLevel() * 0.1f;
-            udoSanity = UdoPlayer.Instance.getSanity() * 0.1f ;
-            udoHealth = UdoPlayer.Instance.getHealth() * 0.1f;
-            udoLove = UdoPlayer.Instance.getLove() * 0.1f;
 
         }
-            
+
+        if( Input.GetAxisRaw("TriggerR") != 0)
+            assetInput.enableCamRotate = true;
+        else
+            assetInput.enableCamRotate = false;
+
+
+        //assetInput.enableMovement = udoAlive;
+        if (isDancing || !udoAlive)
+            assetInput.enableMovement = false;
+        else
+            assetInput.enableMovement = true;
+
+
+        animator.SetFloat("DanceMode", UdoPlayer.Instance.GetDanceStyle());
+        animator.SetFloat("IsDancing", System.Convert.ToSingle(UdoPlayer.Instance.GetIsDancing()));
+        animator.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
+        animator.SetFloat("DanceHard", Input.GetAxis("Vertical"));
+
+        ZoomDiscance();
+
+        /*
+        if (setCam)
+            assetInput.enableCamRotate = true;
+        else
+            assetInput.enableCamRotate = false;
+            */
+
+
+        // ZOOM
         
-            
+
+        
 
 
         //Debug.Log("NEW MOVES:: " + newMoves);
 
-
+        /*
         // UGLY SET ANIMATOR FLOAT
         if (isDancing)
             dance = 1f;
@@ -82,51 +121,26 @@ public class AnimationControl : MonoBehaviour {
         else
             mode1 = false;
 
-
-
-        assetInput.enableMovement = udoAlive;
-
-        if (udoAlive && isDancing)
-        {
-            //float max = Mathf.Max(udoLove, Mathf.Max(udoSanity, udoHealth));
-
-            if (udoLove < udoSanity && udoLove < udoHealth)
-            {
-                //Debug.Log("DANCE MODE1");
-                animator.SetFloat("DanceMode", 0);
-            }
-            
-            if (udoSanity < udoLove && udoSanity < udoHealth)
-            {
-                //Debug.Log("DANCE MODE2");
-                animator.SetFloat("DanceMode", 0.5f);
-            }
-
-            if (udoHealth < udoSanity && udoHealth < udoLove)
-            {
-                //Debug.Log("DANCE MODE3");
-                animator.SetFloat("DanceMode", 1f);
-            }
+    */
 
 
 
-        }
-        
+
+
         //Debug.Log(danceStyle);
 
         // DEACTIVATE MOVEMENT WHEN DEAD
-        
+
 
         // ANIMATOR CONTROL
         //animator.SetFloat("DanceMode", trigger);
-        animator.SetFloat("IsDancing", dance);
-        //animator.SetFloat("DanceMode", danceStyle);
-        animator.SetFloat("DanceStyle", Input.GetAxis("Horizontal"));
-        animator.SetFloat("DanceHard", Input.GetAxis("Vertical"));
+
+
+
 
 
         //if (isDancing)
-         //   animator.SetBool("DanceMode1", mode1);
+        //   animator.SetBool("DanceMode1", mode1);
         //animator.SetBool("DanceMode2", mode2);
         //animator.SetBool("DanceMode3", mode3);
 
@@ -134,41 +148,25 @@ public class AnimationControl : MonoBehaviour {
 
 
         // DANCEMODE
-        if (isDancing && udoAlive)
-        {
-            //Debug.Log("DANCE MODE");
-
-            assetInput.enableMovement = false;
-        }
-        if (!isDancing && udoAlive)
-        {
-            assetInput.enableMovement = true;
-        }
 
 
+
+        /*
         if (danceMode1 && udoAlive)
-        {
             assetInput.enableMovement = false;
-        }
+        
         if (!isDancing && udoAlive)
-        {
             assetInput.enableMovement = true;
-        }
+        */
 
 
 
-        if (setCam)
-        {
-            assetInput.enableCamRotate = true;
-        }
-        
-        else
-        {
-            assetInput.enableCamRotate = false;
-        }
-        
 
-        // ZOOM
+
+    }
+
+    private void ZoomDiscance()
+    {
         float wheel = Input.GetAxis("DigiY") * 0.2f;
         if (camDistance >= 1.0)
             camDistance -= wheel;
@@ -180,7 +178,6 @@ public class AnimationControl : MonoBehaviour {
             camDistance = 7f;
 
         assetCam.defaultDistance = camDistance;
-
     }
 
 }

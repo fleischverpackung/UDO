@@ -8,16 +8,17 @@ using UnityEngine.SceneManagement;
 public class UdoPlayer :  MonoBehaviour {
     
 
-    public static UdoPlayer Instance { get; private set; }   
+    public static UdoPlayer Instance { get; private set; }
 
-    float love = 9;
-    float health = 7;
-    float sanity = 8;
+
+    float weed = .2f;
+    float coke = .3f;
+    float mdma = .4f;
     
     public bool isAlive = true;
-    private float loveRegen = 0.1f;
-    private float healthRegen = 0.0f;
-    private float sanityRegen = 0.1f;
+    private float loveRegen = -0.01f;
+    private float healthRegen = -0.0f;
+    private float sanityRegen = -0.01f;
     public string lastDrug;
 
 
@@ -35,35 +36,26 @@ public class UdoPlayer :  MonoBehaviour {
     public AudioClip _audioClip1;
 
     private Animator udoAni;
-    
+
+    private int timer = 90;
+    private int score = 0;
+    private int danceTime = 0;
+    private float danceStyle = 0;
+
+    private bool isDancing = false;
 
 
     private void Awake()
     {
-        
-        
         if (Instance != null)
         {
             DestroyImmediate(gameObject);
             return;
         }
-        Instance = this;
-        //DontDestroyOnLoad(gameObject);
-        
-    }
-    
+        Instance = this;        
+    }    
 
-    private List<Drug> drugList;
-
-
-    public void consumeDrug(Drug stoff)
-    {
-        love += stoff.love;
-        health += stoff.health;
-        sanity += stoff.sanity;
-        drugList.Add(stoff);
-    }
-    
+    private List<Drug> drugList;    
     
 
 	void Start ()
@@ -74,79 +66,122 @@ public class UdoPlayer :  MonoBehaviour {
         tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         _audioSource = GetComponent<AudioSource>();
         udoAni = GameObject.Find("UDO").GetComponent<Animator>();
+
+        StartCoroutine(Countdown());
     }
 
 
 
     void Update ()
     {
-        toxicationBonus = 10 - (health * 0.3333f + sanity * 0.3333f + love * 0.3333f);
-        //toxicationBonus = ((10 - love) + (10 - sanity)) * 0.5f;
-        //Debug.Log("KILLLEVEL: " + killLevel);
+        if (Input.GetAxis("TriggerL") >= 1)
+            isDancing = true;
+        else
+            isDancing = false;
+        
+                
+        toxicationBonus = coke + mdma + weed;
+
+        if (isDancing)
+            score += (Mathf.RoundToInt(toxicationBonus));
+
+        Debug.Log(toxicationBonus + "TOXBONUS");
 
         udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 10, .9f, 1.2f);
-        haut.color = Color.Lerp(skinUnhealthy, skinHealthy, health * .1f);
+        haut.color = Color.Lerp(skinHealthy, skinUnhealthy,  coke);
 
-        love = MinMax(love, loveRegen);
-        health = MinMax(health, healthRegen);
-        sanity = MinMax(sanity, sanityRegen);
+        
+        
 
-        if (love <= 0 && isAlive || health <= 0 && isAlive || sanity <= 0 && isAlive)
+        // CHECK ALIVE
+        if (weed >= 1 && isAlive || coke >= 1 && isAlive || mdma >= 1 && isAlive)
         {
             isAlive = false;
-            StartCoroutine(JustDied());
+            StartCoroutine(Death());
             _audioSource.PlayOneShot(_audioClip0);            
-            tpcs.Death();
-
-            
+            tpcs.Death();            
         }
         
+
+        CheckDanceStyle();
+        RegenStats();
+
     }
 
-
-    float MinMax(float x, float regen)
+    public void consumeDrug(Drug stoff)
     {
-        if (x < 10 && x > 0)
-            x += Time.deltaTime * regen;
-        else if (x >= 10)
-            x = 10;
-        else if (x <=0)
-            x = 0;
-        return x; 
+        weed += stoff.weed;
+        coke += stoff.coke;
+        mdma += stoff.mdma;
+        drugList.Add(stoff);
     }
 
+    private void RegenStats()
+    {
+        weed = Regeneration(weed, loveRegen);
+        coke = Regeneration(coke, healthRegen);
+        mdma = Regeneration(mdma, sanityRegen);
+    }
     
-    IEnumerator JustDied()
+    IEnumerator Death()
     {
-        Debug.Log("JustDied");
-        
+        Debug.Log("GameOver DEAD");
         yield return new WaitForSecondsRealtime(5);
-        EventManager.TriggerEvent("guiDeathScreen");
-        Boot.Instance.setHighscore(Timer.Instance.GetHighscore());
-        //EventManager.TriggerEvent("sceneSplash");
-
-        //LEADERBOARD
-        PlayerPrefs.SetInt("finalScore", (int)Timer.Instance.GetHighscore());
-        SceneManager.LoadScene("Splash");
+        // EventManager.TriggerEvent("guiDeathScreen");  
+        //SceneManager.LoadScene("Splash");
         yield return new WaitForSecondsRealtime(3);
-        
+        GameOver();
     }
 
-    public float getLove()
-    {
-        return love;
+    IEnumerator Countdown()
+    { 
+        while (true)
+        {            
+            timer -= 1;
+            if (timer <= 0)
+                GameOver();
+            yield return new WaitForSeconds(1);
+        }
     }
-    public float getSpeed()
+
+    private void GameOver()
     {
-        return health;
+        Boot.Instance.setHighscore(score);
+        Debug.Log("GameOver ALIVE");
+        PlayerPrefs.SetInt("finalScore", UdoPlayer.Instance.GetScore());
+        SceneManager.LoadScene("Splash");
     }
-    public float getSanity()
+
+    private void CheckDanceStyle()
     {
-        return sanity;
+        if (coke > weed && coke > mdma)
+        {
+            danceStyle = 1;
+        }
+
+        if (weed > coke && weed > mdma)
+        {
+            danceStyle = 0.5f;
+        }
+
+        if (mdma > coke && mdma > weed)
+        {
+            danceStyle = 0;
+        }
     }
-    public float getHealth()
+    
+
+    public float GetWeed()
     {
-        return health;
+        return weed;
+    }
+    public float GetCoke()
+    {
+        return coke;
+    }
+    public float GetMdma()
+    {
+        return mdma;
     }
     public string getLastDrug()
     {
@@ -157,13 +192,47 @@ public class UdoPlayer :  MonoBehaviour {
         return isAlive;
     }
 
-    public float getKillLevel()
+    public float GetToxicationBonus()
     {
         return toxicationBonus;
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    public bool GetIsDancing()
+    {
+        return isDancing;
+    }
+
+    public int GetTimer()
+    {
+        return timer;
+    }
+
+    public float GetDanceStyle()
+    {
+        return danceStyle;
     }
 
     public void Destroy()
     {
         Destroy(this);
-    } 
+    }
+
+
+    float Regeneration(float x, float regen)
+    {
+        if (x < 10 && x > 0)
+            x += Time.deltaTime * regen;
+        else if (x >= 10)
+            x = 10;
+        else if (x <= 0)
+            x = 0;
+        return x;
+    }
+
+    
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MDMA : Drug
+public class Mdma : Drug
 {
 
     // Hey ladies and gents,
@@ -10,15 +10,15 @@ public class MDMA : Drug
 
     public override void drugAnimation()
     {
-        love = +100000;
+        weed = +100000;
         Debug.Log("mdma animation");
     }
 
     public override void setLevels()
     {
-        health = Random.Range(healthMin, healthMax);
-        sanity = Random.Range(sanityMin, sanityMax);
-        love = Random.Range(loveMin, loveMax);
+        coke = Random.Range(cokeMin, cokeMax);
+        mdma = Random.Range(mdmaMin, mdmaMax);
+        weed = Random.Range(weedMin, weedMax);
         type = drugType.MDMA;
         Debug.Log("mdma values set");
     }

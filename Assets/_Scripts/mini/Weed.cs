@@ -16,9 +16,9 @@ public class Weed : Drug
 
     public override void setLevels()
     {
-        health = Random.Range(healthMin, healthMax);
-        sanity = Random.Range(sanityMin, sanityMax);
-        love = Random.Range(loveMin, loveMax);
+        coke = Random.Range(cokeMin, cokeMax);
+        mdma = Random.Range(mdmaMin, mdmaMax);
+        weed = Random.Range(weedMin, weedMax);
         type = drugType.WEED;
         Debug.Log("weed values set");
     }

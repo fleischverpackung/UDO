@@ -8,7 +8,8 @@ public class Boot : MonoBehaviour {
     public static Boot Instance { get; private set; }
 
     private float btnStart;
-    private float highscore;
+    private int highscore;
+    private string scene;
 
 
 
@@ -26,21 +27,26 @@ public class Boot : MonoBehaviour {
     void Start()
     {
         DontDestroyOnLoad(this);
-        EventManager.TriggerEvent("sceneSplash");
+        //EventManager.TriggerEvent("sceneSplash");
         //SceneManager.LoadScene("Splash", LoadSceneMode.Single);
+        SceneManager.LoadScene("Splash");
     }
 
 
     void Update()
     {
-    
+        scene = SceneManager.GetActiveScene().name;
+
+        if (Input.GetAxisRaw("Start") != 0 && scene == "Splash")
+            SceneManager.LoadScene("Dance");
+
     }
 
-    public void setHighscore(float x)
+    public void setHighscore(int x)
     {
         highscore = x;
     }
-    public float getHighScore()
+    public int getHighScore()
     {
         return highscore;
     }

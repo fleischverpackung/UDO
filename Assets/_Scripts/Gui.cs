@@ -8,29 +8,28 @@ public class Gui : MonoBehaviour
 {
     //public static Gui Instance { get; private set; }
 
-    public Slider health;
-    public Slider sanity;
-    public Slider love;
-    public Slider intoxication;
+    public Slider sliderCoke;
+    public Slider sliderMdma;
+    public Slider sliderWeed;
+    //public Slider intoxication;
     public Text multi;
     public Text points;
 
-    private UnityAction deathListener;
+    //private UnityAction deathListener;
     public Image deathImg;
 
+    public static Gui Instance { get; private set; }
+
     private void Awake()
-    {
-        /*
+    {        
         if (Instance != null)
         {
             DestroyImmediate(gameObject);
             return;
         }
         Instance = this;
-        */
-
         deathImg.enabled = false;
-        deathListener = new UnityAction(ShowDeathInfo);
+        //deathListener = new UnityAction(ShowDeathInfo);
     }
 
     private void Update()
@@ -40,17 +39,17 @@ public class Gui : MonoBehaviour
         
         if (UdoPlayer.Instance != null)
         {
-            health.value = 1 - UdoPlayer.Instance.getHealth() * 0.1f;
-            sanity.value = 1 - UdoPlayer.Instance.getLove() * 0.1f;
-            love.value = 1 - UdoPlayer.Instance.getSanity() * 0.1f;    
-            intoxication.value = UdoPlayer.Instance.getKillLevel() * 0.1f;
-            multi.text = "x " + Mathf.Round(UdoPlayer.Instance.getKillLevel()).ToString();
-            points.text = Mathf.Round(Timer.Instance.GetHighscore()).ToString();
+            sliderCoke.value = UdoPlayer.Instance.GetCoke();
+            sliderMdma.value = UdoPlayer.Instance.GetWeed();
+            sliderWeed.value = UdoPlayer.Instance.GetMdma();    
+            //intoxication.value = UdoPlayer.Instance.GetToxicationBonus();
+            multi.text = "x " + Mathf.Round(UdoPlayer.Instance.GetToxicationBonus()).ToString();
+            points.text = UdoPlayer.Instance.GetScore().ToString();
         }
         
         
     }
-
+    /*
     private void OnEnable()
     {
         EventManager.StartListening("guiDeathScreen", deathListener);
@@ -60,11 +59,13 @@ public class Gui : MonoBehaviour
     {
         EventManager.StopListening("guiDeathScreen", deathListener);
     }
+    */
 
     private void ShowDeathInfo()
     {
         deathImg.enabled = true;
     }
+    
 
    
 }

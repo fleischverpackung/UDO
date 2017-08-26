@@ -9,7 +9,7 @@ public class Audio : MonoBehaviour {
     UdoPlayer udo;
     AudioClip[] clips;
     public AudioMixer mixer;
-    private float killLevel;
+    private float toxLevel;
 
 
 
@@ -26,32 +26,32 @@ public class Audio : MonoBehaviour {
 
 	void Update () {
 
-        killLevel = UdoPlayer.Instance.getKillLevel();
+        toxLevel = UdoPlayer.Instance.GetToxicationBonus();
 
         // FUGLYY
 
         
-        if (killLevel >= 0 && killLevel <= 3)
+        if (toxLevel >= 0 && toxLevel <= 3)
         {
             mixer.SetFloat("heartSlow", 0);
             mixer.SetFloat("heartFast", -80);
             mixer.SetFloat("heartBounce", -80);
         }
 
-        if (killLevel > 3 && killLevel <= 6)
+        if (toxLevel > 3 && toxLevel <= 6)
         {
 
             mixer.SetFloat("heartSlow", -80);
             mixer.SetFloat("heartFast", 0);
             mixer.SetFloat("heartBounce", -80);
         }
-        if (killLevel > 6 && killLevel < 10)
+        if (toxLevel > 6 && toxLevel < 10)
         {
             mixer.SetFloat("heartSlow", -80);
             mixer.SetFloat("heartFast", -80);
             mixer.SetFloat("heartBounce", 0);
         }
-        if (killLevel >= 10)
+        if (toxLevel >= 10)
         {
             mixer.SetFloat("heartSlow", -80);
             mixer.SetFloat("heartFast", -80);
