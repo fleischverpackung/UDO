@@ -12,7 +12,7 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonCamera assetCam;
 
     private KeyCombo falconPunch = new KeyCombo(new string[] { "AB", "AB", "BB" });
-    private KeyCombo falconKick = new KeyCombo(new string[] { "AB", "XB", "YB" });
+    private KeyCombo falconKick = new KeyCombo(new string[] { "XB", "YB" });
 
 
     private bool udoAlive = true;
@@ -67,12 +67,15 @@ public class AnimationControl : MonoBehaviour {
 
     
         if (falconPunch.Check())
-        {            
-            Debug.Log("PUNCH");
+        {
+            Debug.Log("COMBO 1");
+            //animator.SetBool("SpecialMoves", true);
         }
         if (falconKick.Check())
-        {            
-           Debug.Log("KICK");
+        {
+            // animator.SetBool("SpecialMoves", true);
+            Debug.Log("COMBO 2");
+            animator.Play("SpecialMoves", 1);
         }
     
 

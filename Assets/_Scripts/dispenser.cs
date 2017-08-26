@@ -14,6 +14,7 @@ public class dispenser : MonoBehaviour
     public int dropArea = 8;
     private float dispenseInterval;
     private int timer = 0;
+    private bool doDispense = false;
     
 
     void Start()
@@ -27,7 +28,10 @@ public class dispenser : MonoBehaviour
     void Update()
     {
         timer = UdoPlayer.Instance.GetTimer();
-        //Debug.Log(dispenseInterval);
+
+        CheckDispenser();
+
+        
         // INTENSIFY DROPPINGS
         // while (dispenseInterval >=5 )
         //  dispenseInterval -= Time.deltaTime;
@@ -42,28 +46,30 @@ public class dispenser : MonoBehaviour
             {
                 int drugCase = (Random.Range(0, 3));
                 Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
-                Instantiate(prefabs[drugCase], pos, Quaternion.identity);
 
-                SetDispenseTime();                
-
+            
+                Instantiate(prefabs[drugCase], pos, Quaternion.identity);       
+                             
                 _audioSource.PlayOneShot(_audioClip);
                 Debug.Log("Dropped Drug @ " + pos);
                 yield return new WaitForSecondsRealtime(dispenseInterval);
             }
     }
 
-    private void SetDispenseTime()
+    private void CheckDispenser()
     {
-        if (timer < 90 && timer > 80)
+        if (timer <= 50 && timer > 40 || timer < 90 && timer > 80)
+        {
             dispenseInterval = 1;
-        if (timer <= 80 && timer > 50)
-            dispenseInterval = 100;
-        if (timer <= 50 && timer > 40)
-            dispenseInterval = 1;
-        if (timer <= 40 && timer > 1)
-            dispenseInterval = 100;
-        //if (timer == 0)
-          //  dispenseInterval = 100;
+            doDispense = true;
+        }
+            
+        else
+        {
+            dispenseInterval = 30;
+            doDispense = false;
+        }
+        
     }
     
     private void OnDestroy()
