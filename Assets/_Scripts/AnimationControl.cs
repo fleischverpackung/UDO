@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Invector.CharacterController;
+using UnityEngine.UI;
 
 public class AnimationControl : MonoBehaviour {
+
+    public static AnimationControl Instance { get; private set; }
 
     private Animator animator;
     private vThirdPersonInput assetInput;
@@ -11,9 +14,9 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    private KeyCombo specialHipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" });
-    private KeyCombo specialGayTurn = new KeyCombo(new string[] { "YB", "YB", "XB" });
-   // private KeyCombo special = new KeyCombo(new string[] { "XB", "YB" });
+    private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" });
+    private KeyCombo GayTurn = new KeyCombo(new string[] { "YB", "YB", "XB" });
+    private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "AB", "YB" });
     //private KeyCombo falconKick = new KeyCombo(new string[] { "XB", "YB" });
     //private KeyCombo falconKick = new KeyCombo(new string[] { "XB", "YB" });
 
@@ -23,6 +26,8 @@ public class AnimationControl : MonoBehaviour {
     private bool setCam = false;
     private bool isDancing = false;
     private bool camRotate = false;
+    private bool isSupermove = false;
+
 
     private bool btnA = false;
     private bool btnB = false;
@@ -36,6 +41,13 @@ public class AnimationControl : MonoBehaviour {
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this;
+
         GameObject x = GameObject.Find("UDO");
         assetInput = x.GetComponent<vThirdPersonInput>();
         assetController = x.GetComponent<vThirdPersonController>();
@@ -49,32 +61,36 @@ public class AnimationControl : MonoBehaviour {
 	void Update () {
 
         AnimatorStateInfo aniTimer = animator.GetCurrentAnimatorStateInfo(0);
-        //AnimatorStateInfo aniTimer = animator.GetCurrentAnimatorClipInfo;
         time = aniTimer.normalizedTime;
 
-
-        //Debug.Log("ANIMATORSTATE: " + aniTimer.IsName("Free Movement"));
-
-        
-        
-
-
-
-
-
-
         if (UdoPlayer.Instance != null)
-        {            
+        {
             isDancing = UdoPlayer.Instance.GetIsDancing();
             udoAlive = UdoPlayer.Instance.getAlive();
         }
+
+
+
+        // CHECK FOR SUPERMOVE STATE
+
+        if (!aniTimer.IsName("Free Movement"))
+            isSupermove = true;
+        else
+            isSupermove = false;
+
+        
+        
+        // CAM SPIN
 
         if( Input.GetAxisRaw("TriggerR") != 0 || !aniTimer.IsName("Free Movement"))
             assetInput.enableCamRotate = true;
         else
             assetInput.enableCamRotate = false;
 
-        
+
+
+        // FREEZE MOVEMENT
+
         if (isDancing || !udoAlive || !aniTimer.IsName("Free Movement"))
         {
             assetInput.enableMovement = false;
@@ -88,20 +104,25 @@ public class AnimationControl : MonoBehaviour {
 
         
 
-
        
         // COMBOS
-        if (specialHipHopLegs.Check())
+
+        if (HipHopLegs.Check())
         {
             Debug.Log("COMBO 1");
-            animator.Play("Special HipHopLegs");
+            animator.Play("HipHopLegs");
             StartCoroutine(CheckAniTime());
            
         }
-        if (specialGayTurn.Check())
+        if (GayTurn.Check())
         {
             Debug.Log("COMBO 2");
-            animator.Play("Special GayTurn");
+            animator.Play("GayTurn");
+        }
+        if (HipHopFlip.Check())
+        {
+            Debug.Log("COMBO 3");
+            animator.Play("HipHopFlip");
         }
 
 
@@ -138,22 +159,23 @@ public class AnimationControl : MonoBehaviour {
         btnY = Input.GetButtonDown("YB");
     }
 
-    
-    IEnumerator CheckAniTime()
+    public bool GetIsSupermove()
     {
-        
+        return isSupermove;
+    }
+
+    
+
+    IEnumerator CheckAniTime()
+    {       
 
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Free Movement"))
         {
-            Debug.Log("Corouting");
+            //Debug.Log("Corouting");
             assetInput.enableMovement = false;
             assetInput.enableJump = false;
         }
-
         yield return new WaitForSeconds(1);
-
-
-
     }
     
 

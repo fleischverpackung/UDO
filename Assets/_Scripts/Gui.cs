@@ -13,11 +13,13 @@ public class Gui : MonoBehaviour
     public Text multi;
     public Text points;
     public Image deathImg;
+    public Text supermove;
     
 
     private void Awake()
     {
         deathImg.enabled = false;
+        supermove.enabled = false;
     }
 
     private void Update()
@@ -32,6 +34,14 @@ public class Gui : MonoBehaviour
             multi.text = "x " + Mathf.Round(UdoPlayer.Instance.GetToxicationBonus() * 3 ).ToString();
             points.text = UdoPlayer.Instance.GetScore().ToString();
         }
+
+
+        if (AnimationControl.Instance.GetIsSupermove())
+        {
+            supermove.enabled = true; 
+        }
+        else
+            supermove.enabled = false; 
         
         
     }

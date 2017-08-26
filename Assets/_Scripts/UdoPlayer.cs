@@ -65,7 +65,7 @@ public class UdoPlayer :  MonoBehaviour {
         tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         _audioSource = GetComponent<AudioSource>();
         udoAni = GameObject.Find("UDO").GetComponent<Animator>();
-
+        
         StartCoroutine(Countdown());
     }
 
@@ -90,6 +90,7 @@ public class UdoPlayer :  MonoBehaviour {
         udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 1, .9f, 1.2f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy,  coke);
 
+        
         
         
 
