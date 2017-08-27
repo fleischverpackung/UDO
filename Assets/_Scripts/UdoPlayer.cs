@@ -95,7 +95,7 @@ public class UdoPlayer : MonoBehaviour {
 
 
         // MANIPULATE UDO MODEL
-        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 3, .9f, 1.3f);
+        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 7, .9f, 1.3f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy, coke);
 
 
