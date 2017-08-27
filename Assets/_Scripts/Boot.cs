@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Boot : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Boot : MonoBehaviour {
     private float btnStart;
     private int highscore;
     private string scene;
+
 
 
 
@@ -28,6 +30,7 @@ public class Boot : MonoBehaviour {
     {
         DontDestroyOnLoad(this);
         SceneManager.LoadScene("Splash");
+        
     }
 
 
@@ -37,6 +40,8 @@ public class Boot : MonoBehaviour {
 
         if (Input.GetAxisRaw("Start") != 0 && scene == "Splash")
             SceneManager.LoadScene("Dance");
+
+       
 
     }
 

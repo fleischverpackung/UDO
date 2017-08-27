@@ -18,16 +18,12 @@ public class Gui : MonoBehaviour
     //public RenderSettings renderSettings;
     public Material skyA;
     public Material skyB;
-    
 
     private void Awake()
     {
         deathImg.enabled = false;
         supermove.enabled = false;
-        //particleFloor.Simulate(1);
-        //particleFloor.Play();
-        //particleFloor.IsAlive(false);
-        //particleFloor.Stop();
+        
     }
 
     private void Update()
@@ -52,6 +48,8 @@ public class Gui : MonoBehaviour
         { 
             supermove.enabled = false;
         }
+
+        
 
      }
 

@@ -22,6 +22,8 @@ public class AnimationControl : MonoBehaviour {
     private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0, 0, 0.2f });
     private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "XB", "YB" }, "Thriller", new float[] { 0, 0.2f, 0 });
 
+    private string[] specialNames = new string[] { "HiphopLegs", "GayTurn", "HipHOpFlip´", "Twerk", "Gangnam", "Thriller" };
+
     private bool udoAlive = true;
     private float camDistance = 6;
     private bool isDancing = false;
@@ -67,10 +69,24 @@ public class AnimationControl : MonoBehaviour {
             udoAlive = UdoPlayer.Instance.getAlive();
         }
 
-
-
+        /*
+        for (int i = 0; i < specialNames.Length; i++)
+        {
+            if (aniTimer.IsName(specialNames[i]))
+            {
+                isSupermove = true;
+                UdoPlayer.Instance.SetSuperMove(true);
+            }
+            else
+            {
+                isSupermove = false;
+                UdoPlayer.Instance.SetSuperMove(false);
+            }
+        }
+        */
+        
         // CHECK FOR SUPERMOVE STATE
-        if (!aniTimer.IsName("Free Movement") && udoAlive && !aniTimer.IsName("Jump") && !aniTimer.IsName("Falling") && !aniTimer.IsName("Landing"))
+        if (!aniTimer.IsName("Free Movement") && udoAlive && !aniTimer.IsName("Jump") && !aniTimer.IsName("Falling") && !aniTimer.IsName("Landing") && !aniTimer.IsName("Locomotion"))
         {
             isSupermove = true;
             UdoPlayer.Instance.SetSuperMove(true);
@@ -80,7 +96,7 @@ public class AnimationControl : MonoBehaviour {
             isSupermove = false;
             UdoPlayer.Instance.SetSuperMove(false);
         }
-            
+           
 
         
         

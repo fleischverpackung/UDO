@@ -23,6 +23,11 @@ public class KeyCombo
         buttons = b;
         costs = c;
     }
+
+    public string GetName()
+    {
+        return ani;
+    }
    
 
     //usage: call this once a frame. when the combo has been completed, it will return true
