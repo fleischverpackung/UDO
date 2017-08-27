@@ -1,21 +1,32 @@
 ﻿using UnityEngine;
+using System.Collections;
+
 public class KeyCombo
 {
     public string[] buttons;
+    private float[] costs;
+    private string ani;
     private int currentIndex = 0; //moves along the array as buttons are pressed
 
-    
+
 
     public float allowedTimeBetweenButtons = 0.3f; //tweak as needed
     private float timeLastButtonPressed;
 
-    public KeyCombo(string[] b)
+
+
+    // EXTERNAL CALL METHOD
+
+    public KeyCombo(string[] b, string a, float[] c)
     {
+        ani = a;
         buttons = b;
+        costs = c;
     }
+   
 
     //usage: call this once a frame. when the combo has been completed, it will return true
-    public bool Check()
+    public void Check()
     {
         if (Time.time > timeLastButtonPressed + allowedTimeBetweenButtons) currentIndex = 0;
         {
@@ -36,12 +47,21 @@ public class KeyCombo
                 if (currentIndex >= buttons.Length)
                 {
                     currentIndex = 0;
-                    return true;
+                    UdoPlayer.Instance.PaySupermove(costs);
+                    AnimationControl.Instance.PlayAni(ani);
+                    AnimationControl.Instance.StartCoroutine();
+                    //return true;
                 }
-                else return false;
+                //else return false;
             }
         }
 
-        return false;
+        //return false;
+
+        
+      
+
     }
+
+
 }

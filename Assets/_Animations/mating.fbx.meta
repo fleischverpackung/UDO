@@ -143,7 +143,7 @@ ModelImporter:
     400132: Spine1
     400134: Spine2
     400136: Spine3
-    7400000: _sexyMating
+    7400000: _weichSexyMating
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -174,7 +174,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: _sexyMating
+      name: _weichSexyMating
       takeName: Take 001
       firstFrame: 1117
       lastFrame: 1928.0001

@@ -106,8 +106,8 @@ ModelImporter:
     - serializedVersion: 16
       name: _specielGangnam
       takeName: mixamo.com
-      firstFrame: 0
-      lastFrame: 741
+      firstFrame: 62
+      lastFrame: 460
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

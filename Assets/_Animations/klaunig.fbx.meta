@@ -143,7 +143,7 @@ ModelImporter:
     400132: Spine1
     400134: Spine2
     400136: Spine3
-    7400000: Mid_Rhythm_Dance_06
+    7400000: _weichKlaunig
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -174,7 +174,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mid_Rhythm_Dance_06
+      name: _weichKlaunig
       takeName: Take 001
       firstFrame: 167
       lastFrame: 933

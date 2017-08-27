@@ -14,36 +14,32 @@ public class UdoPlayer : MonoBehaviour {
     float weed = .2f;
     float coke = .3f;
     float mdma = .4f;
-
-    public bool isAlive = true;
+    
+    /*
     private float loveRegen = -0.01f;
-    private float healthRegen = -0.0f;
+    private float healthRegen = -0.01f;
     private float sanityRegen = -0.01f;
-    public string lastDrug;
-
-
-    public float toxicationBonus = 0;
+    */
+    public string lastDrug;       
 
     private Material haut;
     protected vThirdPersonController tpcs;
     protected vThirdPersonInput tpis;
+    private AudioSource _audioSource;
+    public AudioClip _audioClip0;
+    private Animator udoAni;
 
     private Color skinHealthy = new Color(1F, 1F, 1F, 1F);
     private Color skinUnhealthy = new Color(1F, 0.7F, 0.7F, 0.1F);
 
-    private AudioSource _audioSource;
-    public AudioClip _audioClip0;
-
-    private Animator udoAni;
-
+    public bool isAlive = true;
+    public float toxicationBonus = 0;
     private int timer = 90;
     private int score = 0;
     private int danceTime = 0;
     private float danceStyle = 0;
-
     private bool superMove = false;
     private float superMoveMultiplier = 1f;
-
     private bool isDancing = false;
 
 
@@ -86,26 +82,19 @@ public class UdoPlayer : MonoBehaviour {
 
 
 
-        // THE HIGHSCORE
-
-        
+        // THE HIGHSCORE        
         if (superMove)
             superMoveMultiplier = 1;
         else
             superMoveMultiplier = 0;
 
-
         if (isDancing && isAlive || superMove)
-        score += (Mathf.RoundToInt(toxicationBonus));
-
-        
+        score += (Mathf.RoundToInt(toxicationBonus));       
 
 
-
+        // MANIPULATE UDO MODEL
         udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 3, .9f, 1.3f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy, coke);
-
-
 
 
 
@@ -120,7 +109,7 @@ public class UdoPlayer : MonoBehaviour {
 
 
         CheckDanceStyle();
-        RegenStats();
+        //RegenStats();
 
     }
 
@@ -132,12 +121,21 @@ public class UdoPlayer : MonoBehaviour {
         drugList.Add(stoff);
     }
 
+    public void PaySupermove(float[] x)
+    {
+        weed -= x[0];
+        coke -= x[1];
+        mdma -= x[2];
+    }
+
+    /*
     private void RegenStats()
     {
         weed = Regeneration(weed, loveRegen);
         coke = Regeneration(coke, healthRegen);
         mdma = Regeneration(mdma, sanityRegen);
     }
+    */
 
     IEnumerator Death()
     {
