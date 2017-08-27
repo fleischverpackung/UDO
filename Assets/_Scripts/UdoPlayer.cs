@@ -126,13 +126,14 @@ public class UdoPlayer : MonoBehaviour {
     public void PaySupermove(float[] x)
     {
         if (weed >= 0)
-        weed -= x[0];
+            weed -= x[0];
 
         if (coke >= 0)
-        coke -= x[1];
+            coke -= x[1];
 
         if (mdma >= 0)
-        mdma -= x[2];
+            mdma -= x[2];
+        
     }
 
     /*

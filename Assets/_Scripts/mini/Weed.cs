@@ -20,7 +20,7 @@ public class Weed : Drug
         mdma = Random.Range(mdmaMin, mdmaMax);
         weed = Random.Range(weedMin, weedMax);
         type = drugType.WEED;
-        Debug.Log("weed values set");
+        //Debug.Log("weed values set");
     }
 
 }

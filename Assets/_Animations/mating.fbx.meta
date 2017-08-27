@@ -176,8 +176,8 @@ ModelImporter:
     - serializedVersion: 16
       name: _weichSexyMating
       takeName: Take 001
-      firstFrame: 1117
-      lastFrame: 1928.0001
+      firstFrame: 1149
+      lastFrame: 1926.9999
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

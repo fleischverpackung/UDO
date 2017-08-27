@@ -14,8 +14,8 @@ public class Gui : MonoBehaviour
     public Text points;
     public Image deathImg;
     public Text supermove;
-    public ParticleSystem particleFloor;
-    public RenderSettings renderSettings;
+    //public ParticleSystem particleFloor;
+    //public RenderSettings renderSettings;
     public Material skyA;
     public Material skyB;
     
@@ -32,42 +32,33 @@ public class Gui : MonoBehaviour
 
     private void Update()
     {
-        
-        
+
+
         if (UdoPlayer.Instance != null)
         {
             sliderCoke.value = UdoPlayer.Instance.GetCoke();
             sliderMdma.value = UdoPlayer.Instance.GetMdma();
-            sliderWeed.value = UdoPlayer.Instance.GetWeed();    
-            multi.text = "x " + Mathf.Round(UdoPlayer.Instance.GetToxicationBonus() * 3 ).ToString();
+            sliderWeed.value = UdoPlayer.Instance.GetWeed();
+            multi.text = "x " + Mathf.Round(UdoPlayer.Instance.GetToxicationBonus() * 3).ToString();
             points.text = UdoPlayer.Instance.GetScore().ToString();
         }
 
 
         if (AnimationControl.Instance.GetIsSupermove())
         {
-            //Debug.Log("PARTICLE");
             supermove.enabled = true;
-            //particleFloor.Play();
-            //particleFloor.Play();
-            RenderSettings.skybox = skyA;
         }
         else
+        { 
             supermove.enabled = false;
-        RenderSettings.skybox = skyB;
-        //particleFloor.Pause();
-        //particleFloor.Pause();
+        }
 
-
-    }
-   
+     }
 
     private void ShowDeathInfo()
     {
         deathImg.enabled = true;
-        
-            }
-    
 
-   
+    }
 }
+

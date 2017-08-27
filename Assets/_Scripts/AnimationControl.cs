@@ -111,12 +111,16 @@ public class AnimationControl : MonoBehaviour {
 
         // COMBOS
 
-        HipHopLegs.Check();
-        GayTurn.Check();
-        HipHopFlip.Check();
-        Twerk.Check();
-        Gangnam.Check();
-        Thriller.Check();
+        if (!isSupermove)
+        {
+            HipHopLegs.Check();
+            GayTurn.Check();
+            HipHopFlip.Check();
+            Twerk.Check();
+            Gangnam.Check();
+            Thriller.Check();
+        }
+        
 
 
 

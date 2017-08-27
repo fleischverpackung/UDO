@@ -34,38 +34,36 @@ public class dispenser : MonoBehaviour
 
 
     IEnumerator DispenserOn()
-    {        
-            while (UdoPlayer.Instance.getAlive())
+    {
+        while (UdoPlayer.Instance.getAlive())
+        {
+            if (doDispense)
             {
-                if (doDispense)
+                int drugCase = (Random.Range(0, 4));
+                Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
+                if (Vector3.Distance(pos, posUdo) >= 2)
                 {
-                int randomrange = Random.Range(0, 4);
-                Vector3 posDrop = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
+                    Instantiate(pickupPrefabs[drugCase], pos, Quaternion.identity);
 
-                Debug.Log("DISTANCE: " + Vector3.Distance(posDrop, posUdo);
-                /*
-                if (Vector3.Distance(posDrop, posUdo) >= 1)
-                    {
-                        Instantiate(pickupPrefabs[randomrange], posDrop, Quaternion.identity);
-                        _audioSource.PlayOneShot(_audioClip);
-                    }
-                    */
-
-                yield return new WaitForSecondsRealtime(dispenseInterval);
+                    _audioSource.PlayOneShot(_audioClip);
+                    Debug.Log("Dropped Drug @ " + pos);
                 }
                 
+
             }
+            yield return new WaitForSecondsRealtime(dispenseInterval);
+        }
     }
 
     IEnumerator DispensorOverTime()
     {
         doDispense = true;
-        Debug.Log("1");
+        Debug.Log("FastDispense");
         yield return new WaitForSecondsRealtime(5);
-        Debug.Log("2");
+        Debug.Log("StopDispense");
         doDispense = false;
         yield return new WaitForSecondsRealtime(30);
-        Debug.Log("3");
+        Debug.Log("FastDispense");
         doDispense = true;
         yield return new WaitForSecondsRealtime(5);
         doDispense = false;
