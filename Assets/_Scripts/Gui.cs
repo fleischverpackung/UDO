@@ -14,12 +14,14 @@ public class Gui : MonoBehaviour
     public Text points;
     public Image deathImg;
     public Text supermove;
+    public ParticleSystem particleFloor;
     
 
     private void Awake()
     {
         deathImg.enabled = false;
         supermove.enabled = false;
+        particleFloor.Play();
     }
 
     private void Update()
@@ -38,12 +40,15 @@ public class Gui : MonoBehaviour
 
         if (AnimationControl.Instance.GetIsSupermove())
         {
-            supermove.enabled = true; 
+            //Debug.Log("PARTICLE");
+            supermove.enabled = true;
+            particleFloor.Play();
         }
         else
-            supermove.enabled = false; 
-        
-        
+            supermove.enabled = false;
+            particleFloor.Pause();
+
+
     }
    
 

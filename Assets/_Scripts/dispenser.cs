@@ -11,7 +11,7 @@ public class dispenser : MonoBehaviour
     private bool active = true;
 
     public GameObject[] prefabs;
-    public int dropArea = 8;
+    private int dropArea = 20;
     private float dispenseInterval;
     private int timer = 0;
     private bool doDispense = false;
@@ -56,11 +56,12 @@ public class dispenser : MonoBehaviour
             }
     }
 
+    // optimieren bitte 
     private void CheckDispenser()
     {
-        if (timer <= 50 && timer > 40 || timer < 90 && timer > 80)
+        if (timer <= 50 && timer > 40 || timer < 90 && timer > 85)
         {
-            dispenseInterval = 1;
+            dispenseInterval = 1f;
             doDispense = true;
         }
             

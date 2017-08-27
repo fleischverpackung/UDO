@@ -73,7 +73,7 @@ public class AnimationControl : MonoBehaviour {
 
         // CHECK FOR SUPERMOVE STATE
 
-        if (!aniTimer.IsName("Free Movement"))
+        if (!aniTimer.IsName("Free Movement") && udoAlive)
             isSupermove = true;
         else
             isSupermove = false;
