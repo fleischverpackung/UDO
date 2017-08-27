@@ -55,7 +55,8 @@ public class Gui : MonoBehaviour
     private void ShowDeathInfo()
     {
         deathImg.enabled = true;
-    }
+        
+            }
     
 
    

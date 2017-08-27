@@ -67,7 +67,7 @@ public class dispenser : MonoBehaviour
             
         else
         {
-            dispenseInterval = 30;
+            dispenseInterval = 35;
             doDispense = false;
         }
         

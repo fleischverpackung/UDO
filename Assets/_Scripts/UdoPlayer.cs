@@ -5,8 +5,8 @@ using Invector.CharacterController;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class UdoPlayer :  MonoBehaviour {
-    
+public class UdoPlayer : MonoBehaviour {
+
 
     public static UdoPlayer Instance { get; private set; }
 
@@ -14,7 +14,7 @@ public class UdoPlayer :  MonoBehaviour {
     float weed = .2f;
     float coke = .3f;
     float mdma = .4f;
-    
+
     public bool isAlive = true;
     private float loveRegen = -0.01f;
     private float healthRegen = -0.0f;
@@ -41,6 +41,9 @@ public class UdoPlayer :  MonoBehaviour {
     private int danceTime = 0;
     private float danceStyle = 0;
 
+    private bool superMove = false;
+    private float superMoveMultiplier = 1f;
+
     private bool isDancing = false;
 
 
@@ -51,13 +54,13 @@ public class UdoPlayer :  MonoBehaviour {
             DestroyImmediate(gameObject);
             return;
         }
-        Instance = this;        
-    }    
+        Instance = this;
+    }
 
-    private List<Drug> drugList;    
-    
+    private List<Drug> drugList;
 
-	void Start ()
+
+    void Start()
     {
         drugList = new List<Drug>();
         haut = GetComponentInChildren<Renderer>().material;
@@ -65,44 +68,56 @@ public class UdoPlayer :  MonoBehaviour {
         tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
         _audioSource = GetComponent<AudioSource>();
         udoAni = GameObject.Find("UDO").GetComponent<Animator>();
-        
+
         StartCoroutine(Countdown());
     }
 
 
 
-    void Update ()
+    void Update()
     {
         if (Input.GetAxis("TriggerL") >= 1)
             isDancing = true;
         else
             isDancing = false;
-        
-                
-        toxicationBonus = coke + mdma + weed;
 
-        if (isDancing && isAlive)
-            score += (Mathf.RoundToInt(toxicationBonus));
 
-        
-        
+        toxicationBonus = coke + mdma + weed + superMoveMultiplier;
 
-        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 1, .9f, 1.2f);
-        haut.color = Color.Lerp(skinHealthy, skinUnhealthy,  coke);
+
+
+        // THE HIGHSCORE
 
         
+        if (superMove)
+            superMoveMultiplier = 1;
+        else
+            superMoveMultiplier = 0;
+
+
+        if (isDancing && isAlive || superMove)
+        score += (Mathf.RoundToInt(toxicationBonus));
+
         
-        
+
+
+
+        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 3, .9f, 1.3f);
+        haut.color = Color.Lerp(skinHealthy, skinUnhealthy, coke);
+
+
+
+
 
         // CHECK ALIVE
         if (weed >= 1 && isAlive || coke >= 1 && isAlive || mdma >= 1 && isAlive)
         {
             isAlive = false;
             StartCoroutine(Death());
-            _audioSource.PlayOneShot(_audioClip0);            
-            tpcs.Death();            
+            _audioSource.PlayOneShot(_audioClip0);
+            tpcs.Death();
         }
-        
+
 
         CheckDanceStyle();
         RegenStats();
@@ -123,7 +138,7 @@ public class UdoPlayer :  MonoBehaviour {
         coke = Regeneration(coke, healthRegen);
         mdma = Regeneration(mdma, sanityRegen);
     }
-    
+
     IEnumerator Death()
     {
         yield return new WaitForSecondsRealtime(5);
@@ -131,9 +146,9 @@ public class UdoPlayer :  MonoBehaviour {
     }
 
     IEnumerator Countdown()
-    { 
+    {
         while (true)
-        {            
+        {
             timer -= 1;
             if (timer <= 0)
                 GameOver();
@@ -142,7 +157,7 @@ public class UdoPlayer :  MonoBehaviour {
     }
 
     private void GameOver()
-    {        
+    {
         Debug.Log("GAME OVER");
         Boot.Instance.setHighscore(score);
         PlayerPrefs.SetInt("finalScore", score);
@@ -152,15 +167,15 @@ public class UdoPlayer :  MonoBehaviour {
     private void CheckDanceStyle()
     {
         if (coke > weed && coke > mdma)
-            danceStyle = 1;        
+            danceStyle = 1;
 
         if (weed > coke && weed > mdma)
-            danceStyle = 0.5f;        
+            danceStyle = 0.5f;
 
         if (mdma > coke && mdma > weed)
-            danceStyle = 0;        
+            danceStyle = 0;
     }
-    
+
 
     public float GetWeed()
     {
@@ -213,6 +228,10 @@ public class UdoPlayer :  MonoBehaviour {
         Destroy(this);
     }
 
+    public void SetSuperMove(bool x)
+    {
+        superMove = x;
+    }
 
     float Regeneration(float x, float regen)
     {

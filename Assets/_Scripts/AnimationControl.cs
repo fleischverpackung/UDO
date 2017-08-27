@@ -74,9 +74,17 @@ public class AnimationControl : MonoBehaviour {
         // CHECK FOR SUPERMOVE STATE
 
         if (!aniTimer.IsName("Free Movement") && udoAlive && !aniTimer.IsName("Jump") && !aniTimer.IsName("Falling") && !aniTimer.IsName("Landing"))
+        {
             isSupermove = true;
+            UdoPlayer.Instance.SetSuperMove(true);
+        }
+            
         else
+        {
             isSupermove = false;
+            UdoPlayer.Instance.SetSuperMove(false);
+        }
+            
 
         
         
@@ -118,11 +126,13 @@ public class AnimationControl : MonoBehaviour {
         {
             Debug.Log("COMBO 2");
             animator.Play("GayTurn");
+            StartCoroutine(CheckAniTime());
         }
         if (HipHopFlip.Check())
         {
             Debug.Log("COMBO 3");
             animator.Play("HipHopFlip");
+            StartCoroutine(CheckAniTime());
         }
 
 
@@ -171,6 +181,7 @@ public class AnimationControl : MonoBehaviour {
 
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Free Movement"))
         {
+
             //Debug.Log("Corouting");
             assetInput.enableMovement = false;
             assetInput.enableJump = false;
