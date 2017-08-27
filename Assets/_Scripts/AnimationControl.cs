@@ -21,11 +21,11 @@ public class AnimationControl : MonoBehaviour {
     //private KeyCombo falconKick = new KeyCombo(new string[] { "XB", "YB" });
 
     private bool udoAlive = true;
-    private float danceStyle = 0;
+    //private float danceStyle = 0;
     private float camDistance = 6;
-    private bool setCam = false;
+    //private bool setCam = false;
     private bool isDancing = false;
-    private bool camRotate = false;
+    //private bool camRotate = false;
     private bool isSupermove = false;
 
 
@@ -73,7 +73,7 @@ public class AnimationControl : MonoBehaviour {
 
         // CHECK FOR SUPERMOVE STATE
 
-        if (!aniTimer.IsName("Free Movement") && udoAlive)
+        if (!aniTimer.IsName("Free Movement") && udoAlive && !aniTimer.IsName("Jump") && !aniTimer.IsName("Falling") && !aniTimer.IsName("Landing"))
             isSupermove = true;
         else
             isSupermove = false;

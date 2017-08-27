@@ -31,8 +31,8 @@ public class Gui : MonoBehaviour
         if (UdoPlayer.Instance != null)
         {
             sliderCoke.value = UdoPlayer.Instance.GetCoke();
-            sliderMdma.value = UdoPlayer.Instance.GetWeed();
-            sliderWeed.value = UdoPlayer.Instance.GetMdma();    
+            sliderMdma.value = UdoPlayer.Instance.GetMdma();
+            sliderWeed.value = UdoPlayer.Instance.GetWeed();    
             multi.text = "x " + Mathf.Round(UdoPlayer.Instance.GetToxicationBonus() * 3 ).ToString();
             points.text = UdoPlayer.Instance.GetScore().ToString();
         }
