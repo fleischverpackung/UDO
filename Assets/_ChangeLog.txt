@@ -1,0 +1,17 @@
+
+
+### 0.9a
+
+Supermoves
+UI New Stats Interface and Combomos
+Udo Speed fixed
+
+
+### 1.0a
+
+new Supermoves
+Supermoves cost Drugs
+new Apple Pickup
+new Toast Pickup
+Dispense Timing fixed
+pay Supermoves ixed

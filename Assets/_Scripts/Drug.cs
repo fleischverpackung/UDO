@@ -78,7 +78,7 @@ public class Drug : MonoBehaviour, IDrug
 
 
     private void GenerateDrug(int cokeMin, int cokeMax, int mdmaMin, int mdmaMax, int weedMin, int weedMax, PrimitiveType obj)
-    {
+    {                                   
         coke = Random.Range(cokeMin, cokeMax);
         mdma = Random.Range(mdmaMin, mdmaMax);
         weed = Random.Range(weedMin, weedMax);

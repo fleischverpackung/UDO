@@ -3,18 +3,19 @@ using System.Collections;
 
 public class dispenser : MonoBehaviour
 {
-    
-    //private GameObject[] liveDrugs;
+
+    public Object[] pickupPrefabs;
     private AudioSource _audioSource;
     public AudioClip _audioClip;
 
     private bool active = true;
 
-    public GameObject[] prefabs;
+    
     private int dropArea = 20;
-    private float dispenseInterval = 1;
+    private float dispenseInterval = 0.5f;
     private int timer = 0;
     private bool doDispense = false;
+    private Vector3 posUdo;
     
 
     void Start()
@@ -22,24 +23,15 @@ public class dispenser : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         StartCoroutine(DispenserOn());
         StartCoroutine(DispensorOverTime());
-
     }
 
    
     void Update()
     {
-        timer = UdoPlayer.Instance.GetTimer();
-
-        //CheckDispenser();
-
-        
-        // INTENSIFY DROPPINGS
-        // while (dispenseInterval >=5 )
-        //  dispenseInterval -= Time.deltaTime;
-
-
-
+        timer = UdoPlayer.Instance.GetTimer();   
+        posUdo = UdoPlayer.Instance.GetPos();
     }
+
 
     IEnumerator DispenserOn()
     {        
@@ -47,22 +39,26 @@ public class dispenser : MonoBehaviour
             {
                 if (doDispense)
                 {
-                    int drugCase = (Random.Range(0, 3));
-                    Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
+                int randomrange = Random.Range(0, 4);
+                Vector3 posDrop = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
 
-                    Instantiate(prefabs[drugCase], pos, Quaternion.identity);
+                Debug.Log("DISTANCE: " + Vector3.Distance(posDrop, posUdo);
+                /*
+                if (Vector3.Distance(posDrop, posUdo) >= 1)
+                    {
+                        Instantiate(pickupPrefabs[randomrange], posDrop, Quaternion.identity);
+                        _audioSource.PlayOneShot(_audioClip);
+                    }
+                    */
 
-                    _audioSource.PlayOneShot(_audioClip);
-                    Debug.Log("Dropped Drug @ " + pos);
-                    
-                }
                 yield return new WaitForSecondsRealtime(dispenseInterval);
-        }
+                }
+                
+            }
     }
 
     IEnumerator DispensorOverTime()
     {
-        //dispenseInterval = 1f;
         doDispense = true;
         Debug.Log("1");
         yield return new WaitForSecondsRealtime(5);
@@ -76,31 +72,12 @@ public class dispenser : MonoBehaviour
         yield return new WaitForSecondsRealtime(50);
 
     }
-
-    /*
-    // optimieren bitte 
-    private void CheckDispenser()
-    {
-        
-
-        if (timer <= 50 && timer > 40 || timer < 90 && timer > 85)
-        {
-            dispenseInterval = 1f;
-            doDispense = true;
-        }
-            
-        else
-        {
-            dispenseInterval = 35;
-            doDispense = false;
-        }
-        
-    }
-    */
+    
     
     private void OnDestroy()
     {
         StopCoroutine(DispenserOn());
+        StopCoroutine(DispensorOverTime());
     }
 
 }

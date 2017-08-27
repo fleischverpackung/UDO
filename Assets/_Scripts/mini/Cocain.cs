@@ -8,7 +8,7 @@ public class Cocain : Drug
     public override void drugAnimation()
     {
         //health = -100000;
-        Debug.Log("speed animation");
+        //Debug.Log("speed animation");
     }
 
     public override void setLevels()
@@ -17,7 +17,7 @@ public class Cocain : Drug
         mdma = Random.Range(mdmaMin, mdmaMax);
         weed = Random.Range(weedMin, weedMax);
         type = drugType.COCAIN;
-        Debug.Log("speed values set");
+        //Debug.Log("speed values set");
     }
     
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+//using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Gui : MonoBehaviour
@@ -15,13 +15,19 @@ public class Gui : MonoBehaviour
     public Image deathImg;
     public Text supermove;
     public ParticleSystem particleFloor;
+    public RenderSettings renderSettings;
+    public Material skyA;
+    public Material skyB;
     
 
     private void Awake()
     {
         deathImg.enabled = false;
         supermove.enabled = false;
-        particleFloor.Play();
+        //particleFloor.Simulate(1);
+        //particleFloor.Play();
+        //particleFloor.IsAlive(false);
+        //particleFloor.Stop();
     }
 
     private void Update()
@@ -42,11 +48,15 @@ public class Gui : MonoBehaviour
         {
             //Debug.Log("PARTICLE");
             supermove.enabled = true;
-            particleFloor.Play();
+            //particleFloor.Play();
+            //particleFloor.Play();
+            RenderSettings.skybox = skyA;
         }
         else
             supermove.enabled = false;
-            particleFloor.Pause();
+        RenderSettings.skybox = skyB;
+        //particleFloor.Pause();
+        //particleFloor.Pause();
 
 
     }

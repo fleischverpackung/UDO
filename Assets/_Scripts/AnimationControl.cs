@@ -14,12 +14,13 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" }, "HipHopLegs", new float[]{0.2f, 0.2f, 0,2f});
-    private KeyCombo GayTurn = new KeyCombo(new string[] { "YB", "YB", "XB" }, "GayTurn", new float[] { 0.2f, 0.2f, 0, 2f });
-    private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "AB", "YB" }, "HipHopFlip", new float[] { 0.2f, 0.2f, 0, 2f });
-    private KeyCombo Twerk = new KeyCombo(new string[] { "YB", "BB", "AB" }, "Twerk", new float[] { 0.2f, 0.2f, 0, 2f });
-    private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0.2f, 0.2f, 0, 2f });
-    private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "XB", "YB" }, "Thriller", new float[] { 0.2f, 0.2f, 0, 2f });
+    // params: weed / coke / mdma !!!
+    private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" }, "HipHopLegs", new float[]{0.2f, 0.1f, 0});
+    private KeyCombo GayTurn = new KeyCombo(new string[] { "YB", "YB", "XB" }, "GayTurn", new float[] { 0f, 0f, .2f});
+    private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "AB", "YB" }, "HipHopFlip", new float[] { 0.3f, 0, 0 });
+    private KeyCombo Twerk = new KeyCombo(new string[] { "XB", "BB", "XB" }, "Twerk", new float[] { 0, 0.2f, 0.1f });
+    private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0, 0, 0.2f });
+    private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "XB", "YB" }, "Thriller", new float[] { 0, 0.2f, 0 });
 
     private bool udoAlive = true;
     private float camDistance = 6;

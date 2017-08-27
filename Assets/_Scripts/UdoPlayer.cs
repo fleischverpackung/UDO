@@ -59,11 +59,13 @@ public class UdoPlayer : MonoBehaviour {
     void Start()
     {
         drugList = new List<Drug>();
+        GameObject x = GameObject.Find("UDO");
         haut = GetComponentInChildren<Renderer>().material;
-        tpcs = GameObject.Find("UDO").GetComponent<vThirdPersonController>();
-        tpis = GameObject.Find("UDO").GetComponent<vThirdPersonInput>();
+        tpcs = x.GetComponent<vThirdPersonController>();
+        tpis = x.GetComponent<vThirdPersonInput>();
+        udoAni = x.GetComponent<Animator>();
+
         _audioSource = GetComponent<AudioSource>();
-        udoAni = GameObject.Find("UDO").GetComponent<Animator>();
 
         StartCoroutine(Countdown());
     }
@@ -123,8 +125,13 @@ public class UdoPlayer : MonoBehaviour {
 
     public void PaySupermove(float[] x)
     {
+        if (weed >= 0)
         weed -= x[0];
+
+        if (coke >= 0)
         coke -= x[1];
+
+        if (mdma >= 0)
         mdma -= x[2];
     }
 
@@ -229,6 +236,11 @@ public class UdoPlayer : MonoBehaviour {
     public void SetSuperMove(bool x)
     {
         superMove = x;
+    }
+
+    public Vector3 GetPos ()
+    {
+        return this.transform.position;
     }
 
     float Regeneration(float x, float regen)
