@@ -51,7 +51,7 @@ public class KeyCombo
 
                 if (currentIndex >= buttons.Length)
                 {
-                    
+
 
                     if (!UdoPlayer.Instance.GetLowEnergy())
                     {
