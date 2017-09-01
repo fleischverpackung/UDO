@@ -11,6 +11,9 @@ public class Gui : MonoBehaviour
     public Slider sliderCoke;
     public Slider sliderMdma;
     public Slider sliderWeed;
+    public Slider sliderCokeDiff;
+    public Slider sliderMdmaDiff;
+    public Slider sliderWeedDiff;
     public Text multi;
     public Text points;
     public Image deathImg;
@@ -50,6 +53,9 @@ public class Gui : MonoBehaviour
             sliderWeed.value = UdoPlayer.Instance.GetWeed();
             multi.text = "x " + Mathf.Round(UdoPlayer.Instance.GetToxicationBonus() * 3).ToString();
             points.text = UdoPlayer.Instance.GetScore().ToString();
+            sliderCokeDiff.value = UdoPlayer.Instance.GetStatsOld().x;
+            sliderMdmaDiff.value = UdoPlayer.Instance.GetStatsOld().y;
+            sliderWeedDiff.value = UdoPlayer.Instance.GetStatsOld().z;
         }
 
 
@@ -63,6 +69,7 @@ public class Gui : MonoBehaviour
         { 
             supermove.enabled = false;
         }
+        
 
         
 
@@ -81,6 +88,12 @@ public class Gui : MonoBehaviour
     public void BlinkLowEnergy()
     {
         StartCoroutine(LowEnergy());
+    }
+
+    IEnumerator StatsDifference()
+    {
+
+        yield return new WaitForSeconds(3);
     }
 
 

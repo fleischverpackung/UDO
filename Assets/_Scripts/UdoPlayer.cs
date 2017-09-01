@@ -14,6 +14,8 @@ public class UdoPlayer : MonoBehaviour {
     float weed = .2f;
     float coke = .3f;
     float mdma = .4f;
+
+    Vector3 statsOld;
     
     /*
     private float loveRegen = -0.01f;
@@ -36,7 +38,7 @@ public class UdoPlayer : MonoBehaviour {
     public float toxicationBonus = 0;
     private int timer = 90;
     private int score = 0;
-    private int danceTime = 0;
+    //private int danceTime = 0;
     private float danceStyle = 0;
     private bool superMove = false;
     private float superMoveMultiplier = 1f;
@@ -97,7 +99,8 @@ public class UdoPlayer : MonoBehaviour {
         // MANIPULATE UDO MODEL
         udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 7, .9f, 1.3f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy, coke);
-
+        Debug.Log("coke _ " + coke);
+        Debug.Log("toxicationBonus _ " + toxicationBonus);
 
 
         // CHECK ALIVE
@@ -117,6 +120,7 @@ public class UdoPlayer : MonoBehaviour {
 
     public void consumeDrug(Drug stoff)
     {
+        StartCoroutine(StatsOldDelay());
         coke += stoff.coke;               
         mdma += stoff.mdma;
         weed += stoff.weed;
@@ -133,10 +137,11 @@ public class UdoPlayer : MonoBehaviour {
 
     public void PaySupermove(float[] x)
     {
-        
-        weed -= x[0];
+        StartCoroutine(StatsOldDelay());
+               
         coke -= x[1];
-        mdma -= x[2];        
+        mdma -= x[2];
+        weed -= x[0];
     }
 
     /*
@@ -164,6 +169,15 @@ public class UdoPlayer : MonoBehaviour {
             yield return new WaitForSeconds(1);
         }
     }
+
+    IEnumerator StatsOldDelay()
+    {
+        statsOld = new Vector3(coke, mdma, weed);
+        yield return new WaitForSeconds(3);
+        statsOld = new Vector3(coke, mdma, weed);
+    }
+
+
 
     private void GameOver()
     {
@@ -240,6 +254,10 @@ public class UdoPlayer : MonoBehaviour {
     public void SetSuperMove(bool x)
     {
         superMove = x;
+    }
+    public Vector3 GetStatsOld()
+    {
+        return statsOld;
     }
 
     public Vector3 GetPos ()
