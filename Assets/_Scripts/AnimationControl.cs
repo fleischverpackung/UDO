@@ -22,7 +22,7 @@ public class AnimationControl : MonoBehaviour {
     private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0, 0, 0.2f });
     private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "XB", "YB" }, "Thriller", new float[] { 0, 0.2f, 0 });
 
-    private string[] specialNames = new string[] { "HiphopLegs", "GayTurn", "HipHOpFlip", "Twerk", "Gangnam", "Thriller" };
+    //private string[] specialNames = new string[] { "HiphopLegs", "GayTurn", "HipHOpFlip", "Twerk", "Gangnam", "Thriller" };
 
     private bool udoAlive = true;
     private float camDistance = 6;

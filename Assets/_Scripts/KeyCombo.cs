@@ -51,15 +51,11 @@ public class KeyCombo
 
                 if (currentIndex >= buttons.Length)
                 {
-
-
-                    if (!UdoPlayer.Instance.GetLowEnergy())
-                    {
                         currentIndex = 0;
                         UdoPlayer.Instance.PaySupermove(costs);
                         AnimationControl.Instance.PlayAni(ani);
                         AnimationControl.Instance.StartCoroutine();
-                    }
+                    
                     
                     //return true;
                 }

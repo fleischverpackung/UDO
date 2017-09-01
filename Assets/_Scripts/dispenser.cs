@@ -41,13 +41,11 @@ public class dispenser : MonoBehaviour
             {
                 int drugCase = (Random.Range(0, 4));
                 Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
-                if (Vector3.Distance(pos, posUdo) >= 2)
-                {
-                    Instantiate(pickupPrefabs[drugCase], pos, Quaternion.identity);
+               Instantiate(pickupPrefabs[drugCase], pos, Quaternion.identity);
 
                     _audioSource.PlayOneShot(_audioClip);
                     Debug.Log("Dropped Drug @ " + pos);
-                }
+                
                 
 
             }

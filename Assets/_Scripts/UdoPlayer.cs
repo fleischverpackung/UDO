@@ -84,7 +84,7 @@ public class UdoPlayer : MonoBehaviour {
 
         toxicationBonus = coke + mdma + weed + superMoveMultiplier;
 
-        Debug.Log("COKE: " + coke);                         
+        //Debug.Log("COKE: " + coke);                         
 
         // THE HIGHSCORE        
         if (superMove)
@@ -119,25 +119,19 @@ public class UdoPlayer : MonoBehaviour {
 
     public void consumeDrug(Drug stoff)
     {
-        if (weed >= 0)
+        if (weed > 0 && coke > 0 && mdma > 0)
+        {
             weed += stoff.weed;
-        else
-            weed = 0f;
-        if (coke >= 0)
             coke += stoff.coke;
-        else
-            coke = 0f;
-        if (mdma >= 0)
             mdma += stoff.mdma;
-        else
-            mdma = 0f;
-        
+        }
+                    
         drugList.Add(stoff);
     }
 
     public void PaySupermove(float[] x)
     {
-        if (weed >= 0)
+        if (weed > 0)
             weed -= x[0];
 
         if (coke >= 0)
@@ -256,6 +250,7 @@ public class UdoPlayer : MonoBehaviour {
         return this.transform.position;
     }
 
+    /*
     float Regeneration(float x, float regen)
     {
         if (x < 10 && x > 0)
@@ -266,14 +261,18 @@ public class UdoPlayer : MonoBehaviour {
             x = 0;
         return x;
     }
+    */
 
+    /*
     public bool GetLowEnergy()
     {
         if (coke > 0 && mdma > 0 && weed > 0)
-            return true;
-        else
             return false;
+        else
+            return true;
     }
+    */
 
+   
     
 }
