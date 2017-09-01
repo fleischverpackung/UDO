@@ -18,14 +18,12 @@ public class Gui : MonoBehaviour
     //public RenderSettings renderSettings;
     public Material skyA;
     public Material skyB;
-    public Text lowEnergy;
 
     private void Awake()
     {
         deathImg.enabled = false;
         supermove.enabled = false;
-        lowEnergy.enabled = false;
-
+        
     }
 
     private void Update()
@@ -59,13 +57,6 @@ public class Gui : MonoBehaviour
     {
         deathImg.enabled = true;
 
-    }
-
-    IEnumerator ShowLowEnergy()
-    {
-        lowEnergy.enabled = true;
-        yield return new WaitForSeconds(2);
-        lowEnergy.enabled = false;
     }
 }
 

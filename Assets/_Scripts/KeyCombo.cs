@@ -7,7 +7,7 @@ public class KeyCombo
     private float[] costs;
     private string ani;
     private int currentIndex = 0; //moves along the array as buttons are pressed
-    
+
 
 
     public float allowedTimeBetweenButtons = 0.3f; //tweak as needed
@@ -51,12 +51,10 @@ public class KeyCombo
 
                 if (currentIndex >= buttons.Length)
                 {
-                        currentIndex = 0;
-                        UdoPlayer.Instance.PaySupermove(costs);
-                        AnimationControl.Instance.PlayAni(ani);
-                        AnimationControl.Instance.StartCoroutine();
-                    
-                    
+                    currentIndex = 0;
+                    UdoPlayer.Instance.PaySupermove(costs);
+                    AnimationControl.Instance.PlayAni(ani);
+                    AnimationControl.Instance.StartCoroutine();
                     //return true;
                 }
                 //else return false;
