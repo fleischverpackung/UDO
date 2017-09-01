@@ -61,15 +61,19 @@ public class dispenser : MonoBehaviour
     {
         doDispense = true;
         Debug.Log("FastDispense");
-        yield return new WaitForSecondsRealtime(7);
+        yield return new WaitForSecondsRealtime(5);
         Debug.Log("StopDispense");
         doDispense = false;
-        yield return new WaitForSecondsRealtime(28);
+        yield return new WaitForSecondsRealtime(30);
         Debug.Log("FastDispense");
         doDispense = true;
-        yield return new WaitForSecondsRealtime(7);
+        yield return new WaitForSecondsRealtime(5);
         doDispense = false;
-        yield return new WaitForSecondsRealtime(48);
+        yield return new WaitForSecondsRealtime(30);
+        doDispense = true;
+        yield return new WaitForSecondsRealtime(5);
+        doDispense = false;
+        yield return new WaitForSecondsRealtime(30);
 
     }
     

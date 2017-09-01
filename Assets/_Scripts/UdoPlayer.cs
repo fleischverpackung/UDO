@@ -16,7 +16,10 @@ public class UdoPlayer : MonoBehaviour {
     float mdma = .4f;
 
     Vector3 statsOld;
-    
+
+
+    private ParticleSystem particleFloor;
+
     /*
     private float loveRegen = -0.01f;
     private float healthRegen = -0.01f;
@@ -47,6 +50,10 @@ public class UdoPlayer : MonoBehaviour {
 
     private void Awake()
     {
+        particleFloor = GetComponentInChildren<ParticleSystem>();
+        particleFloor.Play();
+        particleFloor.Emit(0);
+
         if (Instance != null)
         {
             DestroyImmediate(gameObject);
@@ -187,6 +194,8 @@ public class UdoPlayer : MonoBehaviour {
         SceneManager.LoadScene("Splash");
     }
 
+    
+
     private void CheckDanceStyle()
     {
         if (coke > weed && coke > mdma)
@@ -285,6 +294,14 @@ public class UdoPlayer : MonoBehaviour {
             return true;
         else
             return false;
+    }
+
+    public void SetParticleFloor(bool x)
+    { 
+        if (x)
+            particleFloor.Emit(1);
+        else
+            particleFloor.Emit(0);
     }
 
     

@@ -16,11 +16,11 @@ public class Gui : MonoBehaviour
     public Slider sliderWeedDiff;
     public Text multi;
     public Text points;
-    public Image deathImg;
     public Text supermove;
     public Text lowEnergy;
     public Text bonusPointsTxt;
-    private ParticleSystem particleFloor;
+    public Light licht;
+    //private ParticleSystem particleFloor;
     //public RenderSettings renderSettings;
     //public Material skyA;
     //public Material skyB;
@@ -31,15 +31,15 @@ public class Gui : MonoBehaviour
 
     private void Awake()
     {
-        deathImg.enabled = false;
         supermove.enabled = false;
         lowEnergy.enabled = false;
         bonusPointsTxt.enabled = false;
+        licht.enabled = false;
 
-        particleFloor = GameObject.Find("UDO").GetComponentInChildren<ParticleSystem>();
+        //particleFloor = GameObject.Find("UDO").GetComponentInChildren<ParticleSystem>();
 
-        particleFloor.Play();
-        particleFloor.Emit(0);
+        //particleFloor.Play();
+        //particleFloor.Emit(0);
 
         if (Instance != null)
         {
@@ -71,13 +71,18 @@ public class Gui : MonoBehaviour
         {
             supermove.text = "COMBOMOVE: " + supermoveName;
             supermove.enabled = true;
-            particleFloor.Emit(1);
+            licht.enabled = true;
+            //particleFloor.Emit(1);
+            UdoPlayer.Instance.SetParticleFloor(true);
 
         }
         else
         { 
             supermove.enabled = false;
-            particleFloor.Emit(0);
+            licht.enabled = false;
+
+            //particleFloor.Emit(0);
+            UdoPlayer.Instance.SetParticleFloor(false);
         }
         
 
@@ -87,7 +92,7 @@ public class Gui : MonoBehaviour
 
     private void ShowDeathInfo()
     {
-        deathImg.enabled = true;
+        // removed deathImage
     }
 
     public void SetComboName(string x)

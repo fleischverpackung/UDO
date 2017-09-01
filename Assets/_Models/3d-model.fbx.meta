@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: 62e5e80168214d34c9522f4d924ee5b7
+timeCreated: 1504301018
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Group_001
+    100004: Group_002
+    100006: obj11_001
+    100008: obj12_001
+    100010: obj13_001
+    100012: obj14_001
+    100014: obj15_001
+    100016: obj1_001
+    100018: obj2_001
+    100020: obj3_001
+    100022: obj4_001
+    100024: obj5_001
+    100026: obj6_001
+    100028: obj7_001
+    100030: obj8_001
+    100032: obj9_001
+    400000: //RootNode
+    400002: Group_001
+    400004: Group_002
+    400006: obj11_001
+    400008: obj12_001
+    400010: obj13_001
+    400012: obj14_001
+    400014: obj15_001
+    400016: obj1_001
+    400018: obj2_001
+    400020: obj3_001
+    400022: obj4_001
+    400024: obj5_001
+    400026: obj6_001
+    400028: obj7_001
+    400030: obj8_001
+    400032: obj9_001
+    2300000: Group_001
+    2300002: Group_002
+    2300004: obj11_001
+    2300006: obj12_001
+    2300008: obj13_001
+    2300010: obj14_001
+    2300012: obj15_001
+    2300014: obj1_001
+    2300016: obj2_001
+    2300018: obj3_001
+    2300020: obj4_001
+    2300022: obj5_001
+    2300024: obj6_001
+    2300026: obj7_001
+    2300028: obj8_001
+    2300030: obj9_001
+    3300000: Group_001
+    3300002: Group_002
+    3300004: obj11_001
+    3300006: obj12_001
+    3300008: obj13_001
+    3300010: obj14_001
+    3300012: obj15_001
+    3300014: obj1_001
+    3300016: obj2_001
+    3300018: obj3_001
+    3300020: obj4_001
+    3300022: obj5_001
+    3300024: obj6_001
+    3300026: obj7_001
+    3300028: obj8_001
+    3300030: obj9_001
+    4300000: obj4_001
+    4300002: obj11_001
+    4300004: obj9_001
+    4300006: obj1_001
+    4300008: obj2_001
+    4300010: obj15_001
+    4300012: obj3_001
+    4300014: obj8_001
+    4300016: obj13_001
+    4300018: obj12_001
+    4300020: obj5_001
+    4300022: obj6_001
+    4300024: obj14_001
+    4300026: obj7_001
+    4300028: Group_002
+    4300030: Group_001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 200
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
