@@ -51,22 +51,19 @@ public class KeyCombo
 
                 if (currentIndex >= buttons.Length)
                 {
-                    currentIndex = 0;
-                    UdoPlayer.Instance.PaySupermove(costs);
-                    AnimationControl.Instance.PlayAni(ani);
-                    AnimationControl.Instance.StartCoroutine();
-                    //return true;
+                    if (UdoPlayer.Instance.CheckCosts(costs))
+                    {
+                        currentIndex = 0;
+                        Gui.Instance.SetComboName(ani);
+                        UdoPlayer.Instance.PaySupermove(costs);
+                        AnimationControl.Instance.PlayAni(ani);
+                        AnimationControl.Instance.StartCoroutine();
+                    }
+                    else
+                        Gui.Instance.BlinkLowEnergy();
                 }
-                //else return false;
             }
         }
-
-        //return false;
-
-        
-      
-
     }
-
 
 }

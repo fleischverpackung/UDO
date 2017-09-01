@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Gui : MonoBehaviour
 {
+    public static Gui Instance { get; private set; }
 
     public Slider sliderCoke;
     public Slider sliderMdma;
@@ -14,16 +15,28 @@ public class Gui : MonoBehaviour
     public Text points;
     public Image deathImg;
     public Text supermove;
+    public Text lowEnergy;
     //public ParticleSystem particleFloor;
     //public RenderSettings renderSettings;
-    public Material skyA;
-    public Material skyB;
+    //public Material skyA;
+    //public Material skyB;
+    private string supermoveName;
+
+    
 
     private void Awake()
     {
         deathImg.enabled = false;
         supermove.enabled = false;
-        
+        lowEnergy.enabled = false;
+
+        if (Instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        Instance = this;
+
     }
 
     private void Update()
@@ -42,7 +55,9 @@ public class Gui : MonoBehaviour
 
         if (AnimationControl.Instance.GetIsSupermove())
         {
+            supermove.text = "COMBOMOVE: " + supermoveName;
             supermove.enabled = true;
+
         }
         else
         { 
@@ -56,7 +71,29 @@ public class Gui : MonoBehaviour
     private void ShowDeathInfo()
     {
         deathImg.enabled = true;
+    }
 
+    public void SetComboName(string x)
+    {
+        supermoveName = x;
+    }
+
+    public void BlinkLowEnergy()
+    {
+        StartCoroutine(LowEnergy());
+    }
+
+
+     IEnumerator LowEnergy()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            lowEnergy.enabled = true;
+            yield return new WaitForSeconds(.3f);
+            lowEnergy.enabled = false;
+            yield return new WaitForSeconds(.3f);
+        }
+        
     }
 }
 

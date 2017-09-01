@@ -14,7 +14,7 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    // params: weed / coke / mdma !!!
+    // params: coke / mdma / weed !!!
     private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" }, "HipHopLegs", new float[]{0.2f, 0.1f, 0});
     private KeyCombo GayTurn = new KeyCombo(new string[] { "YB", "YB", "XB" }, "GayTurn", new float[] { 0f, 0f, .2f});
     private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "AB", "YB" }, "HipHopFlip", new float[] { 0.3f, 0, 0 });

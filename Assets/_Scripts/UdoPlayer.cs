@@ -117,23 +117,25 @@ public class UdoPlayer : MonoBehaviour {
 
     public void consumeDrug(Drug stoff)
     {
-        weed += stoff.weed;
-        coke += stoff.coke;
+        coke += stoff.coke;               
         mdma += stoff.mdma;
+        weed += stoff.weed;
+
+        if (coke < 0)
+            coke = 0;
+        if (mdma < 0)
+            mdma = 0;
+        if (weed < 0)
+            weed = 0;
+
         drugList.Add(stoff);
     }
 
     public void PaySupermove(float[] x)
     {
-        if (weed >= 0)
-            weed -= x[0];
-
-        if (coke >= 0)
-            coke -= x[1];
-
-        if (mdma >= 0)
-            mdma -= x[2];
-        
+        weed -= x[0];
+        coke -= x[1];
+        mdma -= x[2];        
     }
 
     /*
@@ -176,10 +178,10 @@ public class UdoPlayer : MonoBehaviour {
             danceStyle = 1;
 
         if (weed > coke && weed > mdma)
-            danceStyle = 0.5f;
+            danceStyle = 0f;
 
         if (mdma > coke && mdma > weed)
-            danceStyle = 0;
+            danceStyle = 0.5f;
     }
 
 
@@ -253,6 +255,14 @@ public class UdoPlayer : MonoBehaviour {
         else if (x <= 0)
             x = 0;
         return x;
+    }
+
+    public bool CheckCosts(float[] costs)
+    {
+        if (coke - costs[0] > 0 && mdma - costs[1] > 0 && weed - costs[2] > 0)
+            return true;
+        else
+            return false;
     }
 
     
