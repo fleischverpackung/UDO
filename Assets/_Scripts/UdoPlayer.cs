@@ -99,7 +99,7 @@ public class UdoPlayer : MonoBehaviour {
         // MANIPULATE UDO MODEL
         udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 7, .9f, 1.3f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy, coke);
-        Debug.Log("coke _ " + coke);
+        //Debug.Log("coke _ " + coke);
         Debug.Log("toxicationBonus _ " + toxicationBonus);
 
 
@@ -199,7 +199,10 @@ public class UdoPlayer : MonoBehaviour {
             danceStyle = 0.5f;
     }
 
-
+    public void SetBonusPoints(int x)
+    {
+        score += x;
+    }
     public float GetWeed()
     {
         return weed;

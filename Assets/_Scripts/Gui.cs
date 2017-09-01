@@ -19,11 +19,13 @@ public class Gui : MonoBehaviour
     public Image deathImg;
     public Text supermove;
     public Text lowEnergy;
-    //public ParticleSystem particleFloor;
+    public Text bonusPointsTxt;
+    private ParticleSystem particleFloor;
     //public RenderSettings renderSettings;
     //public Material skyA;
     //public Material skyB;
     private string supermoveName;
+    private int bonuspoints;
 
     
 
@@ -32,6 +34,12 @@ public class Gui : MonoBehaviour
         deathImg.enabled = false;
         supermove.enabled = false;
         lowEnergy.enabled = false;
+        bonusPointsTxt.enabled = false;
+
+        particleFloor = GameObject.Find("UDO").GetComponentInChildren<ParticleSystem>();
+
+        particleFloor.Play();
+        particleFloor.Emit(0);
 
         if (Instance != null)
         {
@@ -63,11 +71,13 @@ public class Gui : MonoBehaviour
         {
             supermove.text = "COMBOMOVE: " + supermoveName;
             supermove.enabled = true;
+            particleFloor.Emit(1);
 
         }
         else
         { 
             supermove.enabled = false;
+            particleFloor.Emit(0);
         }
         
 
@@ -107,6 +117,18 @@ public class Gui : MonoBehaviour
             yield return new WaitForSeconds(.3f);
         }
         
+    }
+
+    IEnumerator BonusPoints()
+    {
+        bonusPointsTxt.enabled = true;
+        yield return new WaitForSeconds(3);
+        bonusPointsTxt.enabled = false;
+    }
+    public void SetBonusPoints(int x)
+    {        
+        bonusPointsTxt.text = "+ " + x + "PTS";
+        StartCoroutine(BonusPoints());
     }
 }
 

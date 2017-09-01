@@ -6,6 +6,7 @@ public class KeyCombo
     public string[] buttons;
     private float[] costs;
     private string ani;
+    private int points;
     private int currentIndex = 0; //moves along the array as buttons are pressed
 
 
@@ -17,11 +18,12 @@ public class KeyCombo
 
     // EXTERNAL CALL METHOD
 
-    public KeyCombo(string[] b, string a, float[] c)
+    public KeyCombo(string[] b, string a, float[] c, int d)
     {
         ani = a;
         buttons = b;
         costs = c;
+        points = d;
     }
 
     public string GetName()
@@ -55,7 +57,9 @@ public class KeyCombo
                     {
                         currentIndex = 0;
                         Gui.Instance.SetComboName(ani);
+                        Gui.Instance.SetBonusPoints(points);
                         UdoPlayer.Instance.PaySupermove(costs);
+                        UdoPlayer.Instance.SetBonusPoints(points);
                         AnimationControl.Instance.PlayAni(ani);
                         AnimationControl.Instance.StartCoroutine();
                     }

@@ -6,13 +6,13 @@ public class dispenser : MonoBehaviour
 
     public Object[] pickupPrefabs;
     private AudioSource _audioSource;
-    public AudioClip _audioClip;
+    public AudioClip[] _audioClip;
 
-    private bool active = true;
+    //private bool active = true;
 
     
     private int dropArea = 20;
-    private float dispenseInterval = 0.5f;
+    private float dispenseInterval = 0.3f;
     private int timer = 0;
     private bool doDispense = false;
     private Vector3 posUdo;
@@ -45,7 +45,9 @@ public class dispenser : MonoBehaviour
                 {
                     Instantiate(pickupPrefabs[drugCase], pos, Quaternion.identity);
 
-                    _audioSource.PlayOneShot(_audioClip);
+                    int rand = (Random.Range(0, 3));
+                    _audioSource.PlayOneShot(_audioClip[rand]);
+
                     Debug.Log("Dropped Drug @ " + pos);
                 }
                 
@@ -59,15 +61,15 @@ public class dispenser : MonoBehaviour
     {
         doDispense = true;
         Debug.Log("FastDispense");
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(7);
         Debug.Log("StopDispense");
         doDispense = false;
-        yield return new WaitForSecondsRealtime(30);
+        yield return new WaitForSecondsRealtime(28);
         Debug.Log("FastDispense");
         doDispense = true;
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(7);
         doDispense = false;
-        yield return new WaitForSecondsRealtime(50);
+        yield return new WaitForSecondsRealtime(48);
 
     }
     

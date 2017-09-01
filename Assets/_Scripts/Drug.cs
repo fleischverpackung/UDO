@@ -72,7 +72,7 @@ public class Drug : MonoBehaviour, IDrug
 
     IEnumerator SelfDestruct()
     {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(6);
         Destroy(gameObject, _audioClip.length);
     }
 
