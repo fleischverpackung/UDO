@@ -146,9 +146,9 @@ public class UdoPlayer : MonoBehaviour {
     {
         StartCoroutine(StatsOldDelay());
                
-        coke -= x[1];
-        mdma -= x[2];
-        weed -= x[0];
+        coke -= x[0];
+        mdma -= x[1];
+        weed -= x[2];
     }
 
     /*
