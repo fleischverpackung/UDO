@@ -5,27 +5,21 @@ using UnityEngine.UI;
 
 public class getTimerValue : MonoBehaviour {
 
-    private string minutes;
-    private string seconds;
-    private float timer;
-    public Text timerIngame;
+    //private Timer timer;
+    private Text text;
+     
 
-    public void Awake()
+
+    void Start()
     {
-        timerIngame = GetComponent<Text>();
+        text = GetComponent<Text>();
+        //timer = GameObject.Find("TIMER").GetComponent<Timer>();
     }
 
 
     void Update()
     {
-        // FORMAT MINUTES AND SECONDS
-        /*
-        timer = UdoPlayer.Instance.GetTimer();
-        minutes = Mathf.Floor(timer / 60).ToString("0");
-        seconds = (timer % 60).ToString("00");
-        timerIngame.text = minutes + ":" + seconds;
-        */
-
-        timerIngame.text = string.Format(UdoPlayer.Instance.GetTimer().ToString());
+        string tempText = string.Format(UdoPlayer.Instance.GetTimer().ToString());
+        text.text = tempText;
     }
 }
