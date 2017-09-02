@@ -15,12 +15,13 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonCamera assetCam;
 
     // params: coke / mdma / weed !!!
-    private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" }, "Legwork", new float[]{0f, 0.1f, 0.3f}, 500);
+    private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "AB", "BB" }, "Legwork", new float[]{0f, 0.1f, 0.3f}, 300);
     private KeyCombo GayTurn = new KeyCombo(new string[] { "YB", "YB", "XB" }, "Fabulous", new float[] { 0f, 0.3f, 0f}, 100);
-    private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "AB", "YB" }, "Flip", new float[] { 0.3f, 0, 0.2f}, 600);
-    private KeyCombo Twerk = new KeyCombo(new string[] { "XB", "BB", "XB" }, "Twerk", new float[] { 0, 0.2f, 0.2f }, 300);
-    private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0f, 0f, 0.3f }, 1000);
-    private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "BB", "YB" }, "Thriller", new float[] { 0.2f, 0f , 0.2f }, 700);
+    private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "AB", "YB" }, "Flip", new float[] { 0.3f, 0, 0.2f}, 400);
+    private KeyCombo Twerk = new KeyCombo(new string[] { "XB", "BB", "XB" }, "Twerk", new float[] { 0, 0.2f, 0.2f }, 500);
+    private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0f, 0f, 0.3f }, 600);
+    private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "BB", "YB" }, "Thriller", new float[] { 0.2f, 0f , 0.2f }, 1000);
+    private KeyCombo Caipoera = new KeyCombo(new string[] { "YB", "BB", "XB" }, "Caipoera", new float[] { 0f, 0.2f, 0.2f }, 500);
 
     private string[] specialNames = new string[] { "HiphopLegs", "GayTurn", "HipHOpFlip´", "Twerk", "Gangnam", "Thriller" };
 
@@ -135,6 +136,7 @@ public class AnimationControl : MonoBehaviour {
             Twerk.Check();
             Gangnam.Check();
             Thriller.Check();
+            Caipoera.Check();
         }
         
 
