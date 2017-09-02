@@ -7,14 +7,16 @@ public class Splash : MonoBehaviour {
 
     private Animator animator;
     public Image instructions;
-    private string[] motions = { "Entrance", "Warmup", "Spin" };
-    public MeshRenderer phone;
+    private string[] motions = { "Entrance", "Warmup", "Dizzy", "Whipping" };
+    private MeshRenderer phone;
+    private GameObject udoMesh;
 
 
     private void Awake()
     {      
         animator = GameObject.Find("UDO").GetComponent<Animator>();
         phone = GameObject.Find("phone").GetComponent<MeshRenderer>();
+        udoMesh = GameObject.Find("UDO");
     }
 
     void Start () {
@@ -31,7 +33,12 @@ public class Splash : MonoBehaviour {
         AnimatorStateInfo aniTimer = animator.GetCurrentAnimatorStateInfo(0);
 
         if (aniTimer.IsName("OnMobile"))
+        {
             phone.enabled = true;
+            //mobile.transform.Rotate(transform.rotation.x, transform.rotation.y + 180, transform.rotation.z);
+        
+     }
+           
         else
             phone.enabled = false;
 
@@ -49,7 +56,7 @@ public class Splash : MonoBehaviour {
         while (true)
         {            
             yield return new WaitForSeconds(15);
-            animator.Play(motions[Random.Range(0 ,3)]);
+            animator.Play(motions[Random.Range(0 ,4)]);
         }
         
     }
