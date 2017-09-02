@@ -7,6 +7,7 @@ UI New Stats Interface and Combomos
 Udo Speed fixed
 
 
+
 ### 1.0a
 
 new Supermoves
@@ -18,5 +19,18 @@ pay Supermoves ixed
 Particle System
 Dancefloor
 Instructions
+
+
+
+### 1.1a
+
+new Lightning
+animations on splash screen
+ui tweaks
+names of combos get displayed
+supermoves give extra points
+random drop sounds
+
+
 
 
