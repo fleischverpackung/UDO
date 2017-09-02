@@ -27,6 +27,8 @@ public class Gui : MonoBehaviour
     private string supermoveName;
     private int bonuspoints;
 
+
+
     
 
     private void Awake()
@@ -65,6 +67,8 @@ public class Gui : MonoBehaviour
             sliderMdmaDiff.value = UdoPlayer.Instance.GetStatsOld().y;
             sliderWeedDiff.value = UdoPlayer.Instance.GetStatsOld().z;
         }
+
+
 
 
         if (AnimationControl.Instance.GetIsSupermove())
