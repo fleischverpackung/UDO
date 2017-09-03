@@ -21,7 +21,8 @@ public class AnimationControl : MonoBehaviour {
     private KeyCombo Twerk = new KeyCombo(new string[] { "XB", "BB", "XB" }, "Twerk", new float[] { 0, 0.2f, 0.2f }, 500);
     private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0f, 0f, 0.3f }, 600);
     private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "BB", "YB" }, "Thriller", new float[] { 0.2f, 0f , 0.2f }, 1000);
-    private KeyCombo Caipoera = new KeyCombo(new string[] { "YB", "BB", "XB" }, "Streetlife", new float[] { 0f, 0.2f, 0.2f }, 500);
+    private KeyCombo StreetLife = new KeyCombo(new string[] { "YB", "BB", "XB" }, "Streetlife", new float[] { 0f, 0.2f, 0.2f }, 500);
+    private KeyCombo Wave = new KeyCombo(new string[] { "YB", "BB", "XB" }, "Wave", new float[] { 0f, 0.3f, 0f }, 400);
 
     private string[] specialNames = new string[] { "HiphopLegs", "GayTurn", "HipHOpFlip´", "Twerk", "Gangnam", "Thriller" };
 
@@ -136,7 +137,8 @@ public class AnimationControl : MonoBehaviour {
             Twerk.Check();
             Gangnam.Check();
             Thriller.Check();
-            Caipoera.Check();
+            StreetLife.Check();
+            Wave.Check();
         }
         
 

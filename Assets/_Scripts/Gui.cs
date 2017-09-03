@@ -20,6 +20,10 @@ public class Gui : MonoBehaviour
     public Text lowEnergy;
     public Text bonusPointsTxt;
     public Light licht;
+    public Material skybox0;
+    public Material skybox1;
+
+    //private RenderSettings skyRenderer;
     //private ParticleSystem particleFloor;
     //public RenderSettings renderSettings;
     //public Material skyA;
@@ -72,16 +76,15 @@ public class Gui : MonoBehaviour
             supermove.text = "COMBOMOVE: " + supermoveName;
             supermove.enabled = true;
             licht.enabled = true;
-            //particleFloor.Emit(1);
             UdoPlayer.Instance.SetParticleFloor(true);
+            //RenderSettings.skybox = skybox0;
 
         }
         else
         { 
             supermove.enabled = false;
             licht.enabled = false;
-
-            //particleFloor.Emit(0);
+            //RenderSettings.skybox = skybox1;            
             UdoPlayer.Instance.SetParticleFloor(false);
         }
         

@@ -7,7 +7,7 @@ public class Splash : MonoBehaviour {
 
     private Animator animator;
     public Image instructions;
-    private string[] motions = { "Entrance", "Warmup", "Dizzy", "Whipping" };
+    private string[] motions = { "Warmup", "Dizzy", "Whipping", "PrayDown", "Entrance" };
     private MeshRenderer phone;
     private GameObject udoMesh;
 
@@ -55,7 +55,7 @@ public class Splash : MonoBehaviour {
     {
         while (true)
         {            
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(10);
             animator.Play(motions[Random.Range(0 ,4)]);
         }
         
