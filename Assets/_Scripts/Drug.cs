@@ -29,7 +29,7 @@ public class Drug : MonoBehaviour, IDrug
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _light = GetComponent<Light>();
+        _light = GetComponentInChildren<Light>();
         DrugObject = transform.GetChild(0).gameObject;
         this.setLevels();
         StartCoroutine(SelfDestruct());
@@ -62,17 +62,26 @@ public class Drug : MonoBehaviour, IDrug
         {
             other.GetComponent<UdoPlayer>().consumeDrug(this);
            _audioSource.PlayOneShot(_audioClip);
-           _light.enabled = false;
+           
             Renderer[] renderers = GetComponentsInChildren<Renderer>();
             foreach (Renderer r in renderers)
-                r.enabled = false;            
+            {
+                r.enabled = false;
+            }      
+            // enable this when using spotlights on items
+            //_light.enabled = false;
+
             Destroy(gameObject, _audioClip.length);
+            
         }
     }
+    
+
+
 
     IEnumerator SelfDestruct()
     {
-        yield return new WaitForSecondsRealtime(6);
+        yield return new WaitForSecondsRealtime(6);        
         Destroy(gameObject, _audioClip.length);
     }
 
