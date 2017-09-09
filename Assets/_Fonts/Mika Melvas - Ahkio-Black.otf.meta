@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 699a346dbc9c652409c870b87131de0d
+timeCreated: 1504820736
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Ahkio
+  fontNames:
+  - Ahkio
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 034b2ef8c49293447a2fab485f36e5e4, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

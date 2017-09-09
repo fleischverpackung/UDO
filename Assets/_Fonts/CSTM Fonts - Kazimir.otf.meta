@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 0c5ca144679f3a9408c83de935cbaf07
+timeCreated: 1504820735
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kazimir
+  fontNames:
+  - Kazimir
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

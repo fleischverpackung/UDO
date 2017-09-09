@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 37c332dfb4948624999fb8d6d09cd088
+timeCreated: 1504820736
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: TT Walls Rough
+  fontNames:
+  - TT Walls Rough
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 227deb5e6ef54f84d82287a9b32f4c7d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

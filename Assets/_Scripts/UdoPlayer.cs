@@ -14,7 +14,11 @@ public class UdoPlayer : MonoBehaviour {
     float weed = .2f;
     float coke = .3f;
     float mdma = .4f;
-
+    
+    //float weed = .8f;
+    //float coke = .8f;
+    //float mdma = .8f;
+    
     Vector3 statsOld;
 
 
@@ -31,8 +35,10 @@ public class UdoPlayer : MonoBehaviour {
     protected vThirdPersonController tpcs;
     protected vThirdPersonInput tpis;
     private AudioSource _audioSource;
-    public AudioClip _audioClip0;
+    public AudioClip audioDeathBody;
+    public AudioClip audioDeathFx;
     private Animator udoAni;
+    private GameObject udoObj;
 
     private Color skinHealthy = new Color(1F, 1F, 1F, 1F);
     private Color skinUnhealthy = new Color(1F, 0.7F, 0.7F, 0.1F);
@@ -41,7 +47,6 @@ public class UdoPlayer : MonoBehaviour {
     public float toxicationBonus = 0;
     private int timer = 90;
     private int score = 0;
-    //private int danceTime = 0;
     private float danceStyle = 0;
     private bool superMove = false;
     private float superMoveMultiplier = 1f;
@@ -68,11 +73,11 @@ public class UdoPlayer : MonoBehaviour {
     void Start()
     {
         drugList = new List<Drug>();
-        GameObject x = GameObject.Find("UDO");
+        udoObj = GameObject.Find("UDO");
         haut = GetComponentInChildren<Renderer>().material;
-        tpcs = x.GetComponent<vThirdPersonController>();
-        tpis = x.GetComponent<vThirdPersonInput>();
-        udoAni = x.GetComponent<Animator>();
+        tpcs = udoObj.GetComponent<vThirdPersonController>();
+        tpis = udoObj.GetComponent<vThirdPersonInput>();
+        udoAni = udoObj.GetComponent<Animator>();
 
         _audioSource = GetComponent<AudioSource>();
 
@@ -104,18 +109,24 @@ public class UdoPlayer : MonoBehaviour {
 
 
         // MANIPULATE UDO MODEL
-        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 7, .9f, 1.3f);
+        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 3, .9f, 1.2f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy, coke);
         //Debug.Log("coke _ " + coke);
-        Debug.Log("toxicationBonus _ " + toxicationBonus);
+        //Debug.Log("toxicationBonus _ " + toxicationBonus);
+
+        
+        // KILL IF FALL FROM PLATTFORM
+        if (udoObj.transform.position.x <= -50)
+            StartCoroutine(Death());
 
 
         // CHECK ALIVE
         if (weed >= 1 && isAlive || coke >= 1 && isAlive || mdma >= 1 && isAlive)
         {
+            _audioSource.PlayOneShot(audioDeathFx);
             isAlive = false;
             StartCoroutine(Death());
-            _audioSource.PlayOneShot(_audioClip0);
+            _audioSource.PlayOneShot(audioDeathBody);
             tpcs.Death();
         }
 

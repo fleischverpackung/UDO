@@ -24,7 +24,7 @@ SubShader {
 		#pragma multi_compile __ LUX_AREALIGHTS
 	#endif
 
-	#include "../Lux Core/Lux Config.cginc"
+	//#include "../Lux Core/Lux Config.cginc"
 	#include "../Lux Core/Lux Lighting/LuxStandardPBSLighting.cginc"
 	#include "TerrainEngine.cginc"
 

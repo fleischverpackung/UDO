@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: 94b1924a5a14d384ba77f2043cf24f84
+timeCreated: 1504820736
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Tactic Round Ext Exd
+  fontNames:
+  - Tactic Round Ext Exd
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4a30d8a1641e56345abb64a43b0d1601, type: 3}
+  - {fileID: 12800000, guid: 4706885297707ea42986f5e7d0a0e098, type: 3}
+  - {fileID: 12800000, guid: 4f7a34a2c2ad7ce45bcf54fc01182544, type: 3}
+  - {fileID: 12800000, guid: 188dd5331bf745a44b16c4a4a2d60214, type: 3}
+  - {fileID: 12800000, guid: 1892bdd350a62434b878f668503dc534, type: 3}
+  - {fileID: 12800000, guid: 02bfb2b44c667d64aa16aca9bb14c148, type: 3}
+  - {fileID: 12800000, guid: 3e6526152bc6d0c41bd9c3c2ff6f76e5, type: 3}
+  - {fileID: 12800000, guid: 68e3ae276772aee4a986bb8698fb9e72, type: 3}
+  - {fileID: 12800000, guid: 6e0e28684024bf147bc04b4c41fa875a, type: 3}
+  - {fileID: 12800000, guid: 11935f0c48f9c464b894fb40bf844648, type: 3}
+  - {fileID: 12800000, guid: 0a03e25ec98a0ad4f8c607e1f2192c82, type: 3}
+  - {fileID: 12800000, guid: 16c2c6df6134a3843b313194c6bfda5d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -10,6 +10,7 @@ public class Audio : MonoBehaviour {
     AudioClip[] clips;
     public AudioMixer mixer;
     private float toxLevel;
+    private bool isAlive;
 
 
 
@@ -27,31 +28,30 @@ public class Audio : MonoBehaviour {
 	void Update () {
 
         toxLevel = UdoPlayer.Instance.GetToxicationBonus();
-
+        isAlive = UdoPlayer.Instance.getAlive();
         // FUGLYY
 
         
-        if (toxLevel >= 0 && toxLevel <= 3)
+        if (toxLevel >= 0 && toxLevel <= 1f && isAlive)
         {
             mixer.SetFloat("heartSlow", 0);
-            mixer.SetFloat("heartFast", -80);
+            mixer.SetFloat("heartFast ", -80);
             mixer.SetFloat("heartBounce", -80);
         }
 
-        if (toxLevel > 3 && toxLevel <= 6)
+        if (toxLevel > 1f && toxLevel <= 1.8f && isAlive)
         {
-
             mixer.SetFloat("heartSlow", -80);
             mixer.SetFloat("heartFast", 0);
             mixer.SetFloat("heartBounce", -80);
         }
-        if (toxLevel > 6 && toxLevel < 10)
+        if (toxLevel > 1.8f && toxLevel < 3 && isAlive)
         {
             mixer.SetFloat("heartSlow", -80);
             mixer.SetFloat("heartFast", -80);
             mixer.SetFloat("heartBounce", 0);
         }
-        if (toxLevel >= 10)
+        if (!isAlive)
         {
             mixer.SetFloat("heartSlow", -80);
             mixer.SetFloat("heartFast", -80);

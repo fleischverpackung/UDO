@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 2870be177fb518742ab39cba52ce79df
+timeCreated: 1504820735
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Tactic Round
+  fontNames:
+  - Tactic Round
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 248d7db6cf228be48a997e16de34bf3f, type: 3}
+  - {fileID: 12800000, guid: 0cc38d28a9dbc8c409b4fc6389db4ec4, type: 3}
+  - {fileID: 12800000, guid: 1fad254ced6e31248baf973b375ba46b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

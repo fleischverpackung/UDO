@@ -15,16 +15,18 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonCamera assetCam;
 
     // params: coke / mdma / weed !!!
-    private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "YB", "BB" }, "Legwork", new float[]{0f, 0.1f, 0.3f}, 300);
-    private KeyCombo GayTurn = new KeyCombo(new string[] { "YB", "XB", "BB" }, "Fabulous", new float[] { 0f, 0.3f, 0f}, 100);
-    private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "AB", "YB" }, "Flip", new float[] { 0.3f, 0, 0.2f}, 400);
-    private KeyCombo Twerk = new KeyCombo(new string[] { "XB", "BB", "XB" }, "Twerk", new float[] { 0, 0.2f, 0.2f }, 500);
-    private KeyCombo Gangnam = new KeyCombo(new string[] { "AB", "YB", "XB" }, "Gangnam", new float[] { 0f, 0f, 0.3f }, 600);
-    private KeyCombo Thriller = new KeyCombo(new string[] { "BB", "BB", "YB" }, "Thriller", new float[] { 0.2f, 0f , 0.2f }, 1000);
-    private KeyCombo StreetLife = new KeyCombo(new string[] { "YB", "BB", "XB" }, "Streetlife", new float[] { 0f, 0.2f, 0.2f }, 500);
-    private KeyCombo Wave = new KeyCombo(new string[] { "YB", "BB", "XB" }, "Wave", new float[] { 0f, 0.3f, 0f }, 400);
-
-    private string[] specialNames = new string[] { "HiphopLegs", "GayTurn", "HipHOpFlip´", "Twerk", "Gangnam", "Thriller" };
+    // punkte = dauer sec * 10 gerundet // kosten = * 0.05
+    private KeyCombo HipHopLegs = new KeyCombo(new string[] { "AB", "XB", "AB" }, "Legwork", new float[]{0.16f, 0.16f, 0.16f}, 1000);
+    private KeyCombo GayTurn = new KeyCombo(new string[] { "YB", "XB", "YB" }, "Fabulous", new float[] { 0f, 0.15f, 0f}, 300);
+    private KeyCombo HipHopFlip = new KeyCombo(new string[] { "AB", "YB", "AB" }, "Flip", new float[] { 0.15f, 0, 0.08f}, 650);
+    private KeyCombo Twerk = new KeyCombo(new string[] { "XB", "BB", "XB" }, "Twerk", new float[] { 0.25f, 0.25f, 0.25f }, 1500);
+    private KeyCombo Gangnam = new KeyCombo(new string[] { "YB", "BB", "YB" }, "Gangnam", new float[] { 0f, 0.17f, 0.15f }, 650);
+    private KeyCombo Thriller = new KeyCombo(new string[] { "YB", "AB", "XB" }, "Thriller", new float[] { 0.4f, 0.4f , 0.4f }, 2550);
+    private KeyCombo StreetLife = new KeyCombo(new string[] { "YB", "BB", "XB" }, "Streetlife", new float[] { 0.3f, 0.15f, 0.15f }, 1250);
+    private KeyCombo MoreFabulous = new KeyCombo(new string[] { "AB", "XB", "YB" }, "MoreFabulous", new float[] { 0.0f, 0.2f, 0.2f }, 1600);
+    private KeyCombo Wave = new KeyCombo(new string[] { "BB", "AB", "BB" }, "Wave", new float[] { 0f, 0.3f, 0f }, 400);
+    private KeyCombo Spinner = new KeyCombo(new string[] { "YB", "AB", "YB" }, "Spinner", new float[] { 0.4f, 0.35f, 0f }, 1550);
+    private KeyCombo Hips = new KeyCombo(new string[] { "AB", "BB", "YB" }, "CrazyHips", new float[] { 0.3f, 0f, 0.3f }, 1250);
 
     private bool udoAlive = true;
     private float camDistance = 6;
@@ -36,9 +38,7 @@ public class AnimationControl : MonoBehaviour {
     private bool btnB = false;
     private bool btnX = false;
     private bool btnY = false;
-
-    //private List<string> btnSequence = new List<string>();    
-
+    
 
     private void Awake()
     {
@@ -139,6 +139,9 @@ public class AnimationControl : MonoBehaviour {
             Thriller.Check();
             StreetLife.Check();
             Wave.Check();
+            Spinner.Check();
+            MoreFabulous.Check();
+            Hips.Check();
         }
         
 

@@ -40,7 +40,7 @@ public class dispenser : MonoBehaviour
             if (doDispense)
             {
                 int drugCase = (Random.Range(0, 4));
-                Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea), 5, Random.Range(-dropArea, dropArea));
+                Vector3 pos = new Vector3(Random.Range(-dropArea, dropArea),  3, Random.Range(-dropArea, dropArea));
                 if (Vector3.Distance(pos, posUdo) >= 2)
                 {
                     Instantiate(pickupPrefabs[drugCase], pos, Quaternion.identity);

@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0c04ad30b016a6a488191773f044a437
+timeCreated: 1504820735
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Milica
+  fontNames:
+  - Milica
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 00be0e7d08573294abb771f0e68827ef, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

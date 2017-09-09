@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: a50a1c1a459cf8348831b5b2cf199d63
+timeCreated: 1504820737
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kazimir
+  fontNames:
+  - Kazimir
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2f528fb0c25920247804a3ab79e70b76, type: 3}
+  - {fileID: 12800000, guid: 9a2231819f09c144ba141f7d6144239d, type: 3}
+  - {fileID: 12800000, guid: 0c5ca144679f3a9408c83de935cbaf07, type: 3}
+  - {fileID: 12800000, guid: 2d0badb4b2b9270408b61daa4d68901a, type: 3}
+  - {fileID: 12800000, guid: 264518d442c5f58489f761380b5adfd7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
