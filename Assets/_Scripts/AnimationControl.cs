@@ -14,7 +14,7 @@ public class AnimationControl : MonoBehaviour {
     private vThirdPersonController assetController;
     private vThirdPersonCamera assetCam;
 
-    // params: coke / mdma / weed !!!
+    // params: cola / speck / dübel !!!
     // punkte = dauer sec * 10 gerundet // kosten = * 0.05
 
     // SINGLE MOVES // nix extra
@@ -122,6 +122,8 @@ public class AnimationControl : MonoBehaviour {
             assetInput.enableCamRotate = true;
         else
             assetInput.enableCamRotate = false;
+
+
 
 
 

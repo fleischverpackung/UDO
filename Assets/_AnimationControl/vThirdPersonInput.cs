@@ -28,6 +28,8 @@ namespace Invector.CharacterController
         public bool enableJump = false;
         public bool freezeCam = false;
         private float autoRotateSpeed = 0.5f;
+        private bool freshMove = true;
+        private float direction = 1;
 
 
         protected vThirdPersonCamera tpCamera;                // acess camera info        
@@ -161,12 +163,37 @@ namespace Invector.CharacterController
             var Y = Input.GetAxis(rotateCameraYInput);
             var X = Input.GetAxis(rotateCameraXInput);
             
+            
 
             // DISABLE CAMERA MOVEMENT
             if (enableCamRotate)
-                tpCamera.RotateCamera(X += autoRotateSpeed, Y);                
+            {
+                               
+                if (freshMove)
+                {
+                    float y = Random.value;
+                    Debug.Log("RANDOM:" + Random.value);
+                    if (y >= 0.5f)
+                    {
+                        direction = 1;
+                    }else
+                    {
+                        direction = -1;
+                    }
+                    Debug.Log(direction);  
+                    freshMove = false;
+                    Debug.Log("no fresh move");
+                }                 
+                tpCamera.RotateCamera(X += (autoRotateSpeed * direction), Y);
+            }                             
             else
+            {
                 tpCamera.RotateCamera(X, Y);
+                Debug.Log("is fresh move");
+
+                freshMove = true;
+            }
+                
             
             if (freezeCam)
                 tpCamera.RotateCamera(X, Y);
