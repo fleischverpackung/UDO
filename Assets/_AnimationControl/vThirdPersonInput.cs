@@ -172,7 +172,7 @@ namespace Invector.CharacterController
                 if (freshMove)
                 {
                     float y = Random.value;
-                    Debug.Log("RANDOM:" + Random.value);
+                    //Debug.Log("RANDOM:" + Random.value);
                     if (y >= 0.5f)
                     {
                         direction = 1;
@@ -182,14 +182,14 @@ namespace Invector.CharacterController
                     }
                     Debug.Log(direction);  
                     freshMove = false;
-                    Debug.Log("no fresh move");
+                   // Debug.Log("no fresh move");
                 }                 
                 tpCamera.RotateCamera(X += (autoRotateSpeed * direction), Y);
             }                             
             else
             {
                 tpCamera.RotateCamera(X, Y);
-                Debug.Log("is fresh move");
+                //Debug.Log("is fresh move");
 
                 freshMove = true;
             }

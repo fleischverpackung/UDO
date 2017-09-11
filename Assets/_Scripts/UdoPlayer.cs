@@ -41,7 +41,7 @@ public class UdoPlayer : MonoBehaviour {
     private GameObject udoObj;
 
     private Color skinHealthy = new Color(1F, 1F, 1F, 1F);
-    private Color skinUnhealthy = new Color(1F, 0.7F, 0.7F, 0.1F);
+    private Color skinUnhealthy = new Color(1F, 0.85F, 0.85F, 0.1F);
 
     public bool isAlive = true;
     public float toxicationBonus = 0;
@@ -109,7 +109,7 @@ public class UdoPlayer : MonoBehaviour {
 
 
         // MANIPULATE UDO MODEL
-        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 3, .9f, 1.2f);
+        udoAni.speed = ExtensionMethods.Remap(toxicationBonus, 0, 3, .9f, 1.1f);
         haut.color = Color.Lerp(skinHealthy, skinUnhealthy, coke);
         //Debug.Log("coke _ " + coke);
         //Debug.Log("toxicationBonus _ " + toxicationBonus);

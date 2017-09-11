@@ -31,6 +31,15 @@ names of combos get displayed
 supermoves give extra points
 random drop sounds
 
+## 1.3a 
+
+balancing
+additional supermoves
+all pickups new
+high tech grass
+skybox 
+
+
 
 
 
