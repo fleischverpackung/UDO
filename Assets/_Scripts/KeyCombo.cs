@@ -11,7 +11,7 @@ public class KeyCombo
 
 
 
-    public float allowedTimeBetweenButtons = 0.3f; //tweak as needed
+    public float allowedTimeBetweenButtons = 0.35f; //tweak as needed
     private float timeLastButtonPressed;
 
 
@@ -40,11 +40,11 @@ public class KeyCombo
             if (currentIndex < buttons.Length)
             {
                 if (
-                (buttons[currentIndex] == "AB" && Input.GetButton("AB")) ||
-                (buttons[currentIndex] == "BB" && Input.GetButton("BB")) ||
-                (buttons[currentIndex] == "XB" && Input.GetButton("XB")) ||
-                (buttons[currentIndex] == "YB" && Input.GetButton("YB")) ||
-                (buttons[currentIndex] != "AB" && buttons[currentIndex] != "BB" && buttons[currentIndex] != "XB" && buttons[currentIndex] != "YB" && Input.GetButton(buttons[currentIndex])
+                (buttons[currentIndex] == "AB" && Input.GetButtonDown("AB")) ||
+                (buttons[currentIndex] == "BB" && Input.GetButtonDown("BB")) ||
+                (buttons[currentIndex] == "XB" && Input.GetButtonDown("XB")) ||
+                (buttons[currentIndex] == "YB" && Input.GetButtonDown("YB")) ||
+                (buttons[currentIndex] != "AB" && buttons[currentIndex] != "BB" && buttons[currentIndex] != "YB" && buttons[currentIndex] != "XB" && Input.GetButtonDown(buttons[currentIndex])
                 ))
                 {
                     timeLastButtonPressed = Time.time;
@@ -64,7 +64,8 @@ public class KeyCombo
                         AnimationControl.Instance.StartCoroutine();
                     }
                     else
-                        Gui.Instance.BlinkLowEnergy();
+                    Gui.Instance.BlinkLowEnergy();
+                    
                 }
             }
         }

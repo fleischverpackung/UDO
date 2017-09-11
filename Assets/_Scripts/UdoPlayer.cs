@@ -100,7 +100,7 @@ public class UdoPlayer : MonoBehaviour {
 
         // THE HIGHSCORE        
         if (superMove)
-            superMoveMultiplier = 1;
+            superMoveMultiplier = 2;
         else
             superMoveMultiplier = 0;
 
