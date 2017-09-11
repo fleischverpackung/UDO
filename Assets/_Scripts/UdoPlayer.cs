@@ -116,7 +116,7 @@ public class UdoPlayer : MonoBehaviour {
 
         
         // KILL IF FALL FROM PLATTFORM
-        if (udoObj.transform.position.x <= -50)
+        if (udoObj.transform.position.y <= -30)
             StartCoroutine(Death());
 
 
@@ -184,6 +184,7 @@ public class UdoPlayer : MonoBehaviour {
             timer -= 1;
             if (timer <= 0)
                 GameOver();
+            
             yield return new WaitForSeconds(1);
         }
     }
@@ -199,6 +200,7 @@ public class UdoPlayer : MonoBehaviour {
 
     private void GameOver()
     {
+        isAlive = false;
         Debug.Log("GAME OVER");
         Boot.Instance.setHighscore(score);
         PlayerPrefs.SetInt("finalScore", score);

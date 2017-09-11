@@ -104,7 +104,7 @@ public class AnimationControl : MonoBehaviour {
         
         // CAM SPIN
 
-        if( Input.GetAxisRaw("TriggerR") != 0 || !aniTimer.IsName("Free Movement"))
+        if( Input.GetAxisRaw("TriggerR") != 0  || !aniTimer.IsName("Free Movement"))
             assetInput.enableCamRotate = true;
         else
             assetInput.enableCamRotate = false;

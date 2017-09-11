@@ -25,7 +25,7 @@ namespace Invector.CharacterController
         public string rotateCameraXInput ="Mouse X";
         public string rotateCameraYInput = "Mouse Y";
         public bool enableCamRotate = true;
-        public bool enableJump = true;
+        public bool enableJump = false;
         public bool freezeCam = false;
         private float autoRotateSpeed = 0.5f;
 
@@ -92,8 +92,8 @@ namespace Invector.CharacterController
             {
                 MoveCharacter();
                 SprintInput();
-                StrafeInput();
-                JumpInput();
+                //StrafeInput();
+               // JumpInput();
                 //DanceMode1();
                 //danceInput();
             }
@@ -117,8 +117,8 @@ namespace Invector.CharacterController
 
         protected virtual void StrafeInput()
         {
-            if (Input.GetKeyDown(strafeInput))
-                cc.Strafe();
+            //if (Input.GetKeyDown(strafeInput))
+              //  cc.Strafe();
         }
 
         protected virtual void SprintInput()
@@ -132,20 +132,21 @@ namespace Invector.CharacterController
 
         protected virtual void JumpInput()
         {
-            if (Input.GetKeyDown(jumpInput) && enableJump)
-                cc.Jump();
+          //  if (Input.GetKeyDown(jumpInput) && enableJump)
+            //    cc.Jump();
         }
 
         protected virtual void ExitGameInput()
         {
             // just a example to quit the application 
-            if (Input.GetKeyDown(KeyCode.Escape))
+          /*  if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if (!Cursor.visible)
                     Cursor.visible = true;
                 else
                     Application.Quit();
             }
+            */
         }
 
         #endregion
