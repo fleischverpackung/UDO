@@ -5,6 +5,9 @@ using System.Collections;
 
 public class LB_StandardHighScores : MonoBehaviour
 {
+
+    private bool finishedName = true;
+
 	// enable this to use the joystick-based input box instead of keyboard
 	public bool useJoystickEnterNameBox;
 
@@ -103,6 +106,9 @@ public class LB_StandardHighScores : MonoBehaviour
 		// but also making sure that the score is not zero (we don't want to submit zero scores, right?)
 		if ( newHighScore && finalGameScore != 0 )
 		{
+
+            finishedName = false;
+
 			if ( useJoystickEnterNameBox )
 			{
 				ShowEnterNamePanel_Joystick ();

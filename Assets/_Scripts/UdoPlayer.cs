@@ -144,11 +144,11 @@ public class UdoPlayer : MonoBehaviour {
         weed += stoff.weed;
 
         if (coke < 0)
-            coke = 0;
+            coke = 0.01f;
         if (mdma < 0)
-            mdma = 0;
+            mdma = 0.01f;
         if (weed < 0)
-            weed = 0;
+            weed = 0.01f;
 
         drugList.Add(stoff);
     }
