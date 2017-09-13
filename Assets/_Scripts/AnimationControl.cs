@@ -41,9 +41,9 @@ public class AnimationControl : MonoBehaviour {
     private KeyCombo Twerk = new KeyCombo(new string[] { "AB", "AB", "XB", "XB" }, "Twerk", new float[] { 0.2f, 0.5f, 0f }, 2000); //15
     private KeyCombo Hips = new KeyCombo(new string[] { "XB", "XB", "BB", "YB" }, "CrazyHips", new float[] { 0.35f, 0f, 0.25f }, 1750); //12,7
 
-
+    
     private bool udoAlive = true;
-    private float camDistance = 6;
+    private float camDistance = 10;
     private bool isDancing = false;
     private bool isSupermove = false;
     private float time = 0;
@@ -105,6 +105,7 @@ public class AnimationControl : MonoBehaviour {
         if (!aniTimer.IsName("Free Movement") && udoAlive && !aniTimer.IsName("Jump") && !aniTimer.IsName("Falling") && !aniTimer.IsName("Landing") && !aniTimer.IsName("Locomotion"))
         {
             isSupermove = true;
+            
             UdoPlayer.Instance.SetSuperMove(true);
         }            
         else
