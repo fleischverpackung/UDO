@@ -184,10 +184,10 @@ public class AnimationControl : MonoBehaviour {
             camDistance -= wheel;
         else
             camDistance = 1.1f;
-        if (camDistance <= 7.1f)
+        if (camDistance <= 15.1f)
             camDistance -= wheel;
         else
-            camDistance = 7f;
+            camDistance = 15f;
 
         assetCam.defaultDistance = camDistance;
     }
