@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Splash : MonoBehaviour {
 
@@ -20,7 +21,7 @@ public class Splash : MonoBehaviour {
     }
 
     void Start () {
-        instructions.enabled = false;
+       // instructions.enabled = false;
         StartCoroutine(Actions());
 
     }
@@ -41,12 +42,13 @@ public class Splash : MonoBehaviour {
            
         else
             phone.enabled = false;
-
-        if (Input.GetButtonDown("Select"))
+        
+        if (Input.GetButtonDown("Start"))
         {
-            instructions.enabled = !instructions.enabled;
+            SceneManager.LoadScene("Instructions");
             
         }
+        
 
     }
 

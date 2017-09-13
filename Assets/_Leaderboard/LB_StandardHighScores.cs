@@ -61,12 +61,13 @@ public class LB_StandardHighScores : MonoBehaviour
 		// load the main menu
 		SceneManager.LoadScene ("MainMenu");
 	}
-
+    /*
 	public void PlayAgain ()
 	{
 		// load the game scene
-		SceneManager.LoadScene ("Dance");
+		SceneManager.LoadScene ("Instructions");
 	}
+    */
 
 	// ---------------------------------------------------------------------
 

@@ -37,10 +37,10 @@ public class Boot : MonoBehaviour {
     void Update()
     {
         scene = SceneManager.GetActiveScene().name;
-
+        /*
         if (Input.GetAxisRaw("Start") != 0 && scene == "Splash")
             SceneManager.LoadScene("Dance");
-
+            */
        
 
     }
