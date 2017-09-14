@@ -35,11 +35,11 @@ public class AnimationControl : MonoBehaviour {
     private KeyCombo StepUp = new KeyCombo(new string[] { "XB", "XB", "AB" }, "StepUp", new float[] { 0.3f, 0.15f, 0f }, 1100); //9,3
 
     // TRIPLE MOVES // 500 etrxa
-    private KeyCombo Spinner = new KeyCombo(new string[] { "XB", "AB", "XB", "AB", "YB" }, "Spinner", new float[] { 0.45f, 0.3f, 0f }, 2050);
-    private KeyCombo Thriller = new KeyCombo(new string[] { "XB", "AB", "BB", "BB", "AB", "XB", "YB" }, "Thriller", new float[] { 0.2f, 0.6f , 0.4f }, 3050);
-    private KeyCombo MoreFabulous = new KeyCombo(new string[] { "AB", "BB", "AB", "BB", "YB" }, "MoreFabulous", new float[] { 0.1f, 0.4f, 0.2f }, 2100);
-    private KeyCombo Twerk = new KeyCombo(new string[] { "AB", "AB", "XB", "XB" }, "Twerk", new float[] { 0.2f, 0.5f, 0f }, 2000); //15
-    private KeyCombo Hips = new KeyCombo(new string[] { "XB", "XB", "BB", "YB" }, "CrazyHips", new float[] { 0.35f, 0f, 0.25f }, 1750); //12,7
+    private KeyCombo Spinner = new KeyCombo(new string[] { "XB", "AB", "BB", "YB" }, "Spinner", new float[] { 0.40f, 0.25f, 0.1f }, 2050);
+    private KeyCombo Thriller = new KeyCombo(new string[] { "AB", "BB", "XB", "YB"}, "Thriller", new float[] { 0.2f, 0.6f , 0.4f }, 3050);
+    private KeyCombo MoreFabulous = new KeyCombo(new string[] { "XB", "BB", "AB", "YB" }, "MoreFabulous", new float[] { 0.4f, 0.1f, 0.2f }, 2100);
+    private KeyCombo Twerk = new KeyCombo(new string[] { "BB", "AB", "XB", "YB" }, "Twerk", new float[] { 0.1f, 0.2f, 0.4f }, 2000); //15
+    private KeyCombo Hips = new KeyCombo(new string[] { "BB", "XB", "AB", "YB" }, "CrazyHips", new float[] { 0.2f, 0.11f, 0.3f }, 1750); //12,7
 
     
     private bool udoAlive = true;
