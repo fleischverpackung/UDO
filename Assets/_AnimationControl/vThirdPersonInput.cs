@@ -180,7 +180,7 @@ namespace Invector.CharacterController
                     {
                         direction = -1;
                     }
-                    Debug.Log(direction);  
+                    //Debug.Log(direction);  
                     freshMove = false;
                    // Debug.Log("no fresh move");
                 }                 

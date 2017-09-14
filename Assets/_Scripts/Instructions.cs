@@ -11,8 +11,10 @@ public class Instructions : MonoBehaviour {
     public Image instructions1;
     public Image instructions2;
     private int counter = 0;
+    private string scene;
 
-    // Use this for initialization
+
+
     void Start () {
 
         instructions0.enabled = true;
@@ -22,9 +24,12 @@ public class Instructions : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 
-        if (Input.GetButtonDown("Start"))
+        scene = SceneManager.GetActiveScene().name;
+
+        if (Input.GetButtonDown("Start") && scene == "Instructions")
             counter += 1;
 
         if (counter == 0)

@@ -11,7 +11,7 @@ public class Splash : MonoBehaviour {
     private string[] motions = { "Warmup", "Dizzy", "Whipping", "PrayDown", "Entrance" };
     private MeshRenderer phone;
     private GameObject udoMesh;
-
+    private string scene;
 
     private void Awake()
     {      
@@ -30,7 +30,7 @@ public class Splash : MonoBehaviour {
 
 	void Update () {
 
-
+        scene = SceneManager.GetActiveScene().name;
         AnimatorStateInfo aniTimer = animator.GetCurrentAnimatorStateInfo(0);
 
         if (aniTimer.IsName("OnMobile"))
@@ -43,7 +43,7 @@ public class Splash : MonoBehaviour {
         else
             phone.enabled = false;
         
-        if (Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Start") && scene == "Splash")
         {
             SceneManager.LoadScene("Instructions");
             
