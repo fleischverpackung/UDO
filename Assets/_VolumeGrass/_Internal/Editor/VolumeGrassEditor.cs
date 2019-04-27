@@ -584,7 +584,7 @@ public class VolumeGrassEditor : Editor {
 		
 		Event current = Event.current;
 		switch(current.type) {
-		case EventType.keyDown:
+		case EventType.KeyDown:
 			if (current.keyCode==KeyCode.M) {
 				_target.paint_height=!_target.paint_height;
 				if (_target.paint_height) {
@@ -607,7 +607,7 @@ public class VolumeGrassEditor : Editor {
 		Event current = Event.current;
 		int i;
 				
-		if (Event.current.type==EventType.keyDown) {
+		if (Event.current.type==EventType.KeyDown) {
 			if (Event.current.keyCode==KeyCode.M) {
 				_target.paint_height=!_target.paint_height;
 				if (_target.paint_height) {
@@ -625,7 +625,7 @@ public class VolumeGrassEditor : Editor {
 		}
 		
 		switch(current.type) {
-		case EventType.keyDown:
+		case EventType.KeyDown:
 			if (current.keyCode==KeyCode.Delete) {
 				if ((_target.state==0) || (_target.which_active==3)) {
 					if (_target.active_idx>=0) {
@@ -651,10 +651,10 @@ public class VolumeGrassEditor : Editor {
 				}
 			}
 			break;
-		case EventType.keyUp:
+		case EventType.KeyUp:
 			//					current.Use();
 			break;
-		case EventType.mouseDown:
+		case EventType.MouseDown:
 			//Debug.Log(current +"     "+controlID);
 			float dist;
 			float min_dist;
@@ -767,13 +767,13 @@ public class VolumeGrassEditor : Editor {
 			break;
 			//				case EventType.mouseMove:
 			//				break;
-		case EventType.mouseDrag:
+		case EventType.MouseDrag:
 			//current.Use();
 			break;
-		case EventType.mouseUp:
+		case EventType.MouseUp:
 			//current.Use();
 			break;
-		case EventType.layout:
+		case EventType.Layout:
 			// HandleUtility.AddDefaultControl(controlID);
 			break;
 			
@@ -963,7 +963,7 @@ public class VolumeGrassEditor : Editor {
 			return;
 		}		
 		
-		if (current.type==EventType.layout) {
+		if (current.type==EventType.Layout) {
 			HandleUtility.AddDefaultControl(GUIUtility.GetControlID(FocusType.Passive));
 			return;
 		}
@@ -973,7 +973,7 @@ public class VolumeGrassEditor : Editor {
 		if (_target.state==1) {
 		
 			switch(current.type) {
-			case EventType.keyDown:
+			case EventType.KeyDown:
 				if (current.keyCode==KeyCode.M || ((current.keyCode==KeyCode.Escape) && _target.paint_height)) {
 					SceneView.onSceneGUIDelegate -= VolumeGrass._SceneGUI;
 					_target.paint_height=!_target.paint_height;
@@ -994,7 +994,7 @@ public class VolumeGrassEditor : Editor {
 			if (_target.paint_height) {
 				
 				if (current.control) {
-						if (current.type==EventType.mouseMove) {
+						if (current.type==EventType.MouseMove) {
 							if (control_down_flag) {
 								control_down_flag=false;
 								EditorUtility.SetDirty(_target);
@@ -1004,7 +1004,7 @@ public class VolumeGrassEditor : Editor {
 				}
 				control_down_flag=true;
 				switch(current.type) {
-					case EventType.mouseDown:
+					case EventType.MouseDown:
 						get_paint_coverage();
 						cover_verts_num_start_drag=cover_verts_num;
 						if (cover_verts_num>0) {
@@ -1015,7 +1015,7 @@ public class VolumeGrassEditor : Editor {
 							_target.undo_flag=true;
 						}
 					break;
-					case EventType.mouseDrag:
+					case EventType.MouseDrag:
 						get_paint_coverage();
 						if (cover_verts_num>0) {
 							if (_target.undo_flag) {
@@ -1028,7 +1028,7 @@ public class VolumeGrassEditor : Editor {
 							current.Use();
 						}
 					break;
-					case EventType.mouseMove:
+					case EventType.MouseMove:
 						get_paint_coverage();
 					break;
 				}
