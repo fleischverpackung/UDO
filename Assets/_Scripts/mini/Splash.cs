@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Splash : MonoBehaviour {
 
     private Animator animator;
+    private AnimatorStateInfo aniTimer;
     public Image instructions;
     private string[] motions = { "Warmup", "Dizzy", "Whipping", "PrayDown", "Entrance" };
     private MeshRenderer phone;
@@ -24,14 +25,15 @@ public class Splash : MonoBehaviour {
        // instructions.enabled = false;
         StartCoroutine(Actions());
 
+        scene = SceneManager.GetActiveScene().name;
+        aniTimer = animator.GetCurrentAnimatorStateInfo(0);
     }
 	
 
 
 	void Update () {
 
-        scene = SceneManager.GetActiveScene().name;
-        AnimatorStateInfo aniTimer = animator.GetCurrentAnimatorStateInfo(0);
+        
 
         if (aniTimer.IsName("OnMobile"))
         {
