@@ -35,7 +35,7 @@ public class Audio : MonoBehaviour {
         if (toxLevel >= 0 && toxLevel <= 1f && isAlive)
         {
             mixer.SetFloat("heartSlow", 0);
-            mixer.SetFloat("heartFast ", -80);
+            mixer.SetFloat("heartFast", -80);
             mixer.SetFloat("heartBounce", -80);
         }
 
