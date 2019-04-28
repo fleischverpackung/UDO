@@ -208,7 +208,7 @@ public class AnimationControl : MonoBehaviour {
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Free Movement"))
         {
             assetInput.enableMovement = false;
-            assetInput.enableJump = false;
+            assetInput.enableJump = true;
         }
         yield return new WaitForSeconds(1);
     }
