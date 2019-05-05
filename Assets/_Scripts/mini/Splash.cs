@@ -44,14 +44,14 @@ public class Splash : MonoBehaviour {
            
         else
             phone.enabled = false;
-        
+        */
         if (Input.GetButtonDown("Start") && scene == "Splash")
         {
             SceneManager.LoadScene("Instructions");
             
         }
         
-    */
+    
     }
 
     // PLAY RANDOM MOVE 
