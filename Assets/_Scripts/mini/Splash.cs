@@ -17,7 +17,7 @@ public class Splash : MonoBehaviour {
     private void Awake()
     {      
         animator = GameObject.Find("UDO").GetComponent<Animator>();
-        phone = GameObject.Find("phone").GetComponent<MeshRenderer>();
+        //phone = GameObject.Find("phone").GetComponent<MeshRenderer>();
         udoMesh = GameObject.Find("UDO");
     }
 
@@ -34,7 +34,7 @@ public class Splash : MonoBehaviour {
 	void Update () {
 
         
-
+        /*
         if (aniTimer.IsName("OnMobile"))
         {
             phone.enabled = true;
@@ -51,7 +51,7 @@ public class Splash : MonoBehaviour {
             
         }
         
-
+    */
     }
 
     // PLAY RANDOM MOVE 
