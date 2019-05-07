@@ -6,22 +6,17 @@ public class Person : MonoBehaviour
 {
 
     private Animator ani;
-    private int info;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        info = Random.Range(0, 7);
-
        ani = GetComponent<Animator>();
-       ani.SetInteger("level", info);
-
-        Debug.Log(info.ToString());
+       ani.SetInteger("level", Random.Range(0, 7));
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        new WaitForSeconds(Random.Range(3, 10));
+        ani.SetInteger("level", Random.Range(0, 8));
     }
 }
